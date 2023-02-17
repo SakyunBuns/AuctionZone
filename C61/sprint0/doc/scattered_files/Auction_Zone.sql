@@ -46,7 +46,7 @@ CREATE TABLE "items" (
   "description" VARCHAR(256) DEFAULT '',
   "current_status" status NOT NULL,
   "bid_count" int DEFAULT 0,
-  "min_increase" numeric(5,2) DEFAULT 1,
+  "price" numeric(,2) DEFAULT 1,
   "id_seller" int NOT NULL,
   "auction_on" timestamp UNIQUE NOT NULL,
   "room" int
@@ -76,9 +76,17 @@ CREATE TABLE "bids" (
   "submited_on" timestamp NOT NULL
 );
 
+CREATE TABLE "viewed_items" (
+  "id_item" int NOT NULL,
+  "id_user" int NOT NULL,
+  "viewed_on" timestamp
+);
+
 COMMENT ON COLUMN "items"."room" IS 'auction_on & room must be unique';
 
 COMMENT ON COLUMN "bids"."amount" IS 'must be higher then precious price with the same id_item';
+
+COMMENT ON COLUMN "viewed_items"."id_item" IS 'max of 30 mention of one user';
 
 ALTER TABLE "address" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
 
@@ -97,3 +105,7 @@ ALTER TABLE "bought_items" ADD FOREIGN KEY ("id_seller") REFERENCES "users" ("id
 ALTER TABLE "bought_items" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
 
 ALTER TABLE "bought_items" ADD FOREIGN KEY ("id_item") REFERENCES "items" ("id");
+
+ALTER TABLE "viewed_items" ADD FOREIGN KEY ("id_item") REFERENCES "items" ("id");
+
+ALTER TABLE "viewed_items" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
