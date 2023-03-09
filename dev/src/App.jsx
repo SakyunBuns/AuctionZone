@@ -1,24 +1,23 @@
 import React from 'react'
-import{ useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import './css/App.css'
+import HomePage from './HomePage'
+import ProfilePage from './ProfilePage'
+import AuctionPage from './AuctionPage'
+import NavBar from './component/navbar'
 
-export default function App() {
-    const [count, setCount] = useState(0)
-
+function App() {
     return (
-        <div className="App">
-            <div>
-                First div
-            </div>
-            <h1>Header</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </div>
+        <>
+        <NavBar/>
+        <Routes>
+            <Route path='/' element={<HomePage/>} />
+            <Route path='/Profile' element={<ProfilePage/>}/>
+            <Route path='/auction' element={<AuctionPage/>}/>
+            <Route path='*' element={<h1>error 404</h1>}/>
+        </Routes>
+        </>
     );
 }
+
+export default App;
