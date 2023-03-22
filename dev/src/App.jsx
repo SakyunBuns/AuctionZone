@@ -6,18 +6,42 @@ import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
 import NavBar from './component/navbar'
 
-function App() {
+export default function App() {
+
+    const pages = [
+        {
+            id: "1",
+            name: 'Home',
+            element: <HomePage/>,
+            path: '/'
+        },
+        {
+            id: "2",
+            name: 'Profile',
+            element: <ProfilePage/>,
+            path: '/Profile'
+        },
+        {
+            id: "3",
+            name: 'Auction',
+            element: <AuctionPage/>,
+            path: '/Auction'
+        }
+    ]
+
+    const navbarRoutes = pages.map((page) => {
+        return (
+        <Route path={page.path} element={page.element} key={page.id}/>
+        )
+    })
+
     return (
         <>
-        <NavBar/>
+        <NavBar pages={pages}/>
         <Routes>
-            <Route path='/' element={<HomePage/>} />
-            <Route path='/Profile' element={<ProfilePage/>}/>
-            <Route path='/auction' element={<AuctionPage/>}/>
-            <Route path='*' element={<h1>error 404</h1>}/>
+            {navbarRoutes}
+            <Route path='*' element={<h1>error 404</h1>} key="0"/>
         </Routes>
         </>
     );
 }
-
-export default App;
