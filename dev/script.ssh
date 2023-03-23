@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Check if Node.js is installed
+if ! command -v node &> /dev/null; then
+    echo "Node.js is not installed. Installing it now..."
+    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+else
+    echo "Node.js is already installed."
+fi
+
+# Check if npm is installed
+if ! command -v npm &> /dev/null; then
+    echo "npm is not installed. Installing it now..."
+    sudo apt-get install -y npm
+else
+    echo "npm is already installed."
+fi
+
+# Check if PM2 is installed
+if ! command -v pm2 &> /dev/null; then
+    echo "PM2 is not installed. Installing it now..."
+    sudo npm install -g pm2
+else
+    echo "PM2 is already installed."
+fi
+
+# Create a new directory for your Node.js application, and navigate to it
+mkdir myapp
+cd myapp
+
+# Create a new Node.js file, for example, index.js, and add your server code
+
+# Install the express module
+npm install express https
+
+# Generate a self-signed SSL certificate using OpenSSL
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/myapp.key -out /etc/ssl/certs/myapp.crt
+
+# Create a new PM2 configuration file
+echo "module.exports = {" > pm2.config.js
+echo "  apps : [{" >> pm2.config.js
+echo "    name: 'myapp'," >> pm2.config.js
+echo "    script: './index.js'," >> pm2.config.js
+echo "    instances: 1," >> pm2.config.js
+echo "    exec_mode: 'fork'," >> pm2.config.js
+echo "    env: {" >> pm2.config.js
+echo "      NODE_ENV: 'production'," >> pm2.config.js
+echo "      PORT: 443" >> pm2.config.js
+echo "    }" >> pm2.config.js
+echo "  }]" >> pm2.config.js
+echo "}" >> pm2.config.js
+
+sudo setcap 'cap_net_bind_service=+ep' $(readlink -f $(which node))
+
+# Start your Node.js application using PM2
+pm2 start pm2.config.js
+
+# Save the current PM2 process list to ensure that your application runs on system startup
+pm2 save
