@@ -6,13 +6,11 @@ export default function Logo(props){
         gridArea:`${props.gridName}`,
         width: `${props.logoWidth}`,
         height: '100%',
-        color:'#ffffff',
         backgroundImage:`url(${LogoImage})`,
         backgroundSize: `contain`,
         backgroundRepeat: 'no-repeat'
     }
-
-
+    
     return(
         <div style={style}></div>
     )   

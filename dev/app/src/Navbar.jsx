@@ -17,13 +17,14 @@ export default function Navbar(props){
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    height: '90%',
     width: '100%', 
     maxWidth: '100px',
-    border: '1px solid white',
+    border: `1px solid ${props.palette.color3}`,
     backgroundColor: `${props.palette.color2}`,
     borderRadius: '3px',
     color: `${props.palette.textColor}`,
+    margin:'auto 10px'
   }
 
   const links = props.pages.map((page) => {

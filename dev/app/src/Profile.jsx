@@ -6,14 +6,12 @@ export default function Profile(props){
 
     const imageHeight = props.profileWidth - 20
 
-    console.log(imageHeight)
-
     const styleContainer = {
         gridArea:`${props.gridName}`,
         display: 'flex',
         flexDirection: 'column',
         justifieContent: 'center',
-        alignItem: 'center'
+        alignItem: 'center',
     }
 
     const styleImg={
@@ -25,14 +23,14 @@ export default function Profile(props){
     const styleText = {
         fontSize : '10px',
         width: '100%',
-        textAlign:'center'
+        textAlign:'center',
+        color: `${props.palette.textColor}`
+    } 
+
+    const styleLink= {
+        color: `${props.palette.textColor}`
     }
 
-
-
-
-
-    
     // const profile = props.profile.map((elem) => {
     //     return(
     //         props.elem.image ? 
@@ -49,7 +47,7 @@ export default function Profile(props){
     return (
         <div style={styleContainer}>
             <img src={VisitorProfile} style={styleImg}></img>
-            <p style={styleText}><Link to='/Profile'>User</Link> | Logout</p>
+            <div style={styleText}><Link style={styleLink} to='/Profile'>User</Link> | Logout</div>
 
 
         </div>

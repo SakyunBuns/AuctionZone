@@ -6,7 +6,6 @@ export default function SearchBar(props){
         gridArea:`${props.gridName}`,
         display: 'flex',
         flexDirection: 'row',
-        color:'#000000'
     }
 
     const styleCenter = {
@@ -17,9 +16,8 @@ export default function SearchBar(props){
 
     const styleInput = {
         alignSelf: 'center',
-        width: '90%'
+        width: '100%'
     }
-
 
     return(
         <div style={styleContainer}>
