@@ -10,23 +10,25 @@ export default function Navbar(props){
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: `${props.palette.color1}`,
-    height: '50px',
+    height: `${props.height}`,
   }
   
   const styleLink = {
-    border: '2px solid black',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%', 
+    border: '1px solid white',
     backgroundColor: `${props.palette.color2}`,
-    padding: '10px',
     borderRadius: '3px',
     color: `${props.palette.textColor}`,
   }
 
   const links = props.pages.map((page) => {
     return (
-      <Link to={page.path} key={page.id}>
-        <div style={styleLink}> 
+      <Link to={page.path} key={page.id} style={styleLink}>
           {page.name}
-        </div>
       </Link>
     )
   })
