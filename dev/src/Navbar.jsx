@@ -7,7 +7,7 @@ export default function Navbar(props){
   const styleContainer = {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: `${props.palette.color1}`,
     height: `${props.height}`,
@@ -19,6 +19,7 @@ export default function Navbar(props){
     alignItems: 'center',
     height: '100%',
     width: '100%', 
+    maxWidth: '100px',
     border: '1px solid white',
     backgroundColor: `${props.palette.color2}`,
     borderRadius: '3px',

@@ -10,13 +10,10 @@ export default function Logo(props){
         backgroundImage:`url(${LogoImage})`,
         backgroundSize: `contain`,
         backgroundRepeat: 'no-repeat'
-
-
     }
 
 
     return(
-        <div style={style}>
-        </div>
+        <div style={style}></div>
     )   
 }

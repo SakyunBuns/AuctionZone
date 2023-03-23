@@ -5,7 +5,6 @@ import './css/App.css'
 import HomePage from './HomePage'
 import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
-import NavBar from './Navbar'
 import Header from './Header'
 
 export default function App() {
