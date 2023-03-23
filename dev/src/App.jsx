@@ -6,7 +6,7 @@ import HomePage from './HomePage'
 import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
 import NavBar from './Navbar'
-
+import Header from './Header'
 
 export default function App() {
 
@@ -63,7 +63,7 @@ export default function App() {
 
     return (
         <div>
-            <NavBar pages={pages} palette={palette}/>
+            <Header pages={pages} palette={palette}/>
             <Routes>
                 {navbarRoutes}
                 <Route path='*' element={<h1>error 404</h1>} key="0"/>
