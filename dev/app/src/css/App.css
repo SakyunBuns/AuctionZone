@@ -34,10 +34,9 @@ a{
 }
 
 .form--container{
-    padding: 20px; 
+    padding: 100px; 
     width: 500px;
     margin: auto;
-    margin-top: 100px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -48,7 +47,7 @@ a{
 .form--label{
     display: flex;
     flex-direction: row;
-    width: 300px;
+    width: 350px;
     justify-content: space-between;
 }
 
