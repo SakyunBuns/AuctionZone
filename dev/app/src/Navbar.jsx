@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useState } from 'react'
 
 export default function Navbar(props){
+
 
   
   const styleContainer = {
@@ -13,25 +15,13 @@ export default function Navbar(props){
     height: `${props.height}`,
   }
   
-  const styleLink = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '90%',
-    width: '100%', 
-    maxWidth: '100px',
-    border: `1px solid ${props.palette.color3}`,
-    backgroundColor: `${props.palette.color2}`,
-    borderRadius: '3px',
-    color: `${props.palette.textColor}`,
-    margin:'auto 10px'
-  }
+
+
+ console.log(props)
 
   const links = props.pages.map((page) => {
     return (
-      <Link to={page.path} key={page.id} style={styleLink}>
-          {page.name}
-      </Link>
+      <NavbarLink path={props.pages.path} key={props.pages.id} palette={props.palette} name={props.name}/>
     )
   })
 
@@ -41,3 +31,38 @@ export default function Navbar(props){
       </div>
   );
 }
+
+function NavbarLink(props){ 
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+  
+  const styleLink = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%', 
+    maxWidth: '100px',
+    margin:'auto 10px',
+    transition:'.5s',
+    color: `${props.palette.textColor}`,
+    border: isHovered ? `1px solid ${props.palette.color3}` : `1px solid ${props.palette.color1}`,
+    backgroundColor: isHovered ? `${props.palette.color2}` : `${props.palette.color1}`,
+    borderRadius: '3px'
+  }
+
+  return (
+    <Link to={props.path} style={styleLink} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      {props.name}
+    </Link>
+  )
+}
+
