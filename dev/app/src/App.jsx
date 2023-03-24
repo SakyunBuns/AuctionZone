@@ -59,6 +59,8 @@ export default function App() {
         )
     })
 
+    document.body.style.backgroundColor = `${palette.color1}`
+
     return (
         <div className='fullpage'>
             <Header pages={pages} palette={palette}/>

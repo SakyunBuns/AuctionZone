@@ -5,12 +5,12 @@ function HomePage(props){
 
     const styleHome = {
         width: '100%',
-        height: '100%',
+        height: 'calc(100% - 100px)',
         backgroundColor: `${props.palette.color1}`
     }
 
     return(
-        <div style={styleHome}>
+        <div style={styleHome} className='page'>
             Im homepage
         </div>
 

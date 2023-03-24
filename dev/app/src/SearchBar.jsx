@@ -16,7 +16,8 @@ export default function SearchBar(props){
 
     const styleInput = {
         alignSelf: 'center',
-        width: '100%'
+        width: '100%',
+        maxWidth: '800px',
     }
 
     return(
