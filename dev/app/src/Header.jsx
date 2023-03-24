@@ -29,7 +29,7 @@ export default function Header(props){
                 <Navbar pages={props.pages} palette={props.palette} gridName="navbar"/>
                 <Logo gridName="logo" logoWidth={logoWidth} palette={props.palette}/>
                 <SearchBar gridName="search" height={rowHeight} palette={props.palette}/>
-                <Profile gridName="profile" profileWidth={profileWidth} palette={props.palette}/>
+                <Profile gridName="profile" profileWidth={profileWidth} palette={props.palette} signed={props.signed}/>
             </div>
         </header>
     )

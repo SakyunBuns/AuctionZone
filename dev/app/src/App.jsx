@@ -6,8 +6,11 @@ import HomePage from './HomePage'
 import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
 import Header from './Header'
+import SignupPage from './SignupPage'
 
 export default function App() {
+
+    const [signed, setSigned] = useState(false)
 
     const [darkMode, setDarkMode] = useState(false)
 
@@ -63,13 +66,14 @@ export default function App() {
 
     return (
         <div className='fullpage'>
-            <Header pages={pages} palette={palette}/>
+            <Header pages={pages} palette={palette} signed={signed}/>
             <Routes>
                 {navbarRoutes}
+                <Route path='/SignupPage' element={<SignupPage palette={palette}/>}/>
                 <Route path='*' element={<h1>error 404</h1>} key="0"/>
             </Routes>
 
-            <button onClick={handleDarkMode}>HERE</button>
+            <button onClick={handleDarkMode}>DARKMODE</button>
         </div>
     );
 }

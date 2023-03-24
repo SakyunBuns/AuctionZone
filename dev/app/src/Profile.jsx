@@ -31,24 +31,11 @@ export default function Profile(props){
         color: `${props.palette.textColor}`
     }
 
-    // const profile = props.profile.map((elem) => {
-    //     return(
-    //         props.elem.image ? 
-    //         <div style={styleContainer}>
-    //             <img src={props.elem.image}></img>
-    //         </div> : 
-    //         <div style={styleContainer}>
-    //             <img src={VisitorProfile}></img>
-    //         </div>
-    //     )
-    // })
-
-    
     return (
         <div style={styleContainer}>
             <img src={VisitorProfile} style={styleImg}></img>
-            <div style={styleText}><Link style={styleLink} to='/Profile'>User</Link> | Logout</div>
-
+            {props.signed ? <div style={styleText}>LOGGED</div> : <div style={styleText}><Link style={styleLink} to='/SignupPage'>Sign up</Link></div> }
+            
 
         </div>
     )

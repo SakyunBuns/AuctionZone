@@ -20,6 +20,8 @@
 
 .page{
     padding: 20px; 
+    width: 100%;
+    height: calc(100% - 100px);
 }
 
 body{
@@ -30,3 +32,23 @@ body{
 a{
     text-decoration: none;
 }
+
+.form--container{
+    padding: 20px; 
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form--label{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-between;
+}
+
