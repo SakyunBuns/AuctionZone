@@ -68,7 +68,7 @@ a{
 
 
 .section--container{
-    --sectionHeight: 300px;
+    --sectionHeight: 320px;
     width: 100%;
     height: var(--sectionHeight);
     border-radius: 3px;
@@ -149,7 +149,7 @@ a{
 }
 
 .item--desc{
-    height: 20%;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
