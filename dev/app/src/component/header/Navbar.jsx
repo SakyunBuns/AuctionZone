@@ -4,8 +4,6 @@ import { useState } from 'react'
 
 export default function Navbar(props){
 
-
-  
   const styleContainer = {
     display: 'flex',
     flexDirection: 'row',
@@ -48,16 +46,20 @@ function NavbarLink(props){
     width: '100%', 
     maxWidth: '125px',
     margin:'auto 5px',
+    borderRadius: '3px',
     transition:'.75s',
     cubicBezier:`(0.42, 0, 1.0, 1.0)`,
     color: `${props.palette.textColor}`,
     border: isHovered ? `1px solid ${props.palette.color3}` : `1px solid ${props.palette.color1}`,
-    backgroundColor: isHovered ? `${props.palette.color2}` : `${props.palette.color1}`,
-    borderRadius: '3px'
+    backgroundColor: isHovered ? `${props.palette.color2}` : `${props.palette.color1}`
   }
 
   return (
-    <Link to={props.path} style={styleLink} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <Link 
+      to={props.path} style={styleLink} 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave}
+    >
       {props.name}
     </Link>
   )
