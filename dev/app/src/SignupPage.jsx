@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function SignupPage(props){
+export default function SignUpPage(props){
 
-    const [formData, setFormData] = useState(
-        {
+    const reset = {
             username: "", 
             firstname: "", 
             lastname: "", 
@@ -14,8 +13,9 @@ export default function SignupPage(props){
             address: "",
             country: "",
             dob: ""
-        }
-    )  
+    }
+
+    const [formData, setFormData] = useState(reset)  
     
     console.log(formData)
     const handleChange = (event) => {
@@ -29,21 +29,30 @@ export default function SignupPage(props){
     }
 
     const handleSubmit = (event) => {
-      event.preventDefault()
+        event.preventDefault()
     //INSERT DAO
     
-     console.log(formData)
+        console.log(formData)
     };
+
+    
+    const handleReset = (event) => {
+        event.preventDefault()
+      
+        setFormData(reset)
+      };
 
     const formContainerStyle = {
         color: `${props.palette.textColor}`,
         border: `2px solid ${props.palette.color2}`
     }
 
+    
+
 
 
     return (
-      <form onSubmit={handleSubmit} className='page' style={{alignItem:'center', display:'flex'}}>
+      <form onSubmit={handleSubmit} onReset={handleReset} className='page' style={{alignItem:'center', display:'flex'}}>
           <div className='form--container' style={formContainerStyle}>
             <label className='form--label'>
             <p>Username : </p>
@@ -72,7 +81,7 @@ export default function SignupPage(props){
                 Placeholder for notification
             </div>
             <br />
-            
+
             <label className='form--label'>
             Lastname :
             <input
@@ -171,7 +180,11 @@ export default function SignupPage(props){
             </div>
             <br />
 
-            <button type="submit" style={{padding: `5px 10px`}}>Sign Up</button>
+            <div className='form--button'>
+                <button type="reset" style={{padding: `5px 10px`}}>Reset</button>
+                <button type="submit" style={{padding: `5px 10px`}}>Sign Up</button>
+            </div>
+
           </div>
       </form>
     );

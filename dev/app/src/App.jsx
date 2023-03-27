@@ -6,7 +6,8 @@ import Header from './component/header/Header'
 import HomePage from './HomePage'
 import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
-import SignupPage from './SignupPage'
+import SignUpPage from './SignUpPage'
+import SignInPage from './SignInPage'
 
 export default function App() {
 
@@ -69,7 +70,8 @@ export default function App() {
             <Header pages={pages} palette={palette} signed={signed}/>
             <Routes>
                 {navbarRoutes}
-                <Route path='/SignupPage' element={<SignupPage palette={palette}/>}/>
+                <Route path='/SignUpPage' element={<SignUpPage palette={palette}/>}/>
+                <Route path='/SignInPage' element={<SignInPage palette={palette}/>}/>
                 <Route path='*' element={<h1>error 404</h1>} key="0"/>
             </Routes>
 

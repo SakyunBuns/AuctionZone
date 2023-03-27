@@ -35,7 +35,7 @@ a{
 
 .form--container{
     --formPadding: 75px;
-    --formWidth: 550px;
+    --formWidth: 600px;
     padding: var(--formPadding);
     width: var(--formWidth);
     margin: auto;
@@ -52,11 +52,18 @@ a{
     justify-content: flex-end;
 }
 
-.form--label{
+.form--container>.form--label, .form--button{
     display: flex;
     flex-direction: row;
     width: calc(var(--formWidth) - 2*var(--formPadding));
+}
+
+.form--label{
     justify-content: space-between;
+}
+
+.form--button{
+    justify-content: space-evenly;
 }
 
 
