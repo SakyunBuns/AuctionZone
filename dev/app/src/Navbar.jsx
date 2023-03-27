@@ -14,14 +14,10 @@ export default function Navbar(props){
     backgroundColor: `${props.palette.color1}`,
     height: `${props.height}`,
   }
-  
-
-
- console.log(props)
 
   const links = props.pages.map((page) => {
     return (
-      <NavbarLink path={props.pages.path} key={props.pages.id} palette={props.palette} name={props.name}/>
+      <NavbarLink path={page.path} key={page.id} palette={props.palette} name={page.name}/>
     )
   })
 
@@ -50,8 +46,8 @@ function NavbarLink(props){
     alignItems: 'center',
     height: '100%',
     width: '100%', 
-    maxWidth: '100px',
-    margin:'auto 10px',
+    maxWidth: '125px',
+    margin:'auto 5px',
     transition:'.5s',
     color: `${props.palette.textColor}`,
     border: isHovered ? `1px solid ${props.palette.color3}` : `1px solid ${props.palette.color1}`,
