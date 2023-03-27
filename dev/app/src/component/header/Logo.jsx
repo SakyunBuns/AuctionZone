@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoImage from '../dist/assets/logo.png'
+import LogoImage from '../../../dist/assets/logo.png'
 
 export default function Logo(props){
     const style = {

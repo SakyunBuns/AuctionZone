@@ -2,10 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './css/App.css'
+import Header from './component/header/Header'
 import HomePage from './HomePage'
 import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
-import Header from './Header'
 import SignupPage from './SignupPage'
 
 export default function App() {
