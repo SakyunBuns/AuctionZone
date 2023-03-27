@@ -18,7 +18,7 @@ export default function App() {
     const palette1 = {
         color1: '#E1E8ED',
         color2: '#CCD6DD',
-        color3: '#66757F',
+        color3: '#b3bbc0',
         textColor: '#292F33',
     }
     
