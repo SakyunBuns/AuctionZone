@@ -2,35 +2,43 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function SignupPage(props){
-    const [username, setUsername] = useState("")
-    const [name, setName] = useState("")
-    const [lastname, setLastname] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [address, setAddress] = useState("")
-    const [country, setCountry] = useState("")
-    const [dob, setDob] = useState("")
-  
+
+    const [formData, setFormData] = useState(
+        {
+            username: "", 
+            firstname: "", 
+            lastname: "", 
+            email: "", 
+            password: "",
+            passwordVer: "",
+            address: "",
+            country: "",
+            dob: ""
+        }
+    )  
+    
+    console.log(formData)
+    const handleChange = (event) => {
+        const {username, firstname, lastname, email, password, passwordVer, address, country, dob} = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+
     const handleSubmit = (event) => {
       event.preventDefault()
     //INSERT DAO
     
-      //   console.log({
-    //     username,
-    //     name,
-    //     lastname,
-    //     email,
-    //     password,
-    //     address,
-    //     dob,
-    //   });
+     console.log(formData)
     };
 
     const formContainerStyle = {
         color: `${props.palette.textColor}`,
         border: `2px solid ${props.palette.color2}`
     }
-
 
 
 
@@ -41,75 +49,129 @@ export default function SignupPage(props){
             <p>Username : </p>
             <input
                 type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                name="username"
+                onChange={handleChange}
+                value={formData.username}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
             <label className='form--label'>
-            Name :
+            Firstame :
             <input
+                name="firstname"
                 type="text"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
+                value={formData.firstname}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+            
             <label className='form--label'>
             Lastname :
             <input
+                name="lastname"
                 type="text"
-                value={lastname}
-                onChange={(event) => setLastname(event.target.value)}
+                value={formData.lastname}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
             <label className='form--label'>
             Email :
             <input
+                name="email"
                 type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                value={formData.email}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
             <label className='form--label'>
             Password :
             <input
+                name="password"
                 type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                value={formData.password}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
+            <label className='form--label'>
+            Password Confirm :
+            <input
+                name="passwordVer"  
+                type="password"
+                value={formData.passwordVer}
+                onChange={handleChange}
+            />
+            </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
+            <br />
+
             <label className='form--label'>
             Address :
             <input
+                name="address"
                 type="text"
-                value={address}
-                onChange={(event) => setAddress(event.target.value)}
+                value={formData.address}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
             <label className='form--label'>
             Country :
             <input
+                name="country"
                 type="text"
-                value={country}
-                onChange={(event) => setCountry(event.target.value)}
+                value={formData.country}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
+
             <label className='form--label'>
             Date of Birth :
             <input
+                name="dob"
                 type="date"
-                value={dob}
-                onChange={(event) => setDob(event.target.value)}
+                value={formData.dob}
+                onChange={handleChange}
             />
             </label>
+            <div className='form--notification'>
+                Placeholder for notification
+            </div>
             <br />
-            <button type="submit">Sign Up</button>
+
+            <button type="submit" style={{padding: `5px 10px`}}>Sign Up</button>
           </div>
       </form>
     );

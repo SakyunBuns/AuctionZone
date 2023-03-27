@@ -34,20 +34,29 @@ a{
 }
 
 .form--container{
-    padding: 100px; 
-    width: 500px;
+    --formPadding: 75px;
+    --formWidth: 550px;
+    padding: var(--formPadding);
+    width: var(--formWidth);
     margin: auto;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+.form--notification{
+    display: flex;
+    width: 100%;
+    font-size: 10px;
+    justify-content: flex-end;
 }
 
 .form--label{
     display: flex;
     flex-direction: row;
-    width: 350px;
+    width: calc(var(--formWidth) - 2*var(--formPadding));
     justify-content: space-between;
 }
+
 

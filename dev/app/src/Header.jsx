@@ -20,7 +20,8 @@ export default function Header(props){
         gridTemplateRows: `${rowHeight}px 1fr`,
         gridTemplateColumns: `${logoWidth}px 1fr ${profileWidth}px`,
         columnGap: '50px',
-        borderBottom:`solid 2px ${props.palette.color2}`
+        borderBottom:`solid 2px ${props.palette.color2}`,
+        paddingBottom: '5px'
     }
 
     return (
