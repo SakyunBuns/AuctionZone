@@ -12,69 +12,81 @@ export default function ItemSection(props){
             name: 'Barbie',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo.png'
+            img: '../dist/assets/doggo.png',
+            link: 'https://www.google.com'
         },
         {
             id: 2,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 3,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 4,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 5,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 6,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 7,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 8,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         },
         {
             id: 9,
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: '../dist/assets/doggo2.jpg'
+            img: '../dist/assets/doggo2.jpg',
+            link: 'https://www.google.com'
         }
     ]
 
     const items = test.map(
         (item) => {
-            return <ItemTag palette={props.palette} key={item.id} img={item.img} name={item.name} price={item.price} date={item.date} imageSize={props.imageSize}/>
+            return(
+
+                    <ItemTag palette={props.palette} key={item.id} img={item.img} name={item.name} price={item.price} date={item.date} imageSize={props.imageSize} link={item.link}/>
+            )
         }
     )
 
