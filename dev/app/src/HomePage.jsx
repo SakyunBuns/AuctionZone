@@ -8,7 +8,10 @@ function HomePage(props){
 
     return(
         <div className='page'>
-            <ItemSection palette={props.palette}/>
+            <ItemSection palette={props.palette} bottomSpacing={true} containerHeight={320} imageSize={200}/>
+
+
+
         </div>
 
     )

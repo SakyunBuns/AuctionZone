@@ -68,9 +68,8 @@ a{
 
 
 .section--container{
-    --sectionHeight: 320px;
     width: 100%;
-    height: var(--sectionHeight);
+    height: 320px;
     border-radius: 3px;
     overflow: hidden;
 }
@@ -86,7 +85,7 @@ a{
 
 .section--content{
     width: 100%;
-    height:  calc(var(--sectionHeight) - 30px);
+    height:  90%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -125,7 +124,7 @@ a{
 
 .item--container{
     height: 96%;
-    width: 200px;
+    width: 100%;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -134,8 +133,6 @@ a{
 }
 
 .item--image--container{
-    height: 200px;
-    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,6 +166,9 @@ a{
     justify-content: space-evenly;
 }
 
+.item--section--spacing{
+    margin-bottom: 20px;
+}
 
 
 
