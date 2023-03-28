@@ -124,10 +124,12 @@ export default function ItemSection(props){
 
     return(
         <div>
-
-            <div className="section--title" style={{backgroundColor:props.palette.color3, color:props.palette.textColor}}>{props.sectionName} | See all</div>
             
-            
+            <div className="section--title" style={{backgroundColor:props.palette.color3, color:props.palette.textColor}}>
+                <span>
+                    {props.sectionName} | <a href={props.sectionLink}> See all</a>
+                </span>
+            </div>
             <div className="section--container" style={containerStyle}>
                 <Carousel 
                 responsive={responsive}
