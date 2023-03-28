@@ -7,18 +7,22 @@ export default function ItemTag(props){
         height: props.imageSize  ? `${props.imageSize}px` : '200px',
     }
 
+    const textColorStyle = {
+        color:`${props.palette.textColor}`
+    }
+
+
     return (
-        <div className="item--container" style={{backgroundColor:`${props.palette.color3}`}}>
-            
+        <div className="item--container" style={{backgroundColor:`${props.palette.color1}`}}>
             <div className="item--image--container" style={imageSizeStyle}>
-                <img className="item--image" src={props.img} style={{border:`3px solid ${props.palette.color2}`}}></img>
+                <img className="item--image" src={props.img} style={{border:`5px solid ${props.palette.color3}`}}></img>
             </div>
 
-            <div className="item--desc">
-                <div className="item--desc--title">{props.name}</div>
+            <div className="item--desc" style={{backgroundColor:`${props.palette.color3}`}}>
+                <div className="item--desc--title" style={textColorStyle}>{props.name}</div>
                 <div className="item--desc--info">
-                    <div>{props.price}$</div>
-                    <div>{props.date}</div>
+                    <div style={textColorStyle}>{props.price}$</div>
+                    <div style={textColorStyle}>{props.date}</div>
                 </div>
             </div>
             

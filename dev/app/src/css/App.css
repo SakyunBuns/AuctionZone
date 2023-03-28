@@ -30,7 +30,8 @@ a{
 .page{
     padding: 20px; 
     width: 100%;
-    height: calc(100% - 100px);
+    height:fit-content;
+    min-height: calc(100% - 100px);
 }
 
 .form--container{
@@ -69,9 +70,9 @@ a{
 
 .section--container{
     width: 100%;
-    height: 320px;
+    height: 100%;
     border-radius: 3px;
-    overflow: hidden;
+    align-items: center;
 }
 
 .section--title{
@@ -83,60 +84,23 @@ a{
     padding-left: 10px;
 }
 
-.section--content{
-    width: 100%;
-    height:  90%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.section--content>:first-child{
-    margin-left: 5px;
-}
-
-.section--content>:last-child{
-    margin-right: 5px;
-}
-
-.section--content--items{
-    width: 100%;
-    height: 96%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: hidden;
-    margin: 0 5px;
-    border-radius: 3px;
-}
-
-.section--content--arrow{
-    --arrowSize: 50px;
-    width: var(--arrowSize);
-    height: var(--arrowSize);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-weight: bolder;
-}
-
 .item--container{
-    height: 96%;
-    width: 100%;
+    height: fit-content;
+    width: fit-content;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 7px;
+    margin: 10px auto;
+
 }
 
 .item--image--container{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    width: 200px;
+    margin: 5px;
 }
 
 .item--image{
@@ -146,12 +110,13 @@ a{
 }
 
 .item--desc{
-    height: 100%;
-    width: 100%;
+    height: 60px;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    border-radius: 3px;
 }
 
 .item--desc--title{
@@ -169,6 +134,5 @@ a{
 .item--section--spacing{
     margin-bottom: 20px;
 }
-
 
 
