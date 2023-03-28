@@ -16,7 +16,7 @@ export default function ItemSection(props){
     
     const containerStyle = {
         backgroundColor: props.palette.color2,
-        marginBottom : props.bottomSpacing ? '20px' : '0px', 
+        marginBottom : props.bottomSpacing ? `${props.bottomSpacing}px` : '0px', 
         height: props.containerHeight ? `${props.containerHeight}px` : '320px',
     }
 
