@@ -12,7 +12,7 @@ export default function ItemSection(props){
             name: 'Barbie',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo.png',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -20,7 +20,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -28,7 +28,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -36,7 +36,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -44,7 +44,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -52,7 +52,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -60,7 +60,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -68,7 +68,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         },
         {
@@ -76,7 +76,7 @@ export default function ItemSection(props){
             name: 'Doggo',
             price: 15.00,
             date: '10-10-21',
-            img: 'dist/assets/doggo2.jpg',
+            img: `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/200`,
             link: 'https://www.google.com'
         }
     ]
