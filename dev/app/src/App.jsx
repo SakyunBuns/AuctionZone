@@ -26,8 +26,7 @@ export default function App() {
         color1: '#131313',
         color2: '#2a2a2a',
         color3: '#3f3f3f ',
-        textColor: '#f5f5f5',
-        textColor2: '#cccccc'
+        textColor: '#f5f5f5'
     }
 
     const [palette, setPalette] = useState(darkMode ? palette2 : palette1)
