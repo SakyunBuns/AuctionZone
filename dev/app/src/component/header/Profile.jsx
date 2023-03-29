@@ -1,5 +1,5 @@
 import React from 'react'
-import VisitorProfile from '../../../dist/assets/doggo.png'
+import VisitorProfile from '../../assets/doggo.png'
 import { Link } from 'react-router-dom';
 
 export default function Profile(props){
