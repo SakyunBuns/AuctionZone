@@ -37,8 +37,8 @@ export default function Profile(props){
             {/* {props.signed ? 
             <div style={styleText}><Link style={styleLink} to='/SignInPage'>Sign in</Link></div> : 
             <div style={styleText}><Link style={styleLink} to='/SignUpPage'>Sign up</Link></div> } */}
-            <div style={styleText}><Link style={styleLink} to='/SignInPage'>Sign in</Link></div> 
-            <div style={styleText}><Link style={styleLink} to='/SignUpPage'>Sign up</Link></div> 
+            <div style={styleText}><Link style={styleLink} to='/SignIn'>Sign in</Link></div> 
+            <div style={styleText}><Link style={styleLink} to='/SignUp'>Sign up</Link></div> 
 
         </div>
     )
