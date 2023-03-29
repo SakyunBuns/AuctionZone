@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import LogoImage from '../../../dist/assets/logo.png'
 
 export default function Logo(props){
@@ -12,6 +13,6 @@ export default function Logo(props){
     }
     
     return(
-        <div style={style}></div>
+        <Link to={props.path} style={style}></Link>
     )   
 }

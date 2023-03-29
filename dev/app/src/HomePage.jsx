@@ -1,10 +1,8 @@
 import React from 'react'
 import ItemSection from './component/ItemSection';
 
-
-function HomePage(props){
-
-
+export default function HomePage(props){
+    
     return(
         <div className='page'>
             <ItemSection palette={props.palette} sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200}/>
@@ -20,6 +18,4 @@ function HomePage(props){
         </div>
 
     )
-}
-
-export default HomePage;
+};

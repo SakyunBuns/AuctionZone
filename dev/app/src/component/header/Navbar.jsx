@@ -48,9 +48,10 @@ function NavbarLink(props){
     margin:'auto 5px',
     borderRadius: '3px',
     transition:'.75s',
+    fontWeight: 'bold',
     cubicBezier:`(0.42, 0, 1.0, 1.0)`,
     color: `${props.palette.textColor}`,
-    border: isHovered ? `1px solid ${props.palette.color3}` : `1px solid ${props.palette.color1}`,
+    border: isHovered ? `2px solid ${props.palette.color3}` : `2px solid ${props.palette.color1}`,
     backgroundColor: isHovered ? `${props.palette.color2}` : `${props.palette.color1}`
   }
 
