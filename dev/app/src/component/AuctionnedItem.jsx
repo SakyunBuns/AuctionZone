@@ -45,35 +45,19 @@ export default function AuctionnedItem(props){
         }
     })
     
-    // function handleClick(event){
-    //     let temp = testImages
-    //     let tempImage = {}
-
-    //     for(let i = 0; i < temp.length; i++){
-    //         if (String(temp[i].id) === event.target.id){
-    //             tempImage = temp[i]
-    //             temp.splice(i, 1)
-    //         }
-    //     }
-        
-    //     temp.unshift(tempImage)
-    //     setTestImages(temp)
-    //     console.log(testImages)
-    // }
-
-
-    //ChatGPT corrected version
+    
     function handleClick(event) {
         const id = event.target.id;
         const index = testImages.findIndex(image => image.id === Number(id));
-      
-        if (index !== -1) {
-          const temp = [...testImages];
-          const tempImage = temp[index];
-          temp.splice(index, 1);
-          temp.unshift(tempImage);
-          setTestImages(temp);
-        }
+        const temp = [...testImages];
+        const tempImageMain = temp[0];
+        const tempImage = temp[index];
+        temp.splice(index, 1);
+        temp.unshift(tempImage);
+        temp.splice(1, 1)
+        temp.splice(index, 0, tempImageMain)
+        setTestImages(temp);
+
     }
 
 
@@ -86,7 +70,7 @@ export default function AuctionnedItem(props){
             </div>
 
             <div className='auction--image--section' style={{backgroundColor: props.palette.color2}}>
-                <div className='auction--image--selected' style={{backgroundImage:`url(${testImages[0]['img']})`}}></div>
+                <div className='auction--image--selected' style={{backgroundImage:`url(${testImages[0]['img']})`, transition: '0.5s'}}></div>
                 <div className='auction--image--preview--container'>
                     {previewTestImages}
                 </div>

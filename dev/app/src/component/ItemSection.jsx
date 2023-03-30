@@ -84,8 +84,16 @@ export default function ItemSection(props){
     const items = test.map(
         (item) => {
             return(
-
-                    <ItemTag palette={props.palette} key={item.id} img={item.img} name={item.name} price={item.price} date={item.date} imageSize={props.imageSize} link={item.link}/>
+                    <ItemTag 
+                    palette={props.palette} 
+                    key={item.id} 
+                    img={item.img} 
+                    name={item.name} 
+                    price={item.price} 
+                    date={item.date} 
+                    imageSize={props.imageSize} 
+                    link={item.link}
+                    />
             )
         }
     )

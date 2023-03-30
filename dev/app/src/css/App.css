@@ -207,11 +207,12 @@ a{
     height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     padding: 10px;
 }
 
 .auction--section--left{
-    width: 70%;  
+    width: 69%;  
     height: 100%;
     display:flex;
     flex-direction: column;
@@ -274,4 +275,28 @@ a{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.chat--container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .chat--container>div{
+    width:100%;
+} */
+
+.chat--leader{
+    height: 150px;
+}
+
+.chat--message--container{
+    height: calc(100% - 150px);
+    overflow-y: scroll;
+}
+
+.chat--message{
+    height: 100px;
+    padding: 5px;
 }

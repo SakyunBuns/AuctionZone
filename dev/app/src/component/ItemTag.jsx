@@ -23,7 +23,7 @@ export default function ItemTag(props){
                 <div className="item--desc" style={{backgroundColor:`${props.palette.color3}`}}>
                     <div className="item--desc--title" style={textColorStyle}>{props.name}</div>
                     <div className="item--desc--info">
-                        <div style={textColorStyle}>{props.price}$</div>
+                        {props.price && <div style={textColorStyle}>{props.price}$</div>}
                         <div style={textColorStyle}>{props.date}</div>
                     </div>
                 </div>

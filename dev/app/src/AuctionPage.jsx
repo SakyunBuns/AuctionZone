@@ -1,6 +1,7 @@
 import React from 'react'
 import ItemSection from './component/ItemSection'
 import AuctionnedItem from './component/AuctionnedItem'
+import Chat from './component/Chat'
 
 export default function AuctionPage(props){
 
@@ -15,7 +16,7 @@ export default function AuctionPage(props){
                 
             </div>
             <div className='auction--section--right'>
-            
+                <Chat palette={props.palette}/>
             </div>
         </div>
 
