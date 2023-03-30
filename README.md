@@ -12,3 +12,4 @@ https://stackoverflow.com/questions/71663281/postgresql-case-insensitive-and-acc
 
 
 IP address: 159.89.238.242
+Creation tunnel SSH: ssh -L 5433:159.89.238.242:5432 sinnamon@159.89.238.242
