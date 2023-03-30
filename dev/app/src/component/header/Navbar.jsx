@@ -44,7 +44,7 @@ function NavbarLink(props){
     alignItems: 'center',
     height: '100%',
     width: '100%', 
-    maxWidth: '125px',
+    maxWidth: '100px',
     margin:'auto 5px',
     borderRadius: '3px',
     transition:'.75s',

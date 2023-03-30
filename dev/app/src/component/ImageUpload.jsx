@@ -1,49 +1,70 @@
-import React from 'react';
-import axios from 'axios';
-
-//Source for more updated code
-//https://www.youtube.com/watch?v=YOGgaYUW1OA
-
-//Source for more costum
-//https://www.youtube.com/watch?v=XeiOnkEI7XI&t=17s
-
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios'
 
 export default function ImageUpload(props) {
+  
+  const [image, setImage] = useState([])
+  const [allImages, setAllImages] = useState(null)
+  const fileInput = useRef(null)
 
-    const [image, setImage] = React.useState();
+  //ChatGPT solution to keep only the last 4 images
 
-    const fileInput = React.useRef();
+  function handleImage(event) {
+  // Slice the array to include only the last 4 uploaded images
+  const newImageArray = [...image.slice(-4), event.target.files[0]];
+    setImage(prevImage => [...prevImage, event.target.files[0]])
 
-    function handleImage(event){
-        console.log(event.target.files[0])
-        setImage(event.target.files[0])
-    }
+    
+  }
 
-    function handleSubmit(){
-        const formData = new FormData();
-        formData.append('file', image, image.name)
-        //PROPS URL est le lien vers le serveur
-        axios.post(props.url, formData)
-        .then(res => console.log(res))
-    }
+  useEffect(() => {
+    const images = image.slice(-5).map((image, index) => (
+      <img key={index} className='img-uploader--image' src={URL.createObjectURL(image)} alt='image' />
+  ))
 
-    function handleInput(){
-        fileInput.current.click();
-    }
+    setAllImages(images)
+  }, [image])
 
-    return (
-        <div>
-            {image ? <img src={URL.createObjectURL(image)} alt='image'/> : null}
+  function handleInput() {
+    fileInput.current.click();
+  }
 
-            <input 
-            style={{display: 'none'}}
-            type='file' name='file' 
-            onChange={handleImage}
-            ref={fileInput}
-            />
-            
-            <button onClick={handleInput}>Upload</button>
-            <button onClick={handleSubmit}>Submit</button>
-        </div>
-    )
+//   function handleSubmit() {
+//     const formData = new FormData();
+//     image.forEach((img, index) => formData.append(`file${index}`, img));
+//     axios.post(props.url, formData).then(res => console.log(res));
+//   }
+
+
+  const imageContainerStyle = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    overflowX: 'scroll',
+    flexWrap: 'nowrap'
+  }
+
+  return (
+    <div className='img-uploader--container'>
+      <div style={imageContainerStyle}>
+        {allImages}
+      </div>
+
+      <input 
+      style={{ display: 'none' }} 
+      type='file' 
+      name='file' 
+      onChange={handleImage} 
+      value={props.value}
+      ref={fileInput} multiple />
+
+      <button className='img-uploader--button' onClick={handleInput}>
+        Choose up to 5 image(s)
+      </button>
+
+      {/* <button className='img-uploader--button' onClick={handleSubmit}>
+        Upload image(s)
+      </button> */}
+    </div>
+  )
 }
