@@ -8,6 +8,7 @@ import ProfilePage from './ProfilePage'
 import AuctionPage from './AuctionPage'
 import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
+import TestPage from './TestPage'
 
 export default function App() {
 
@@ -49,6 +50,12 @@ export default function App() {
             name: 'Auction',
             element: <AuctionPage palette={palette}/>,
             path: '/Auction'
+        },
+        {
+            id: "4",
+            name: 'Test',
+            element: <TestPage palette={palette}/>,
+            path: '/Test'
         }
     ]
 
@@ -70,8 +77,8 @@ export default function App() {
             <Header pages={pages} palette={palette} signed={signed}/>
             <Routes>
                 {navbarRoutes}
-                <Route path='/SignUpPage' element={<SignUpPage palette={palette}/>}/>
-                <Route path='/SignInPage' element={<SignInPage palette={palette}/>}/>
+                <Route path='/SignUp' element={<SignUpPage palette={palette}/>}/>
+                <Route path='/SignIn' element={<SignInPage palette={palette}/>}/>
                 <Route path='*' element={<h1>error 404</h1>} key="0"/>
             </Routes>
 

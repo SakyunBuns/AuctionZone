@@ -10,7 +10,7 @@ import axios from 'axios';
 
 export default function ImageUpload(props) {
 
-    const [image, setImage] = React.useState(null);
+    const [image, setImage] = React.useState();
 
     const fileInput = React.useRef();
 
