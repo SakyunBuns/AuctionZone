@@ -262,8 +262,16 @@ a{
 }
 
 .auction--image--preview--container{
-    width: 30%;
+    width: 35%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+}
+
+.auction--image--preview{
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

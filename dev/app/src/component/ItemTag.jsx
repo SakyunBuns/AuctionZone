@@ -2,8 +2,6 @@ import React from "react";
 
 export default function ItemTag(props){
 
-    console.log(props)
-
     const imageSizeStyle = {
         width: props.imageSize ? `${props.imageSize}px` : '200px',
         height: props.imageSize  ? `${props.imageSize}px` : '200px',
