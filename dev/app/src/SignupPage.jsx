@@ -35,7 +35,6 @@ export default function SignUpPage(props){
         console.log(formData)
     };
 
-    
     const handleReset = (event) => {
         event.preventDefault()
       
@@ -46,10 +45,6 @@ export default function SignUpPage(props){
         color: `${props.palette.textColor}`,
         border: `2px solid ${props.palette.color2}`
     }
-
-    
-
-
 
     return (
       <form onSubmit={handleSubmit} onReset={handleReset} className='page' style={{alignItem:'center', display:'flex'}}>

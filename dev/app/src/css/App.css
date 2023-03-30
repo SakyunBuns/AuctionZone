@@ -17,6 +17,10 @@ body{
     width: 100%;
 }
 
+button{
+    cursor: pointer;
+}
+
 a{
     text-decoration: none;
     color: inherit;
@@ -283,10 +287,6 @@ a{
     flex-direction: column;
 }
 
-/* .chat--container>div{
-    width:100%;
-} */
-
 .chat--leader{
     height: 150px;
 }
@@ -299,4 +299,43 @@ a{
 .chat--message{
     height: 100px;
     padding: 5px;
+}
+
+.img-uploader--container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img-uploader--images--container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-uploader--image{
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    object-fit: fill;
+}
+
+.img-uploader--button--container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.img-uploader--button{
+    width: 200px;
+    height: 20px;
+    align-self: center;
 }

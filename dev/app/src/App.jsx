@@ -9,6 +9,10 @@ import AuctionPage from './AuctionPage'
 import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
 import TestPage from './TestPage'
+import SellPage from './SellPage'
+
+//TO INTEGRATE USE CONTEXT FOR THE PALETTE
+//https://www.youtube.com/watch?v=MCTB_w0Guso
 
 export default function App() {
 
@@ -56,6 +60,12 @@ export default function App() {
             name: 'Test',
             element: <TestPage palette={palette}/>,
             path: '/Test'
+        },
+        {
+            id: "5",
+            name: 'Sell',
+            element: <SellPage palette={palette}/>,
+            path: '/Sell'
         }
     ]
 
