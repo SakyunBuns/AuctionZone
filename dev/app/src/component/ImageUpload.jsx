@@ -11,10 +11,7 @@ export default function ImageUpload(props) {
 
   function handleImage(event) {
   // Slice the array to include only the last 4 uploaded images
-  const newImageArray = [...image.slice(-4), event.target.files[0]];
-    setImage(prevImage => [...prevImage, event.target.files[0]])
-
-    
+    setImage(prevImage => [...prevImage, event.target.files[0]]) 
   }
 
   useEffect(() => {
@@ -23,6 +20,8 @@ export default function ImageUpload(props) {
   ))
 
     setAllImages(images)
+
+    props.updateParentArray(images)
   }, [image])
 
   function handleInput() {
@@ -55,7 +54,6 @@ export default function ImageUpload(props) {
       type='file' 
       name='file' 
       onChange={handleImage} 
-      value={props.value}
       ref={fileInput} multiple />
 
       <button className='img-uploader--button' onClick={handleInput}>

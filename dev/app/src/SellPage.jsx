@@ -7,13 +7,13 @@ export default function SellPage(props){
         item: "", 
         price: "",
         password: "",
-        date: "",
-        image: ""
+        date: ""
 }
 
 const [formData, setFormData] = useState(reset)  
 
-console.log(formData)
+const [uploadedImage, setUplaodedImage] = useState([])
+
 const handleChange = (event) => {
     setFormData(prevFormData => {
         return {
@@ -26,10 +26,10 @@ const handleChange = (event) => {
 const handleSubmit = (event) => {
     event.preventDefault()
 //INSERT DAO
-
+    
     console.log(formData)
+    console.log(uploadedImage)
 };
-
 
 const formContainerStyle = {
     color: `${props.palette.textColor}`,
@@ -95,7 +95,7 @@ return (
         </div>
         <br />
 
-        <ImageUpload value={formData.image} handleChange={handleChange}/> 
+        <ImageUpload updateParentArray={setUplaodedImage}/> 
         <br />
 
         <div className='form--button'>
