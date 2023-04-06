@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 
 export default function SignUpPage(props){
 
@@ -15,6 +15,27 @@ export default function SignUpPage(props){
             dob: ""
     }
 
+    const regexNumber = /\d/
+    const regexLenght8 = /.{8,}/
+    const regexUpperLower = /(?=.*[a-z])(?=.*[A-Z])/
+
+
+    const [checkCapital, setCheckCapital] = useState(false)
+    const [checkNumber, setCheckNumber] = useState(false)
+    const [checkLength, setCheckLength] = useState(false)
+    const [checkPasswordSame, setCheckPasswordSame] = useState(false)
+
+    const [missingUsername, setMissingUsername] = useState(false)
+    const [missingFirstname, setMissingFirstname] = useState(false)
+    const [missingLastname, setMissingLastname] = useState(false)
+    const [missingEmail, setMissingEmail] = useState(false)
+    const [missingPassword, setMissingPassword] = useState(false)
+    const [missingAdress, setMissingAdress] = useState(false)
+    const [missingCountry, setMissingCountry] = useState(false)
+    const [missingDob, setMissingDob] = useState(false)
+
+    const [signUpAttempt, setsignUpAttempt] = useState(0)
+
     const [formData, setFormData] = useState(reset)  
     
     console.log(formData)
@@ -28,11 +49,31 @@ export default function SignUpPage(props){
         })
     }
 
+    useEffect(() => {
+        regexNumber.test(formData.password) ? setCheckNumber(true) : setCheckNumber(false)
+        regexLenght8.test(formData.password) ? setCheckLength(true) : setCheckLength(false)
+        regexUpperLower.test(formData.password) ? setCheckCapital(true) : setCheckCapital(false)
+        formData.passwordVer === formData.password ? setCheckPasswordSame(true) : setCheckPasswordSame(false)
+
+    }, [formData.password, formData.passwordVer, formData.username, checkPasswordSame])
+
+    useEffect(() => {
+        if (signUpAttempt > 0){
+            formData.username ? setMissingUsername(false) : setMissingUsername(true)
+            formData.firstname ? setMissingFirstname(false) : setMissingFirstname(true)
+            formData.lastname ? setMissingLastname(false) : setMissingLastname(true)
+            formData.email ? setMissingEmail(false) : setMissingEmail(true)
+            formData.password ? setMissingPassword(false) : setMissingPassword(true)
+            formData.address ? setMissingAdress(false) : setMissingAdress(true)
+            formData.country ? setMissingCountry(false) : setMissingCountry(true)
+            formData.dob ? setMissingDob(false) : setMissingDob(true)
+        }
+    }, [signUpAttempt, formData.username, formData.firstname, formData.lastname, formData.email, formData.password, formData.address, formData.country, formData.dob])
+
     const handleSubmit = (event) => {
         event.preventDefault()
-    //INSERT DAO
-    
-        console.log(formData)
+
+        setsignUpAttempt(signUpAttempt + 1)
     };
 
     const handleReset = (event) => {
@@ -58,9 +99,9 @@ export default function SignUpPage(props){
                 value={formData.username}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingUsername ? 'flex' : 'none', color: 'red'}}>
+                {missingUsername ? 'Username is missing' : ''}
+            </p>
             <br />
 
             <label className='form--label'>
@@ -72,9 +113,9 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingFirstname ? 'flex' : 'none', color: 'red'}}>
+                {missingFirstname ? 'Firstname is missing' : ''}
+            </p>
             <br />
 
             <label className='form--label'>
@@ -86,9 +127,9 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingLastname ? 'flex' : 'none', color: 'red'}}>
+                {missingLastname ? 'Lastname is missing' : ''}
+            </p>
             <br />
 
             <label className='form--label'>
@@ -100,9 +141,9 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingEmail ? 'flex' : 'none', color: 'red'}}>
+                {missingEmail ? 'Email is missing' : ''}
+            </p>
             <br />
 
             <label className='form--label'>
@@ -115,7 +156,15 @@ export default function SignUpPage(props){
             />
             </label>
             <div className='form--notification'>
-                Placeholder for notification
+                <div className='form--notification--lines'>
+                    <p className='form--notification' style={{display: missingPassword ? 'flex' : 'none', color: 'red'}}>
+                    {missingPassword ? 'Password is missing' : ''}
+                    </p>
+                    <p style={formData.password ? {color: checkCapital ? 'green' : 'red'} : null}>Have at lease 1 lower and 1 upper case letter</p>
+                    <p style={formData.password ? {color: checkLength ? 'green' : 'red'} : null}>Must be 8 characters long</p>
+                    <p style={formData.password ? {color: checkNumber ? 'green' : 'red'} : null}>Must contain a number</p>
+                    
+                </div>
             </div>
             <br />
 
@@ -129,12 +178,14 @@ export default function SignUpPage(props){
             />
             </label>
             <div className='form--notification'>
-                Placeholder for notification
+                <p style={formData.passwordVer ? {color: checkPasswordSame ? 'green' : 'red', display:'block'} : {display:'none'} }>
+                    {checkPasswordSame ? 'Password match' : 'Password does not match'}
+                </p>
             </div>
             <br />
 
             <label className='form--label'>
-            Address :
+            <p>Adresse: </p>
             <input
                 name="address"
                 type="text"
@@ -143,12 +194,19 @@ export default function SignUpPage(props){
             />
             </label>
             <div className='form--notification'>
-                Placeholder for notification
+                <div className='form--notification--lines'>
+                    <p className='form--notification' style={{display: missingAdress ? 'flex' : 'none', color: 'red'}}>
+                        {missingAdress ? 'Adress is missing' : ''}
+                    </p>
+                    <p>
+                        Apt, Street, City
+                    </p>
+                </div>
             </div>
             <br />
 
             <label className='form--label'>
-            Country :
+            <p>Country :</p>
             <input
                 name="country"
                 type="text"
@@ -156,13 +214,13 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingCountry ? 'flex' : 'none', color: 'red'}}>
+                {missingCountry ? 'Country is missing' : ''}
+            </p>
             <br />
 
             <label className='form--label'>
-            Date of Birth :
+            <p>Date of Birth :</p>
             <input
                 name="dob"
                 type="date"
@@ -170,9 +228,9 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <div className='form--notification'>
-                Placeholder for notification
-            </div>
+            <p className='form--notification' style={{display: missingDob ? 'flex' : 'none', color: 'red'}}>
+                {missingDob ? 'Date of birth is missing' : ''}
+            </p>
             <br />
 
             <div className='form--button'>
