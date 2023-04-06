@@ -1,13 +1,13 @@
-const { request, response } = require('express');
+const { Client } = require('pg');
 
-const Pool = require('pg').Pool
-const pool = new Pool({
-    user: 'postgres',
+const client = new Client({
+    user: 'nath',
     host: 'localhost',
     database: 'AuctionZone',
     password: 'AAAaaa111',
     port: 5432,
 });
+client.connect();
 
 const getUser = (request, response) => {
     const userId = parseInt(request.params.id);
@@ -19,12 +19,14 @@ const getUser = (request, response) => {
     });
 };
 
-const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+const getUsers = (request, response = null) => {
+    client.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+		console.log(results.rows);
+		return results.rows
+        //response.status(200).json(results.rows)
     })
 }
 
