@@ -3,6 +3,19 @@ import React, { useEffect, useState } from 'react'
 
 export default function SignUpPage(props){
 
+    //DB temporaire pour montrer les fonctionnalités de la page
+    const fakeDB = {
+        username: "johndoe", 
+        firstname: "john", 
+        lastname: "doe", 
+        email: "john.doe@gmail.com", 
+        password: "AAAaaa111",
+        passwordVer: "AAAaaa111",
+        address: "123 baker street",
+        country: "CA",
+        dob: "1900-01-01"
+    }
+
     const reset = {
             username: "", 
             firstname: "", 
@@ -19,7 +32,6 @@ export default function SignUpPage(props){
     const regexLenght8 = /.{8,}/
     const regexUpperLower = /(?=.*[a-z])(?=.*[A-Z])/
 
-
     const [checkCapital, setCheckCapital] = useState(false)
     const [checkNumber, setCheckNumber] = useState(false)
     const [checkLength, setCheckLength] = useState(false)
@@ -33,12 +45,18 @@ export default function SignUpPage(props){
     const [missingAdress, setMissingAdress] = useState(false)
     const [missingCountry, setMissingCountry] = useState(false)
     const [missingDob, setMissingDob] = useState(false)
-
+    
     const [signUpAttempt, setsignUpAttempt] = useState(0)
+    const [usernameTaken, setUsernameTaken] = useState(false)
+    const [tempUsername, setTempUsername] = useState('')
+    const [emailUsed, setEmailUsed] = useState(false)
+    const [tempEmail, setTempEmail] = useState('')
 
     const [formData, setFormData] = useState(reset)  
     
-    console.log(formData)
+    // console.log(formData)
+
+    //Récupérer les données du formulaire à chaque changement
     const handleChange = (event) => {
         const {username, firstname, lastname, email, password, passwordVer, address, country, dob} = event.target
         setFormData(prevFormData => {
@@ -49,14 +67,16 @@ export default function SignUpPage(props){
         })
     }
 
+    //Vérifier si les mots de passe correspondent au exigeance et sont identiques
     useEffect(() => {
         regexNumber.test(formData.password) ? setCheckNumber(true) : setCheckNumber(false)
         regexLenght8.test(formData.password) ? setCheckLength(true) : setCheckLength(false)
         regexUpperLower.test(formData.password) ? setCheckCapital(true) : setCheckCapital(false)
         formData.passwordVer === formData.password ? setCheckPasswordSame(true) : setCheckPasswordSame(false)
 
-    }, [formData.password, formData.passwordVer, formData.username, checkPasswordSame])
+    }, [formData.password, formData.passwordVer, checkPasswordSame])
 
+    //Vérifier si les champs sont remplis et si les informations sont déjà utilisées pour afficher les notifications en conséquence
     useEffect(() => {
         if (signUpAttempt > 0){
             formData.username ? setMissingUsername(false) : setMissingUsername(true)
@@ -67,20 +87,69 @@ export default function SignUpPage(props){
             formData.address ? setMissingAdress(false) : setMissingAdress(true)
             formData.country ? setMissingCountry(false) : setMissingCountry(true)
             formData.dob ? setMissingDob(false) : setMissingDob(true)
+            tempUsername === formData.username && tempUsername != '' ? setUsernameTaken(true) : setUsernameTaken(false)
+            tempEmail === formData.email && tempEmail != '' ? setEmailUsed(true) : setEmailUsed(false)
+        }else{
+            setMissingUsername(false)
+            setMissingFirstname(false)
+            setMissingLastname(false)
+            setMissingEmail(false)
+            setMissingPassword(false)
+            setMissingAdress(false)
+            setMissingCountry(false)
+            setMissingDob(false)
+            setUsernameTaken(false)
+            setEmailUsed(false)
+            setTempUsername('')
+            setTempEmail('')
         }
     }, [signUpAttempt, formData.username, formData.firstname, formData.lastname, formData.email, formData.password, formData.address, formData.country, formData.dob])
 
+    //Soumettre le formulaire et vérifier si les informations sont valides
     const handleSubmit = (event) => {
         event.preventDefault()
-
+        
         setsignUpAttempt(signUpAttempt + 1)
+        
+        let success = true
+
+        //À utiliser un DAO qui check avec DB pour le username 
+        if(formData.username == fakeDB.username){
+            success = false
+            setTempUsername(fakeDB.username)
+            setUsernameTaken(true)
+        }
+        //À utiliser un DAO qui check avec DB pour le email
+        if(formData.email == fakeDB.email){
+            success = false
+            setTempEmail(fakeDB.email)
+            setEmailUsed(true)
+        }
+
+        if(missingAdress || missingCountry || missingDob || missingEmail || missingFirstname || missingLastname || missingPassword || missingUsername){
+            success = false
+        }
+
+        if(!checkCapital || !checkLength || !checkNumber || !checkPasswordSame){
+            success = false
+        }
+
+        if(success){
+            console.log('success')
+            setTimeout(() => {
+                location.href = '/'
+            }, 1500)
+        }
     };
 
+    //Réinitialiser le formulaire
     const handleReset = (event) => {
         event.preventDefault()
       
         setFormData(reset)
+        setsignUpAttempt(0)
       };
+
 
     const formContainerStyle = {
         color: `${props.palette.textColor}`,
@@ -99,9 +168,17 @@ export default function SignUpPage(props){
                 value={formData.username}
             />
             </label>
-            <p className='form--notification' style={{display: missingUsername ? 'flex' : 'none', color: 'red'}}>
-                {missingUsername ? 'Username is missing' : ''}
-            </p>
+            <div className='form--notification'>
+                <div  className='form--notification--lines'>
+                    <p className='form--notification' style={{display: missingUsername ? 'flex' : 'none', color: 'red'}}>
+                        {missingUsername ? 'Username is missing' : ''}
+                    </p>
+                    <p className='form--notification' style={{display: usernameTaken ? 'flex' : 'none', color: 'red'}}>
+                        {usernameTaken ? 'Username is taken' : ''}
+                    </p>
+                </div>
+            </div>
+            
             <br />
 
             <label className='form--label'>
@@ -141,9 +218,18 @@ export default function SignUpPage(props){
                 onChange={handleChange}
             />
             </label>
-            <p className='form--notification' style={{display: missingEmail ? 'flex' : 'none', color: 'red'}}>
-                {missingEmail ? 'Email is missing' : ''}
-            </p>
+            <div className='form--notification'>
+                <div  className='form--notification--lines'>
+                    <p className='form--notification' style={{display: missingEmail ? 'flex' : 'none', color: 'red'}}>
+                    {missingEmail ? 'Email is missing' : ''}
+                    </p>
+                    <p className='form--notification' style={{display: emailUsed ? 'flex' : 'none', color: 'red'}}>
+                        {usernameTaken ? 'Email is already used' : ''}
+                    </p>
+                </div>
+            </div>
+
+            
             <br />
 
             <label className='form--label'>

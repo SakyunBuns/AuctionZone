@@ -7,13 +7,12 @@ export default function ImageUpload(props) {
   const [allImages, setAllImages] = useState(null)
   const fileInput = useRef(null)
 
-  //ChatGPT solution to keep only the last 4 images
-
+  
   function handleImage(event) {
-  // Slice the array to include only the last 4 uploaded images
     setImage(prevImage => [...prevImage, event.target.files[0]]) 
   }
-
+  
+  //ChatGPT solution to keep only the last 5 images
   useEffect(() => {
     const images = image.slice(-5).map((image, index) => (
       <img key={index} className='img-uploader--image' src={URL.createObjectURL(image)} alt='image' />
