@@ -1,7 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { paletteContext } from './component/Context'
+
 
 export default function SignInPage(props){
+
+    const {palette} = useContext(paletteContext)
 
     const [formData, setFormData] = useState(
         {
@@ -29,8 +32,8 @@ export default function SignInPage(props){
     };
 
     const formContainerStyle = {
-        color: `${props.palette.textColor}`,
-        border: `2px solid ${props.palette.color2}`
+        color: `${palette.textColor}`,
+        border: `2px solid ${palette.color2}`
     }
 
     return (

@@ -10,6 +10,8 @@ import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
 import TestPage from './TestPage'
 import SellPage from './SellPage'
+import { paletteContext } from './component/Context'
+
 
 //TO INTEGRATE USE CONTEXT FOR THE PALETTE
 //https://www.youtube.com/watch?v=MCTB_w0Guso
@@ -40,31 +42,31 @@ export default function App() {
         {
             id: "1",
             name: 'Home',
-            element: <HomePage palette={palette}/>,
+            element: <HomePage/>,
             path: '/'
         },
         {
             id: "2",
             name: 'Profile',
-            element: <ProfilePage palette={palette}/>,
+            element: <ProfilePage/>,
             path: '/Profile'
         },
         {
             id: "3",
             name: 'Auction',
-            element: <AuctionPage palette={palette}/>,
+            element: <AuctionPage/>,
             path: '/Auction'
         },
         {
             id: "4",
             name: 'Test',
-            element: <TestPage palette={palette}/>,
+            element: <TestPage/>,
             path: '/Test'
         },
         {
             id: "5",
             name: 'Sell',
-            element: <SellPage palette={palette}/>,
+            element: <SellPage/>,
             path: '/Sell'
         }
     ]
@@ -84,14 +86,15 @@ export default function App() {
 
     return (
         <div className='fullpage'>
-            <Header pages={pages} palette={palette} signed={signed}/>
-            <Routes>
-                {navbarRoutes}
-                <Route path='/SignUp' element={<SignUpPage palette={palette}/>}/>
-                <Route path='/SignIn' element={<SignInPage palette={palette}/>}/>
-                <Route path='*' element={<h1>error 404</h1>} key="0"/>
-            </Routes>
-
+            <paletteContext.Provider value={{palette}}>
+                <Header pages={pages} signed={signed}/>
+                <Routes>
+                    {navbarRoutes}
+                    <Route path='/SignUp' element={<SignUpPage/>}/>
+                    <Route path='/SignIn' element={<SignInPage/>}/>
+                    <Route path='*' element={<h1>error 404</h1>} key="0"/>
+                </Routes>
+            </paletteContext.Provider>
             <button onClick={handleDarkMode}>DARKMODE</button>
         </div>
     );

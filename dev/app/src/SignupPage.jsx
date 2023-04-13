@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { paletteContext } from './component/Context'
 
 
 export default function SignUpPage(props){
+
+    const {palette} = useContext(paletteContext)
 
     //DB temporaire pour montrer les fonctionnalités de la page
     const fakeDB = {
@@ -152,8 +155,8 @@ export default function SignUpPage(props){
 
 
     const formContainerStyle = {
-        color: `${props.palette.textColor}`,
-        border: `2px solid ${props.palette.color2}`
+        color: `${palette.textColor}`,
+        border: `2px solid ${palette.color2}`
     }
 
     return (

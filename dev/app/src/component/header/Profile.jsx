@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import VisitorProfile from '../../assets/doggo.png'
 import { Link } from 'react-router-dom';
+import { paletteContext } from '../Context'
+
 
 export default function Profile(props){
+
+    const {palette} = useContext(paletteContext)
 
     const imageHeight = props.profileWidth - 20
 
@@ -24,11 +28,11 @@ export default function Profile(props){
         fontSize : '10px',
         width: '100%',
         textAlign:'center',
-        color: `${props.palette.textColor}`
+        color: `${palette.textColor}`
     } 
 
     const styleLink= {
-        color: `${props.palette.textColor}`
+        color: `${palette.textColor}`
     }
 
     return (

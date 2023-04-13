@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ItemSection from './component/ItemSection'
+import { paletteContext } from './component/Context'
 
 export default function ProfilePage(props){
 
+    const {palette} = useContext(paletteContext)
+
     const fontColorStyle = {
-        color: props.palette.textColor,
-        borderColor: props.palette.textColor
+        color: palette.textColor,
+        borderColor: palette.textColor
     }
 
     // This is where the info will be fetched from the database
@@ -16,11 +19,8 @@ export default function ProfilePage(props){
 
     }
 
-
-
-
     return(
-        <div className='profile--container' style={{backgroundColor:props.palette.color2}}>
+        <div className='profile--container' style={{backgroundColor:palette.color2}}>
             <div className='profile--section'>
                 <div style={fontColorStyle} className='profile--content--title'>Profile</div>
                 <div style={fontColorStyle} className='profile--content--section'>
@@ -48,10 +48,10 @@ export default function ProfilePage(props){
                 <div style={fontColorStyle} className='profile--content--title'>History</div>
                 <div className='profile--content--section'>
                     <div className='profile--content--items'>
-                        <ItemSection palette={props.palette} sectionName="Bought" containerHeight={150} imageSize={90}/>
+                        <ItemSection sectionName="Bought" containerHeight={150} imageSize={90}/>
                     </div>
                     <div className='profile--content--items'>
-                        <ItemSection palette={props.palette} sectionName="Sold" containerHeight={150} imageSize={90}/>
+                        <ItemSection sectionName="Sold" containerHeight={150} imageSize={90}/>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ export default function ProfilePage(props){
 
                 <div className='profile--content--section'>
                     <div style={{width:'100%'}}>
-                        <ItemSection palette={props.palette} sectionName="Recently viewed" containerHeight={150} imageSize={90}/>
+                        <ItemSection  sectionName="Recently viewed" containerHeight={150} imageSize={90}/>
                     </div>
                 </div>
             </div>

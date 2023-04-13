@@ -1,21 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { paletteContext } from '../Context'
 
 export default function Navbar(props){
+
+  const {palette} = useContext(paletteContext)
 
   const styleContainer = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: `${props.palette.color1}`,
+    backgroundColor: `${palette.color1}`,
     height: `${props.height}`,
   }
 
   const links = props.pages.map((page) => {
     return (
-      <NavbarLink path={page.path} key={page.id} palette={props.palette} name={page.name}/>
+      <NavbarLink path={page.path} key={page.id} name={page.name}/>
     )
   })
 
@@ -27,6 +30,8 @@ export default function Navbar(props){
 }
 
 function NavbarLink(props){ 
+
+  const {palette} = useContext(paletteContext)
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -50,9 +55,9 @@ function NavbarLink(props){
     transition:'.75s',
     fontWeight: 'bold',
     cubicBezier:`(0.42, 0, 1.0, 1.0)`,
-    color: `${props.palette.textColor}`,
-    border: isHovered ? `2px solid ${props.palette.color3}` : `2px solid ${props.palette.color1}`,
-    backgroundColor: isHovered ? `${props.palette.color2}` : `${props.palette.color1}`
+    color: `${palette.textColor}`,
+    border: isHovered ? `2px solid ${palette.color3}` : `2px solid ${palette.color1}`,
+    backgroundColor: isHovered ? `${palette.color2}` : `${palette.color1}`
   }
 
   return (

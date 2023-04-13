@@ -1,8 +1,11 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ImageUpload from './component/ImageUpload'
+import { paletteContext } from './component/Context'
 
 export default function SellPage(props){
+
+    const {palette} = useContext(paletteContext)
+
     const reset = {
         item: "", 
         price: "",
@@ -32,8 +35,8 @@ const handleSubmit = (event) => {
 };
 
 const formContainerStyle = {
-    color: `${props.palette.textColor}`,
-    border: `2px solid ${props.palette.color2}`
+    color: `${palette.textColor}`,
+    border: `2px solid ${palette.color2}`
 }
 
 return (

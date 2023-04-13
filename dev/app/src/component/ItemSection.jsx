@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext} from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ItemTag from './ItemTag';
+import { paletteContext } from "./Context";
 
 export default function ItemSection(props){
+
+    const {palette} = useContext(paletteContext)
 
     //AU LIEU DE TEST UTILISER APPEL API
     const test= [
@@ -85,7 +88,6 @@ export default function ItemSection(props){
         (item) => {
             return(
                     <ItemTag 
-                    palette={props.palette} 
                     key={item.id} 
                     img={item.img} 
                     name={item.name} 
@@ -125,7 +127,7 @@ export default function ItemSection(props){
     //  https://www.npmjs.com/package/react-multi-carousel
 
     const containerStyle = {
-        backgroundColor: props.palette.color2,
+        backgroundColor: palette.color2,
         marginBottom : props.bottomSpacing ? `${props.bottomSpacing}px` : '0px', 
         height: props.containerHeight ? `${props.containerHeight}px` : '320px',
     }
@@ -133,7 +135,7 @@ export default function ItemSection(props){
     return(
         <div>
             
-            <div className="section--title" style={{backgroundColor:props.palette.color3, color:props.palette.textColor}}>
+            <div className="section--title" style={{backgroundColor:palette.color3, color:palette.textColor}}>
                 <span>
                     {props.sectionName} | <a href={props.sectionLink}> See all</a>
                 </span>

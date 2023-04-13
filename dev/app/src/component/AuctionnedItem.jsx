@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import AuctionPreviewImage from './AuctionPreviewImage'
+import { paletteContext } from './Context'
 
 export default function AuctionnedItem(props){
 
-    
+    const {palette} = useContext(paletteContext)
+
     //ARRAY OF IMAGES FROM SERVER 
-    const [testImages, setTestImages] = React.useState([
+    const [testImages, setTestImages] = useState([
         {
         id: 0,    
         img : `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/500`
@@ -63,13 +65,13 @@ export default function AuctionnedItem(props){
 
     return(
         <div className='auction--left--upper'>
-            <div className='auction--text' style={{backgroundColor: props.palette.color3}}>
+            <div className='auction--text' style={{backgroundColor: palette.color3}}>
                 <p>Barbi goes homeless</p>
                 <p>Remaining Time :</p>
                 <p>Starting bid :</p>
             </div>
 
-            <div className='auction--image--section' style={{backgroundColor: props.palette.color2}}>
+            <div className='auction--image--section' style={{backgroundColor: palette.color2}}>
                 <div className='auction--image--selected' style={{backgroundImage:`url(${testImages[0]['img']})`, transition: '0.5s'}}></div>
                 <div className='auction--image--preview--container'>
                     {previewTestImages}

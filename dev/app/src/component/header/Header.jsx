@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Navbar from './Navbar'
 import Logo  from './Logo'
 import SearchBar from  './SearchBar'
 import Profile from './Profile'
+import { paletteContext } from '../Context'
 
 
 export default function Header(props){
+
+    const {palette} = useContext(paletteContext)
 
     const rowHeight = 50
     const logoWidth = 250
@@ -14,12 +17,12 @@ export default function Header(props){
     const styleHeaderContainer = {
         width : '100%',
         height: '100px',
-        backgroundColor: `${props.palette.color1}`,
+        backgroundColor: `${palette.color1}`,
         display: 'grid',
         gridTemplateAreas: `'logo search profile' 'logo navbar profile'`,
         gridTemplateRows: `${rowHeight}px 1fr`,
         gridTemplateColumns: `${logoWidth}px 1fr ${profileWidth}px`,
-        borderBottom:`solid 2px ${props.palette.color2}`,
+        borderBottom:`solid 2px ${palette.color2}`,
         paddingBottom: '5px'
     }
 
@@ -27,10 +30,10 @@ export default function Header(props){
     return (
         <header>
             <div style={styleHeaderContainer}>
-                <Navbar pages={props.pages} palette={props.palette} gridName="navbar"/>
-                <Logo gridName="logo" path={props.pages[0].path} logoWidth={logoWidth} palette={props.palette}/>
-                <SearchBar gridName="search" height={rowHeight} palette={props.palette}/>
-                <Profile gridName="profile" profileWidth={profileWidth} palette={props.palette} signed={props.signed}/>
+                <Navbar pages={props.pages} gridName="navbar"/>
+                <Logo gridName="logo" path={props.pages[0].path} logoWidth={logoWidth}/>
+                <SearchBar gridName="search" height={rowHeight}/>
+                <Profile gridName="profile" profileWidth={profileWidth} signed={props.signed}/>
             </div>
         </header>
     )
