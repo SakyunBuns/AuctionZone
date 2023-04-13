@@ -1,4 +1,7 @@
 const { Client } = require('pg');
+const http = require('http');
+const { parse } = require('pg-protocol');
+const { parseArgs } = require('util');
 
 const client = new Client({
     user: 'nath',
@@ -11,7 +14,9 @@ client.connect();
 
 const getUser = (request, response) => {
     const userId = parseInt(request.params.id);
-    pool.query('SELECT * FROM users WHERE id = 1$', [userId], (error, results) => {
+    const username = parseArgs(request.params.username);
+    console.log(request.params);
+    client.query('SELECT * FROM users WHERE id = $1', [userId], (error, results) => {
         if (error) {
             throw error
         }
@@ -19,21 +24,29 @@ const getUser = (request, response) => {
     });
 };
 
-const getUsers = (request, response = null) => {
+const userNameExist = (request, response) => {
+    const username = parse(request.params.username);
+    client.query('SELECT * FROM users WHERE username = $1', [username], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    });
+};
+
+const getUsers = (request, response) => {
     client.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
         if (error) {
             throw error
         }
-		console.log(results.rows);
-		return results.rows
-        //response.status(200).json(results.rows)
+    response.status(200).json(results.rows);
     })
 }
 
 const createUser = (request, response) => {
     const { name, email } = request.body
   
-    pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
+    client.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
       if (error) {
         throw error
       }
@@ -45,7 +58,7 @@ const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
     const { password, profilePicture } = request.body
     if (password != "") {
-        pool.query(
+        client.query(
             'UPDATE users SET password = $1 WHERE id = $2',
             [password, id],
             (error, results) => {
@@ -56,7 +69,7 @@ const updateUser = (request, response) => {
             }
         )
     } else {
-        pool.query(
+        client.query(
             'UPDATE users SET profile_picture = $1 WHERE id = $2',
             [profilePicture, id],
             (error, results) => {
@@ -74,7 +87,8 @@ module.exports = {
     getUser,
     getUsers,
     updateUser,
-    createUser
+    createUser,
+    userNameExist
 }
 
 //https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/
