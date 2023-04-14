@@ -11,11 +11,11 @@ export default function Chat(props){
 
     const messageUpdated = messages.map((message, index) => {
         return(
-            <Message palette={palette} message={message} index={index}/>
+            <Message message={message} index={index}/>
         )
     })
 
-
+    //used for testing
     useEffect(() => {
         const interval = setInterval(() => {
           setCounter(counter + 1)
