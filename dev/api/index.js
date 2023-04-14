@@ -2,6 +2,8 @@ const http = require('http');
 const db = require('./queries');
 const express = require('express');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 
 app.get('/users', function(req, res) {
@@ -10,7 +12,7 @@ app.get('/users', function(req, res) {
 
 app.get('/users', db.getUsers);
 app.get('/users/:id', db.getUser);
-app.get('/users/:username', db.userNameExist);
+app.get('/users_name/:username', db.userNameExist);
 
 app.post('/users', db.createUser);
 

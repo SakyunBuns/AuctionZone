@@ -14,7 +14,7 @@ client.connect();
 
 const getUser = (request, response) => {
     const userId = parseInt(request.params.id);
-    const username = parseArgs(request.params.username);
+    // const username = parseArgs(request.params.username);
     console.log(request.params);
     client.query('SELECT * FROM users WHERE id = $1', [userId], (error, results) => {
         if (error) {
@@ -25,7 +25,8 @@ const getUser = (request, response) => {
 };
 
 const userNameExist = (request, response) => {
-    const username = parse(request.params.username);
+    console.log(request.params);
+    const username = request.params.username;
     client.query('SELECT * FROM users WHERE username = $1', [username], (error, results) => {
         if (error) {
             throw error

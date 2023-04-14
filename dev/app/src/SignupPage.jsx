@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { paletteContext } from './component/Context'
+import { UserDAO } from './DAO/UserDAO'
 
 
 export default function SignUpPage(props){
@@ -117,7 +118,10 @@ export default function SignUpPage(props){
         let success = true
 
         //À utiliser un DAO qui check avec DB pour le username 
-        if(formData.username == fakeDB.username){
+
+        if(UserDAO.does_user_exist(formData.username)){
+            console.log('DAO accessed');
+        // if(formData.username == fakeDB.username){
             success = false
             setTempUsername(fakeDB.username)
             setUsernameTaken(true)
