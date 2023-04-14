@@ -11,6 +11,7 @@ import SignInPage from './SignInPage'
 import TestPage from './TestPage'
 import SellPage from './SellPage'
 import { paletteContext } from './component/Context'
+import ChangePasswordPage from './ChangePasswordPage'
 
 
 //TO INTEGRATE USE CONTEXT FOR THE PALETTE
@@ -68,7 +69,14 @@ export default function App() {
             name: 'Sell',
             element: <SellPage/>,
             path: '/Sell'
+        },
+        {
+            id: "6",
+            name: 'ChangePassword',
+            element: <ChangePasswordPage/>,
+            path: '/ChangePassword'
         }
+
     ]
 
     function handleDarkMode(){
