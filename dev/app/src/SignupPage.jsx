@@ -94,7 +94,7 @@ export default function SignUpPage(props){
             formData.dob ? setMissingDob(false) : setMissingDob(true)
             tempUsername === formData.username && tempUsername != '' ? setUsernameTaken(true) : setUsernameTaken(false)
             tempEmail === formData.email && tempEmail != '' ? setEmailUsed(true) : setEmailUsed(false)
-            setUsernameEmailExisted(UserDAO.does_user_exist(formData.username))
+            setUsernameEmailExisted(UserDAO.does_user_exist_username(formData.username))
 
         }else{
             setMissingUsername(false)

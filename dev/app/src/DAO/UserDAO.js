@@ -1,7 +1,8 @@
 export class UserDAO {
   static does_user_exist_username = (username) => {
     if (username != null) {
-      fetch('http://127.0.0.1:3000/users_name/' + username, {
+      console.log("username: " + username);
+      fetch('http://127.0.0.1:3000/user_name/' + username, {
         method: 'GET',
       })
       .then(response => response.json())
