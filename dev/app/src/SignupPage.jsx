@@ -57,6 +57,7 @@ export default function SignUpPage(props){
     const [tempEmail, setTempEmail] = useState('')
 
     const [formData, setFormData] = useState(reset)  
+    const [usernameEmailExisted, setUsernameEmailExisted] = useState(true)
     
     // console.log(formData)
 
@@ -93,6 +94,8 @@ export default function SignUpPage(props){
             formData.dob ? setMissingDob(false) : setMissingDob(true)
             tempUsername === formData.username && tempUsername != '' ? setUsernameTaken(true) : setUsernameTaken(false)
             tempEmail === formData.email && tempEmail != '' ? setEmailUsed(true) : setEmailUsed(false)
+            setUsernameEmailExisted(UserDAO.does_user_exist(formData.username))
+
         }else{
             setMissingUsername(false)
             setMissingFirstname(false)
@@ -110,26 +113,25 @@ export default function SignUpPage(props){
     }, [signUpAttempt, formData.username, formData.firstname, formData.lastname, formData.email, formData.password, formData.address, formData.country, formData.dob])
 
     //Soumettre le formulaire et vérifier si les informations sont valides
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) =>{
         event.preventDefault()
         
         setsignUpAttempt(signUpAttempt + 1)
-        
         let success = true
 
         //À utiliser un DAO qui check avec DB pour le username 
-
-        if(UserDAO.does_user_exist(formData.username)){
+        if(usernameEmailExisted){
             console.log('DAO accessed');
         // if(formData.username == fakeDB.username){
             success = false
-            setTempUsername(fakeDB.username)
+            setTempUsername(formData.username)
             setUsernameTaken(true)
         }
+
         //À utiliser un DAO qui check avec DB pour le email
         if(formData.email == fakeDB.email){
             success = false
-            setTempEmail(fakeDB.email)
+            setTempEmail(formData.email)
             setEmailUsed(true)
         }
 
@@ -156,7 +158,6 @@ export default function SignUpPage(props){
         setFormData(reset)
         setsignUpAttempt(0)
       };
-
 
     const formContainerStyle = {
         color: `${palette.textColor}`,

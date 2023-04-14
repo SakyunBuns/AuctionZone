@@ -5,19 +5,19 @@ export class UserDAO {
         method: 'GET',
       })
       .then(response => response.json())
-        .then(data => {
-          console.log(data); // log the data returned by the API
-          if (data != []) {
-            console.log('allo');
-            return true;
-          }
-          else {
-            return false;
-          }
-        })
-        .catch(error => {
-          console.error(error); // log any errors that occur during the request
-        });
+      .then(data => {
+        console.log(data); // log the data returned by the API
+        if (data != []) {
+          console.log('allo');
+          return true;
+        }
+        else {
+          return false;
+        }
+      })
+      .catch(error => {
+        console.error(error); // log any errors that occur during the request
+      });
     }
   }
 }
