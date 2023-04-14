@@ -2,10 +2,14 @@ import React from 'react'
 import ItemSection from './component/ItemSection'
 import AuctionnedItem from './component/AuctionnedItem'
 import Chat from './component/Chat'
-import EmojiBox from './component/EmojiBox'
+
 
 
 export default function AuctionPage(props){
+
+    const currentUser = {
+        username: 'johndoe'
+    }
 
     return(
         <div className='auction--container'>
@@ -19,7 +23,6 @@ export default function AuctionPage(props){
 
             <div className='auction--section--right'>
                 <Chat />
-                <EmojiBox />
             </div>
 
         </div>

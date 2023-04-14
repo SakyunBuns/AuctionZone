@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
 import { paletteContext } from './Context'
+import EmojiBox from './EmojiBox'
+
 
 export default function Chat(props){
 
@@ -31,6 +33,10 @@ export default function Chat(props){
             <div className='chat--message--container' >
                 {messageUpdated}
             </div>
+
+            <EmojiBox/>
+
+
         </div>  
     )
 }

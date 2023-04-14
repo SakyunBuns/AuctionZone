@@ -290,7 +290,7 @@ a{
 }
 
 .chat--container{
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -312,7 +312,17 @@ a{
 .emoji--container{
     margin-top: 10px;
     height: calc(20% - 10px);
-    background-color: blueviolet;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.emoji--box{
+    height: 50%;
+    width: 20%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .img-uploader--container{
