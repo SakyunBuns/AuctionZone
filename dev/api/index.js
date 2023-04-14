@@ -13,6 +13,7 @@ app.get('/users', function(req, res) {
 app.get('/users', db.getUsers);
 app.get('/users/:id', db.getUser);
 app.get('/users_name/:username', db.userNameExist);
+app.get('/users_email/:email', db.userEmailExist);
 
 app.post('/users', db.createUser);
 

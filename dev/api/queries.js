@@ -35,6 +35,16 @@ const userNameExist = (request, response) => {
     });
 };
 
+const userEmailExist = (request, response) => {
+    const email = request.params.email;
+    client.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    });
+};
+
 const getUsers = (request, response) => {
     client.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
         if (error) {
@@ -89,7 +99,8 @@ module.exports = {
     getUsers,
     updateUser,
     createUser,
-    userNameExist
+    userNameExist,
+    userEmailExist
 }
 
 //https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/
