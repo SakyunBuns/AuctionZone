@@ -1,5 +1,6 @@
-##############
-# Creation usager
+-----------------------
+-- Creation usager
+------------------------
 
 CREATE ROLE nath WITH
 	LOGIN
@@ -17,8 +18,9 @@ CREATE DATABASE "AuctionZone"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 
-################
-# Creation tables
+---------------------------------
+-- Creation tables
+----------------------------------
 
 ALTER TABLE IF EXISTS address
 	DROP CONSTRAINT IF EXISTS fk_adress_users;
@@ -162,6 +164,6 @@ ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_items FOREIGN KEY (id_it
 
 ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_users FOREIGN KEY (id_user) REFERENCES users (id);
 
-# insert
+--insert
 
 INSERT INTO users VALUES (DEFAULT, 'dajohn', 'John', 'Smith', 'johnsmith@email.com', 'AAAaaa111', DEFAULT, CURRENT_TIMESTAMP)
