@@ -306,7 +306,36 @@ a{
 
 .chat--message{
     height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat--message--left{
+    height: 100%;
+    width: 50%;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat--message--left--profile{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.chat--message--right{
+    height: 100%;
+    width: 50%;
+    padding: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .emoji--container{

@@ -1,16 +1,13 @@
 import React, { useContext, useState }from "react";
 import { paletteContext } from "./Context";
-import EmojiDead from "../assets/emoji/emojiDead.png";
-import EmojiMoney from "../assets/emoji/emojiMoney.png";
-import EmojiScared from "../assets/emoji/emojiScared.png";
-import EmojiSmiley from "../assets/emoji/emojiSmiley.png";
+
 
 
 export default function EmojiBox(props) {
 
     const { palette } = useContext(paletteContext);
 
-    const listEmoji = [EmojiDead, EmojiMoney, EmojiScared, EmojiSmiley]
+    const listEmoji = props.listEmoji
 
     const emojis = listEmoji.map((emoji) => {
 

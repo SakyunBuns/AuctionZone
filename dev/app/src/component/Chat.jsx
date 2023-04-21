@@ -2,29 +2,50 @@ import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
 import { paletteContext } from './Context'
 import EmojiBox from './EmojiBox'
+import EmojiDead from "../assets/emoji/emojiDead.png";
+import EmojiMoney from "../assets/emoji/emojiMoney.png";
+import EmojiScared from "../assets/emoji/emojiScared.png";
+import EmojiSmiley from "../assets/emoji/emojiSmiley.png";
+import doggo from "../assets/doggo.png";
+import doggo2 from "../assets/doggo2.jpg";
 
 
 export default function Chat(props){
 
     const {palette} = useContext(paletteContext)
 
+    const listEmoji = [EmojiDead, EmojiMoney, EmojiScared, EmojiSmiley]
+
     const [messages, setMessages] = useState([])
-    const [counter, setCounter] = useState(0)
+
+    const fakeUsers = [{
+        username : 'Happy Doggo',
+        profile : `url('${doggo}')`
+    },
+    {
+        username : 'Snackosaurus',
+        profile : `url('${doggo2}')`
+    }]
 
     const messageUpdated = messages.map((message, index) => {
         return(
-            <Message message={message} index={index}/>
+            <Message message={message.message} username={message.username} profile={message.profile} index={index}/>
         )
     })
 
     //used for testing
     useEffect(() => {
         const interval = setInterval(() => {
-          setCounter(counter + 1)
-          setMessages([`random message ${counter + 1}`, ...messages])
-        }, 2000)
+            let indexUsed  = Math.floor(Math.random() * fakeUsers.length)
+            let indexMessage = Math.floor(Math.random() * listEmoji.length)
+            setMessages([{
+                username: fakeUsers[indexUsed].username,
+                profile: fakeUsers[indexUsed].profile,
+                message: listEmoji[indexMessage]
+            }, ...messages])
+        }, 5000)
         return () => clearInterval(interval)
-    }, [counter, messages])
+    }, [messages])
 
     return(
         <div className='chat--container' style={{backgroundColor:`${palette.color2}`}}>
@@ -34,9 +55,7 @@ export default function Chat(props){
                 {messageUpdated}
             </div>
 
-            <EmojiBox/>
-
-
+            <EmojiBox listEmoji={listEmoji}/>
         </div>  
     )
 }

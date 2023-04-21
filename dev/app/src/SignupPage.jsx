@@ -50,7 +50,7 @@ export default function SignUpPage(props) {
     const [missingCountry, setMissingCountry] = useState(false)
     const [missingDob, setMissingDob] = useState(false)
 
-    const [signUpAttempt, setSignUpAttempt] = useState(0)
+    const [signUpAttempt, setSignUpAttempt] = useState(false)
     const [usernameTaken, setUsernameTaken] = useState(false)
     const [tempUsername, setTempUsername] = useState('')
     const [emailUsed, setEmailUsed] = useState(false)
@@ -115,56 +115,48 @@ export default function SignUpPage(props) {
     //Soumettre le formulaire et vérifier si les informations sont valides
     const handleSubmit = (event) => {
         event.preventDefault()
-        
-        
-        let success = true
-        if (missingAdress || missingCountry || missingDob || missingEmail || missingFirstname || missingLastname || missingPassword || missingUsername) {
-            success = false
-        }
-    
-        if (!checkCapital || !checkLength || !checkNumber || !checkPasswordSame) {
-            success = false
-        }
 
-        UserDAO.does_user_exist_username(formData.username, (data) => {
-            setSignUpAttempt(signUpAttempt + 1)
-            if (data[0] != null) {
-                if (data[0].username == formData.username) {
+        //A un problème avec la vérification de l'existence du username et du email, il faut qu'il y ait de quoi dans le champs
+        //pour que la vérification fonctionne
+        UserDAO.does_user_exist_username(formData.username, (dataUser) => {
+            UserDAO.does_user_exist_email(formData.email, (dataEmail) => {
+                setSignUpAttempt(true)
+                let success = true
+                if (missingAdress || missingCountry || missingDob || missingEmail || missingFirstname || missingLastname || missingPassword || missingUsername) {
+                    success = false
+                }
+
+                if (!checkCapital || !checkLength || !checkNumber || !checkPasswordSame) {
+                    success = false
+                }
+
+                if (dataUser[0] != null) {
                     setUsernameTaken(true)
                     setTempUsername(formData.username)
                     success = false;
-                }
-                console.log("will you work bitch?????")
-            }
-        });
 
-        UserDAO.does_user_exist_email(formData.email, (data) => {
-            if (data[0] != null) {
-                if (data[0].email != formData.email) {
+                }
+                if (dataEmail[0] != null) {
                     setTempEmail(formData.email)
                     setEmailUsed(true)
-                    console.log(emailUsed)
-                    success = true;
+                    success = false;
                 }
-            }
-    
-            if (success) {
-                console.log('success')
-                setTimeout(() => {
-                    location.href = '/'
-                }, 1500)
-            }
-
+                if (success) {
+                    console.log('success')
+                    setTimeout(() => {
+                        location.href = '/'
+                    }, 1500)
+                }
+        
+            })
         })
-        //À utiliser un DAO qui check avec DB pour le username 
     };
 
     //Réinitialiser le formulaire
     const handleReset = (event) => {
         event.preventDefault()
-
         setFormData(reset)
-        setSignUpAttempt(0)
+        setSignUpAttempt(false)
     };
 
     const formContainerStyle = {
