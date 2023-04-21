@@ -115,7 +115,7 @@ export default function SignUpPage(props) {
     //Soumettre le formulaire et vérifier si les informations sont valides
     const handleSubmit = (event) => {
         event.preventDefault()
-       
+
 
         //A un problème avec la vérification de l'existence du username et du email, il faut qu'il y ait de quoi dans le champs
         //pour que la vérification fonctionne
@@ -142,18 +142,17 @@ export default function SignUpPage(props) {
                     setEmailUsed(true)
                     success = false;
                 }
-}
-
-            if (success) {
-                UserDAO.create_user({ username: formData.username, name: formData.firstname, lastname: formData.lastname, email:formData.email, password:formData.password, image:null, dob:formData.dob}, ()=>{
-                    console.log("user created")
-                })
-                console.log('success')
-                setTimeout(() => {
-                    location.href = '/'
-                }, 1500)
-            }        })
-    };
+                if (success) {
+                    UserDAO.create_user({ username: formData.username, name: formData.firstname, lastname: formData.lastname, email: formData.email, password: formData.password, image: null, dob: formData.dob }, () => {
+                        console.log("user created")
+                    })
+                    console.log('success')
+                    setTimeout(() => {
+                        location.href = '/'
+                    }, 1500)
+                }
+            })
+    });
 
     //Réinitialiser le formulaire
     const handleReset = (event) => {
