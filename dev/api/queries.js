@@ -9,6 +9,8 @@ const client = new Client({
 });
 client.connect();
 
+// Requetes pour la table users
+
 const getUser = (request, response) => {
     const userId = parseInt(request.params.id);
     // const username = parseArgs(request.params.username);
@@ -47,31 +49,31 @@ const getUsers = (request, response) => {
         if (error) {
             throw error
         }
-    response.status(200).json(results.rows);
+        response.status(200).json(results.rows);
     })
 }
 
 const createUser = (request, response) => {
     console.log(request.body);
     let { username, name, lastname, email, password, profilePicture, dob } = request.body
-    
-    if (profilePicture != null){
+
+    if (profilePicture != null) {
         client.query('INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *', [username, name, lastname, email, password, profilePicture, dob], (error, results) => {
-          if (error) {
-            throw error
-          }
-          response.status(201).send(`User added with ID: ${results.rows[0].id}`)
-        })
-    }
-    else{
-        client.query('INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, null, $6) RETURNING *', [username, name, lastname, email, password, dob], (error, results) => {
             if (error) {
-              throw error
+                throw error
             }
             response.status(201).send(`User added with ID: ${results.rows[0].id}`)
         })
     }
-  }
+    else {
+        client.query('INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, null, $6) RETURNING *', [username, name, lastname, email, password, dob], (error, results) => {
+            if (error) {
+                throw error
+            }
+            response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+        })
+    }
+}
 
 const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
@@ -102,13 +104,52 @@ const updateUser = (request, response) => {
     }
 }
 
+
+// Requete pour la table items
+
+const getItems = (request, response) => {
+    client.query('SELECT * FROM items ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
+const createItem = (request, response) => {
+    let { name, description, current_status, bid_count, price, id_seller, auction_on, room_id, images } = request.body
+    console.log(name + " " + description + " " + current_status + " " + bid_count + " " + price + " " + id_seller + " " + auction_on + " " + room_id + " " + images);
+    client.query('INSERT INTO items VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', [name, description, current_status, bid_count, price, id_seller, auction_on, room_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+    })
+    
+    if (images != null) {
+        for(image in images){
+
+            client.query('INSERT INTO pictures_list VALUES ($1, $2) RETURNING *', [id_seller, image], (error, results) => {
+                if (error) {
+                    throw error
+                }
+                response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+            })
+        }
+    }
+
+}
+
 module.exports = {
     getUser,
     getUsers,
     updateUser,
     createUser,
     userNameExist,
-    userEmailExist
+    userEmailExist,
+
+    getItems,
+    createItem
 }
 
 //https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/

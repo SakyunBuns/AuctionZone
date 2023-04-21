@@ -1,0 +1,20 @@
+export class ItemDAO {
+    static create_item = ({ name, description, status, bid_count, price, id_seller, start_time, room_id, images}, callback) => {
+        fetch('http://127.0.0.1:3000/item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "name":name, "description":description, "status":status, "bid_count":bid_count, "price":price, "id_seller":id_seller, "start_time":start_time, "room_id":room_id, "images":images})
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data != null) {
+                    callback(data)
+                }
+            })
+            .catch(error => {
+                console.error(error); // log any errors that occur during the request
+            });
+    }
+}
