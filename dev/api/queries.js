@@ -1,7 +1,4 @@
 const { Client } = require('pg');
-const http = require('http');
-const { parse } = require('pg-protocol');
-const { parseArgs } = require('util');
 
 const client = new Client({
     user: 'nath',
@@ -55,14 +52,25 @@ const getUsers = (request, response) => {
 }
 
 const createUser = (request, response) => {
-    const { name, email } = request.body
-  
-    client.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(201).send(`User added with ID: ${results.rows[0].id}`)
-    })
+    console.log(request.body);
+    let { username, name, lastname, email, password, profilePicture, dob } = request.body
+    
+    if (profilePicture != null){
+        client.query('INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *', [username, name, lastname, email, password, profilePicture, dob], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+        })
+    }
+    else{
+        client.query('INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, null, $6) RETURNING *', [username, name, lastname, email, password, dob], (error, results) => {
+            if (error) {
+              throw error
+            }
+            response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+        })
+    }
   }
 
 const updateUser = (request, response) => {
