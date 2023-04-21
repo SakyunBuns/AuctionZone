@@ -8,6 +8,7 @@ import EmojiScared from "../assets/emoji/emojiScared.png";
 import EmojiSmiley from "../assets/emoji/emojiSmiley.png";
 import doggo from "../assets/doggo.png";
 import doggo2 from "../assets/doggo2.jpg";
+import doggo3 from "../assets/doggo3.jpg";
 
 
 export default function Chat(props){
@@ -20,12 +21,17 @@ export default function Chat(props){
 
     const fakeUsers = [{
         username : 'Happy Doggo',
-        profile : `url('${doggo}')`
+        profile : `${doggo}`
     },
     {
         username : 'Snackosaurus',
-        profile : `url('${doggo2}')`
+        profile : `${doggo2}`
     }]
+
+    const myUser = {
+        username : 'Chien Mechant',
+        profile : `${doggo3}`
+    }
 
     const messageUpdated = messages.map((message, index) => {
         return(
@@ -47,6 +53,14 @@ export default function Chat(props){
         return () => clearInterval(interval)
     }, [messages])
 
+    const handleEmojiClick = (emoji) => {
+        setMessages([{
+            username: myUser.username,
+            profile: myUser.profile,
+            message: emoji
+        }, ...messages])
+    }
+
     return(
         <div className='chat--container' style={{backgroundColor:`${palette.color2}`}}>
             <div className='chat--leader' style={{backgroundColor:`${palette.color3}`}}></div>
@@ -55,7 +69,7 @@ export default function Chat(props){
                 {messageUpdated}
             </div>
 
-            <EmojiBox listEmoji={listEmoji}/>
+            <EmojiBox listEmoji={listEmoji} handleEmojiClick={handleEmojiClick}/>
         </div>  
     )
 }

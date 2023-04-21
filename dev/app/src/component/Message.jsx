@@ -13,7 +13,7 @@ export default function Message(props) {
     return (
         <div className="chat--message" style={style}>
             <div className="chat--message--left">
-                <div className="chat--message--left--profile" style={{backgroundImage:`${props.profile}`}}></div>
+                <div className="chat--message--left--profile" style={{backgroundImage:`url('${props.profile}')`}}></div>
                 <p>{props.username}</p>
             </div>
             <div className="chat--message--right" >

@@ -33,6 +33,7 @@ export default function EmojiBox(props) {
             style={tempStyle}
             onMouseEnter={handleMouseEnter} 
             onMouseLeave={handleMouseLeave}
+            onClick={() => props.handleEmojiClick(emoji)} 
             >
             </div>
         )
