@@ -1,6 +1,5 @@
 import React, { useContext} from "react";
 import { paletteContext } from "./Context";
-import doggo from "../assets/doggo.png";
 
 export default function Message(props) {
 
@@ -17,7 +16,9 @@ export default function Message(props) {
                 <div className="chat--message--left--profile" style={{backgroundImage:`${props.profile}`}}></div>
                 <p>{props.username}</p>
             </div>
-            <div className="chat--message--right" style={{backgroundImage:`${props.message}`}}></div>
+            <div className="chat--message--right" >
+                <div className="chat--message--right--emoji" style={{backgroundImage:`url('${props.message}')`}}></div>
+            </div>
         </div>
     );
 }

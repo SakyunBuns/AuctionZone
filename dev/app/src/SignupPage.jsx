@@ -152,14 +152,14 @@ export default function SignUpPage(props) {
                     }, 1500)
                 }
             })
-    });
+    })}
 
     //Réinitialiser le formulaire
     const handleReset = (event) => {
         event.preventDefault()
         setFormData(reset)
         setSignUpAttempt(false)
-    };
+    }
 
     const formContainerStyle = {
         color: `${palette.textColor}`,
