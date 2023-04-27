@@ -22,6 +22,10 @@ export default function App() {
     const [signed, setSigned] = useState(false)
 
     const [darkMode, setDarkMode] = useState(false)
+    
+    const [currency, setCurrency] = useState(["CAD", "USD", "EUR"])
+
+
 
     const palette1 = {
         color1: '#E1E8ED',
@@ -84,6 +88,10 @@ export default function App() {
         darkMode ? setPalette(palette1) : setPalette(palette2)
     }
 
+    const handleCurrencyChange = (newArray) => { 
+        setCurrency(newArray)
+    }
+
     const navbarRoutes = pages.map((page) => {
         return (
         <Route path={page.path} element={page.element} key={page.id}/>
@@ -91,19 +99,21 @@ export default function App() {
     })
 
     document.body.style.backgroundColor = `${palette.color1}`
-
+    console.log(currency)
     return (
         <div className='fullpage'>
             <paletteContext.Provider value={{palette}}>
-                <Header pages={pages} signed={signed} currency={} search={}/>
+
+                <Header pages={pages} signed={signed} currency={currency} setCurrency={handleCurrencyChange}/>
                 <Routes>
                     {navbarRoutes}
                     <Route path='/SignUp' element={<SignUpPage/>}/>
                     <Route path='/SignIn' element={<SignInPage/>}/>
                     <Route path='*' element={<h1>error 404</h1>} key="0"/>
                 </Routes>
+
             </paletteContext.Provider>
-            <button onClick={handleDarkMode}>DARKMODE</button>
+            <button onClick={handleDarkMode}>${darkMode ? 'Light Mode' : 'Dark Mode'}</button>
         </div>
     );
 }
