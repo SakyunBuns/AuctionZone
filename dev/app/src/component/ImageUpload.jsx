@@ -20,7 +20,7 @@ export default function ImageUpload(props) {
 
     setAllImages(images)
 
-    props.updateParentArray(images)
+    props.updateParentArray(image.slice(-5))
   }, [image])
 
   function handleInput() {

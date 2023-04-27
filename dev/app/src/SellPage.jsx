@@ -28,14 +28,42 @@ export default function SellPage(props) {
         // console.log(formData)
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        //INSERT DAO
-        ItemDAO.create_item({ name: formData.item, description: "", current_status: 'waiting', bid_count: 0, price: parseFloat(formData.price), id_seller: 1, auction_on: formData.date, room_id: 1, images: uploadedImage })
-
-        console.log(formData)
-        console.log(uploadedImage)
-    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+      
+        // Use FormData to send images to the API
+        const formData = new FormData();
+        uploadedImage.forEach((img, index) => formData.append(`file${index}`, img));
+      
+        // Convert the image files to binary data
+        const binaryDataArray = await Promise.all(
+          Array.from(formData).map(async ([key, file]) => {
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            return new Promise((resolve) => {
+              reader.onload = () => {
+                resolve(reader.result);
+              };
+            });
+          })
+        );
+      
+        // Call the DAO with the binary data
+        ItemDAO.create_item({ 
+          name: formData.item, 
+          description: "", 
+          current_status: 'waiting', 
+          bid_count: 0, 
+          price: parseFloat(formData.price), 
+          id_seller: 1, 
+          auction_on: formData.date, 
+          room_id: 1, 
+          images: binaryDataArray
+        });
+        
+        console.log(binaryDataArray)
+      };
+      
 
     const formContainerStyle = {
         color: `${palette.textColor}`,

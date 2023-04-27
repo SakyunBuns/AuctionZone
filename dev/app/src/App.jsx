@@ -99,7 +99,7 @@ export default function App() {
     })
 
     document.body.style.backgroundColor = `${palette.color1}`
-    console.log(currency)
+
     return (
         <div className='fullpage'>
             <paletteContext.Provider value={{palette}}>
@@ -113,7 +113,7 @@ export default function App() {
                 </Routes>
 
             </paletteContext.Provider>
-            <button onClick={handleDarkMode}>${darkMode ? 'Light Mode' : 'Dark Mode'}</button>
+            <button onClick={handleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
         </div>
     );
 }
