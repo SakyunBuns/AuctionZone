@@ -66,9 +66,9 @@ export default function AuctionnedItem(props){
     return(
         <div className='auction--left--upper'>
             <div className='auction--text' style={{backgroundColor: palette.color3}}>
-                <p>Barbi goes homeless</p>
-                <p>Remaining Time :</p>
-                <p>Starting bid :</p>
+                <p>Name</p>
+                <p>Remaining Time : 00:00</p>
+                <p>Starting bid : {}</p>
             </div>
 
             <div className='auction--image--section' style={{backgroundColor: palette.color2}}>

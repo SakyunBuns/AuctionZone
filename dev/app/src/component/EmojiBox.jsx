@@ -8,6 +8,7 @@ export default function EmojiBox(props) {
     const { palette } = useContext(paletteContext);
 
     const listEmoji = props.listEmoji
+    let counter = 0
 
     const emojis = listEmoji.map((emoji) => {
 
@@ -33,7 +34,8 @@ export default function EmojiBox(props) {
             style={tempStyle}
             onMouseEnter={handleMouseEnter} 
             onMouseLeave={handleMouseLeave}
-            onClick={() => props.handleEmojiClick(emoji)} 
+            onClick={() => props.handleEmojiClick(emoji)}
+            key={emoji}
             >
             </div>
         )

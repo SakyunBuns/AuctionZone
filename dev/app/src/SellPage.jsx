@@ -28,9 +28,7 @@ export default function SellPage(props) {
         // console.log(formData)
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-      
+
         // Use FormData to send images to the API
         const formData = new FormData();
         uploadedImage.forEach((img, index) => formData.append(`file${index}`, img));
@@ -63,8 +61,6 @@ export default function SellPage(props) {
         
         console.log(binaryDataArray)
       };
-      
-
     const formContainerStyle = {
         color: `${palette.textColor}`,
         border: `2px solid ${palette.color2}`

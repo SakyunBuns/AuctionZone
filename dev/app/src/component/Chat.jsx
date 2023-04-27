@@ -35,7 +35,7 @@ export default function Chat(props){
 
     const messageUpdated = messages.map((message, index) => {
         return(
-            <Message message={message.message} username={message.username} profile={message.profile} index={index}/>
+            <Message message={message.message} username={message.username} profile={message.profile} index={index} key={index}/>
         )
     })
 

@@ -143,11 +143,32 @@ const createItem = (request, response) => {
                 if (error) {
                     throw error
                 }
-                response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+                response.status(201).send(`Item added with ID: ${results.rows[0].id}`)
             })
         }
     }
 
+}
+
+const getBid = (request, response) => {
+    console.log(request.params);
+    const itemId = parseInt(request.params.id);
+    client.query('SELECT * FROM bids WHERE id_item = $1 ORDER BY id_item DESC', [itemId],(error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
+const createBid = (request, response) => {
+    let { id_item, id_buyer, price } = request.body
+    client.query('INSERT INTO bids VALUES (DEFAULT, $1, $2, $3, CURRENT_TIMESTAMP) RETURNING *', [id_item, id_buyer, price], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(201).send(`Bid added with ID: ${results.rows[0].id}`)
+    })
 }
 
 module.exports = {
@@ -160,7 +181,9 @@ module.exports = {
 
     getItems,
     getItem,
-    createItem
+    createItem,
+    getBid,
+    createBid
 }
 
 //https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/
