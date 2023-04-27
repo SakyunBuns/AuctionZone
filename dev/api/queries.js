@@ -119,7 +119,7 @@ const getItems = (request, response) => {
 const createItem = (request, response) => {
     let { name, description, current_status, bid_count, price, id_seller, auction_on, room_id, images } = request.body
     console.log(name + " " + description + " " + current_status + " " + bid_count + " " + price + " " + id_seller + " " + auction_on + " " + room_id + " " + images);
-    client.query('INSERT INTO items VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', [name, description, current_status, bid_count, price, id_seller, auction_on, room_id], (error, results) => {
+    client.query('INSERT INTO items VALUES (DEFAULT, $1, $2, DEFAULT, $3, $4, $5, $6, $7) RETURNING *', [name, description, bid_count, price, id_seller, auction_on, room_id], (error, results) => {
         if (error) {
             throw error
         }

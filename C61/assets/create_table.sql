@@ -163,7 +163,3 @@ ALTER TABLE bought_items ADD CONSTRAINT fk_bought_items_items FOREIGN KEY (id_it
 ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_items FOREIGN KEY (id_item) REFERENCES items (id);
 
 ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_users FOREIGN KEY (id_user) REFERENCES users (id);
-
---insert
-
-INSERT INTO users VALUES (DEFAULT, 'dajohn', 'John', 'Smith', 'johnsmith@email.com', 'AAAaaa111', DEFAULT, CURRENT_TIMESTAMP)

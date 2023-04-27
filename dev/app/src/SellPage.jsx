@@ -25,7 +25,7 @@ export default function SellPage(props) {
                 [event.target.name]: event.target.value
             }
         })
-        console.log(formData)
+        // console.log(formData)
     }
 
     const handleSubmit = (event) => {
