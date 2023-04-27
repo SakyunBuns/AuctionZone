@@ -95,7 +95,7 @@ export default function App() {
     return (
         <div className='fullpage'>
             <paletteContext.Provider value={{palette}}>
-                <Header pages={pages} signed={signed}/>
+                <Header pages={pages} signed={signed} currency={} search={}/>
                 <Routes>
                     {navbarRoutes}
                     <Route path='/SignUp' element={<SignUpPage/>}/>
