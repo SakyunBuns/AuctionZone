@@ -102,7 +102,7 @@ CREATE TABLE items (
   id SERIAL PRIMARY KEY,
   name VARCHAR(32) NOT NULL,
   description VARCHAR(256) DEFAULT '',
-  current_status status NOT NULL,
+  current_status status NOT NULL DEFAULT 'waiting',
   bid_count int DEFAULT 0,
   price numeric DEFAULT 1,
   id_seller int NOT NULL,

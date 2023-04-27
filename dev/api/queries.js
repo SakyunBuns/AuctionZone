@@ -116,6 +116,16 @@ const getItems = (request, response) => {
     })
 }
 
+const getItem = (request, response) => {
+    const itemId = parseInt(request.params.id);
+    client.query('SELECT * FROM items WHERE id = $1 LIMIT 1', [itemId],(error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
 const createItem = (request, response) => {
     let { name, description, current_status, bid_count, price, id_seller, auction_on, room_id, images } = request.body
     console.log(name + " " + description + " " + current_status + " " + bid_count + " " + price + " " + id_seller + " " + auction_on + " " + room_id + " " + images);
@@ -149,6 +159,7 @@ module.exports = {
     userEmailExist,
 
     getItems,
+    getItem,
     createItem
 }
 

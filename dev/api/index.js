@@ -7,10 +7,10 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/users', db.getUsers);
 app.get('/items', db.getItems);
-
 app.get('/users', db.getUsers);
+app.get('/item/:id', db.getItem);
+
 app.get('/users/:id', db.getUser);
 app.get('/user_name/:username', db.userNameExist);
 app.get('/user_email/:email', db.userEmailExist);
