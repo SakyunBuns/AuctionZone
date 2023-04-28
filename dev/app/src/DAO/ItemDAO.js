@@ -26,9 +26,7 @@ export class ItemDAO {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data != null) {
-                        callback(data[0])
-                    }
+                    callback(data[0])
                 })
                 .catch(error => {
                     console.error(error); // log any errors that occur during the request

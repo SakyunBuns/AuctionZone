@@ -8,7 +8,7 @@ import { ItemDAO } from './DAO/ItemDAO'
 
 export default function AuctionPage(props) {
 
-    // const [currentItem, setCurrentItem] = React.useState(new Item(1))
+
     // let currentItem = new Item()
     // currentItem.refresh(1)
     const currentUser = {
@@ -17,7 +17,12 @@ export default function AuctionPage(props) {
 
     const emptyDictionary = {}
 
+    const statEnum = {
+        'AUCTION_OFFLINE': 'Waiting',
+        'AUCTION_ONLINE': <AuctionnedItem/>}
+
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
+    const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
     // useEffect(() => {
     //     setCurrentItem(currentItem.refresh());
     // }, [currentItem]);
@@ -25,7 +30,11 @@ export default function AuctionPage(props) {
     setTimeout(() => {
         ItemDAO.getItem(1, (result) => {
             if (result != null) {
+                setCurrentStatus('AUCTION_ONLINE');
                 setCurrentItem(Item.refresh(result))
+            }
+            else {
+                setCurrentStatus('AUCTION_OFFLINE');
             }
             console.log(currentItem + " " + result)
         }, 5000);
@@ -35,7 +44,7 @@ export default function AuctionPage(props) {
         <div className='auction--container'>
 
             <div className='auction--section--left'>
-                <AuctionnedItem />
+                {statEnum[currentStatus]}
                 <div className='auction--left--bottom'>
                     <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
                 </div>
