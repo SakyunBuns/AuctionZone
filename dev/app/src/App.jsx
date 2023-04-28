@@ -10,7 +10,7 @@ import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
 import TestPage from './TestPage'
 import SellPage from './SellPage'
-import { paletteContext } from './component/Context'
+import { paletteContext, tagsContext } from './component/Context'
 import ChangePasswordPage from './ChangePasswordPage'
 
 
@@ -25,7 +25,18 @@ export default function App() {
     
     const [currency, setCurrency] = useState(["CAD", "USD", "EUR"])
 
-
+    const tags = [  'Antique',
+    'Art & Sculture',
+    'Automobile',
+    'Bijoux & Accessoire',
+    'Collection',
+    'Livre & Manuscrit',
+    'Meuble',
+    'Monnaie',
+    'Musique',
+    'Sport',
+    'Vaisselle & Coutellerie',
+    'Vêtement']
 
     const palette1 = {
         color1: '#E1E8ED',
@@ -103,15 +114,16 @@ export default function App() {
     return (
         <div className='fullpage'>
             <paletteContext.Provider value={{palette}}>
+                <tagsContext.Provider value={{tags}}>
 
-                <Header pages={pages} signed={signed} currency={currency} setCurrency={handleCurrencyChange}/>
-                <Routes>
-                    {navbarRoutes}
-                    <Route path='/SignUp' element={<SignUpPage/>}/>
-                    <Route path='/SignIn' element={<SignInPage/>}/>
-                    <Route path='*' element={<h1>error 404</h1>} key="0"/>
-                </Routes>
-
+                    <Header pages={pages} signed={signed} currency={currency} setCurrency={handleCurrencyChange}/>
+                    <Routes>
+                        {navbarRoutes}
+                        <Route path='/SignUp' element={<SignUpPage/>}/>
+                        <Route path='/SignIn' element={<SignInPage/>}/>
+                        <Route path='*' element={<h1>error 404</h1>} key="0"/>
+                    </Routes>
+                </tagsContext.Provider>
             </paletteContext.Provider>
             <button onClick={handleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
         </div>

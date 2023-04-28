@@ -70,6 +70,7 @@ export default function SignUpPage(props) {
                 [event.target.name]: event.target.value
             }
         })
+        console.log(formData)
     }
 
     //Vérifier si les mots de passe correspondent au exigeance et sont identiques

@@ -4,6 +4,8 @@ import { paletteContext } from "./Context";
 export default function Day(props) {
 
     const { palette } = useContext(paletteContext);
+
+    //Fonction par chatGPT
     function getTimeIntervals(date) {
         let timeIntervals = [];
         let currentDate = new Date(date);
