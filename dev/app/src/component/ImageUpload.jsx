@@ -55,7 +55,7 @@ export default function ImageUpload(props) {
       onChange={handleImage} 
       ref={fileInput} multiple />
 
-      <button className='img-uploader--button' onClick={handleInput}>
+      <button type="button" className='img-uploader--button' onClick={handleInput}>
         Choose up to 5 image(s)
       </button>
 

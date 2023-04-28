@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import ImageUpload from './component/ImageUpload'
 import { paletteContext } from './component/Context'
 import { ItemDAO } from './DAO/ItemDAO';
+import Weekend from './component/Weekend'
 
 export default function SellPage(props) {
 
@@ -9,9 +10,9 @@ export default function SellPage(props) {
 
     const reset = {
         item: "",
+        itemDescription: "",
         price: "",
-        password: "",
-        date: ""
+        date: "",
     }
 
     const [formData, setFormData] = useState(reset)
@@ -25,7 +26,17 @@ export default function SellPage(props) {
                 [event.target.name]: event.target.value
             }
         })
-        // console.log(formData)
+        //console.log(formData)
+    }
+
+    const handleSelectDate = (dateSelected) => {
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                date: dateSelected
+            }
+        })
+        console.log(formData)
     }
 
     // Use FormData to send images to the API
@@ -52,7 +63,7 @@ export default function SellPage(props) {
         // Call the DAO with the binary data
         ItemDAO.createItem({
             name: formData.item,
-            description: "",
+            description: formData.itemDescription,
             current_status: 'waiting',
             bid_count: 0,
             price: parseFloat(formData.price),
@@ -67,78 +78,100 @@ export default function SellPage(props) {
 
     const formContainerStyle = {
         color: `${palette.textColor}`,
-        border: `2px solid ${palette.color2}`
+        border: `2px solid ${palette.color2}`,
+        padding: `20px`,
+    }
+
+    function dateFormating(date){
+        const convertDate = new Date(date)
+
+        const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+        }
+
+        return convertDate.toLocaleString('en-US', options)
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className='page' style={{ alignItem: 'center', display: 'flex' }}>
-                <div className='form--container' style={formContainerStyle}>
-                    <label className='form--label'>
-                        <p>Item title : </p>
-                        <input
-                            type="text"
-                            name="item"
-                            onChange={handleChange}
-                            value={formData.item}
-                        />
-                    </label>
-                    <div className='form--notification'>
-                        Placeholder for notification
+        <div >
+            <form onSubmit={handleSubmit} className='page' style={{ alignItem: 'center', display: 'flex', justifyContent:'center'}}>
+                <div className='flex--row' style={formContainerStyle}>
+                    <div className='form--container' >
+                        <label className='form--label'>
+                            <p>Item title : </p>
+                            <input
+                                type="text"
+                                name="item"
+                                onChange={handleChange}
+                                value={formData.item}
+                            />
+                        </label>
+                        <div className='form--notification'>
+                            Placeholder for notification
+                        </div>
+                        <br />
+
+
+                        <label className='form--label'>
+                            Price :
+                            <input
+                                name="price"
+                                type="text"
+                                value={formData.price}
+                                onChange={handleChange}
+                            />
+                        </label>
+                        <div className='form--notification'>
+                            Placeholder for notification
+                        </div>
+                        <br />
+
+                        <label className='form--label'>
+                            Date :
+                            <input
+                            disabled
+                            value={dateFormating(formData.date)}/>
+                        </label>
+                        <div className='form--notification'>
+                            Click on avaible date on the right
+                        </div>
+                        <br />
+
+                        <label className='form--label'>
+                            <p>Item Description : </p>
+                            <textarea
+                                rows={6}
+                                cols={50}
+                                type="text"
+                                name="itemDescription"
+                                onChange={handleChange}
+                                value={formData.itemDescription}
+                            />
+                        </label>
+                        <div className='form--notification'>
+                            Placeholder for notification
+                        </div>
+                        <br />
+
+                        <ImageUpload updateParentArray={setUplaodedImage} />
+
+
+                        <br />
+                        <div className='form--button'>
+                            <button type="submit" style={{ padding: `5px 10px` }}>Put to sale</button>
+                        </div>
+
+                        <br />
                     </div>
-                    <br />
 
-                    <label className='form--label'>
-                        Price :
-                        <input
-                            name="price"
-                            type="text"
-                            value={formData.price}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <div className='form--notification'>
-                        Placeholder for notification
-                    </div>
-                    <br />
-
-                    <label className='form--label'>
-                        Password :
-                        <input
-                            name="password"
-                            type="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <div className='form--notification'>
-                        Placeholder for notification
-                    </div>
-                    <br />
-
-                    <label className='form--label'>
-                        Date :
-                        <input
-                            name="date"
-                            type="date"
-                            value={formData.date}
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <div className='form--notification'>
-                        Placeholder for notification
-                    </div>
-
-                    {/* <br /> */}
-
-                    <div className='form--button'>
-                        <button type="submit" style={{ padding: `5px 10px` }}>Put to sale</button>
-                    </div>
-
+                    <Weekend date={'2021-04-29T08:00:00'} handleSelectDate={handleSelectDate}/>
                 </div>
             </form>
-            <br />
-            <ImageUpload updateParentArray={setUplaodedImage} />
         </div>
     );
 }

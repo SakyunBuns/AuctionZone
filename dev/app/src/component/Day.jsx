@@ -30,25 +30,36 @@ export default function Day(props) {
     //DAO of date of search
     const day = props.date
     const hourlyTimes = getTimeIntervals(day);
-
  
     const hourBoxes = hourlyTimes.map((hour) => {
         let tempStyle = {
             border: '1px solid black',
             width: '100px',
             height: '50px',
+            backgroundColor:  `${props.usedDate.includes(hour) ? palette.color3 : palette.color1}`,
+            cursor: `${props.usedDate.includes(hour) ? '' : 'pointer'}`
         }
 
-        //Insert disable logic here
-        props.usedDate.includes(hour) ? tempStyle.backgroundColor = 'red' : tempStyle.backgroundColor = 'none'
-
         let formatedHour = new Date(hour).toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' })
+
+        
         
         //Inser on click function here
         return (
-            <div className="center" key={hour} style={tempStyle}>{formatedHour}</div>
+            <div 
+            className="center" 
+            key={hour} 
+            style={tempStyle}
+            onClick={() => {
+                props.usedDate.includes(hour) ? console.log('Not available') : props.handleSelectDate(hour)
+            }}
+            >
+                {formatedHour}
+            </div>
         )
     })
+
+
 
     return (
         <div className="day--container">

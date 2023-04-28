@@ -19,8 +19,8 @@ export default function Weekend(props) {
 
     return (
         <div style={style}>
-            <Day date={props.date} usedDate={usedDate}/>
-            <Day date={day2String} usedDate={usedDate}/>
+            <Day date={props.date} usedDate={usedDate} handleSelectDate={props.handleSelectDate}/>
+            <Day date={day2String} usedDate={usedDate} handleSelectDate={props.handleSelectDate}/>
         </div>
 
     )
