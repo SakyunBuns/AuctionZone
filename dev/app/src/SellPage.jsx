@@ -47,12 +47,12 @@ export default function SellPage(props) {
         event.preventDefault();
 
         // Use FormData to send images to the API
-        const formData = new FormData();
-        uploadedImage.forEach((img, index) => formData.append(`file${index}`, img));
+        const imgFormData = new FormData();
+        uploadedImage.forEach((img, index) => imgFormData.append(`file${index}`, img));
 
         // Convert the image files to binary data
         const binaryDataArray = await Promise.all(
-            Array.from(formData).map(async ([key, file]) => {
+            Array.from(imgFormData).map(async ([key, file]) => {
                 const reader = new FileReader();
                 reader.readAsArrayBuffer(file);
                 return new Promise((resolve) => {

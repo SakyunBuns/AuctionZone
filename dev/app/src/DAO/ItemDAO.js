@@ -6,7 +6,7 @@ export class ItemDAO {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "name": name, "description": description, "status": status, "bid_count": 0, "price": price, "id_seller": id_seller, "auction_on": auction_on, "room_id": room_id, "images": images })
+            body: JSON.stringify({ "name": name, "description": description, "status": status, "bid_count": 0, "price": price, "id_seller": id_seller, "auction_on": auction_on, "room_id": room_id, "images": images[0] })
         })
             .then(response => response.json())
             .then(data => {

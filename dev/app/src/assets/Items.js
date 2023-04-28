@@ -1,5 +1,14 @@
 import { ItemDAO } from "../DAO/ItemDAO";
 
+
+/**
+ * @class Item
+ * 
+ * References used:
+ * https://www.w3schools.com/js/js_dates.asp
+ * https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Date
+ * 
+ */
 export class Item {
 
     add_bid(bid, id_user_sudmit) {
@@ -29,7 +38,7 @@ export class Item {
                     "auction_on": dataItem.auction_on,
                     "room_id": dataItem.room_id,
                     "images": dataItem.images,
-                    "time_remaining": get_time_left(dataItem.auction_on)
+                    "time_remaining": get_time_left(dataItem.auction_on) 
                 };
                 return new_item;
             });
@@ -39,8 +48,11 @@ export class Item {
 
 function get_time_left(start_time) {
     let current_time = Date.now();
-    let close_time = new Date(start_time);
-    let buffer =  new Date(0, 0, 0, 0, 15);
-    console.log("/n" + close_time + " " + current_time);
-    return close_time - current_time;
+    let close_time = new Date(start_time).getTime();
+    console.log(close_time);
+    close_time +=  new Date(0, 0, 0, 0, 15).getMinutes() * 60 * 1000; // Pour avoir la valeur de 15 minutes en millisecondes
+    
+    console.log(close_time + " " + current_time);
+    console.log((close_time - current_time)/1000 );
+    return (close_time - current_time) / 1000;
 }
