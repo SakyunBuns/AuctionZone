@@ -8,9 +8,12 @@ import { ItemDAO } from './DAO/ItemDAO'
 
 export default function AuctionPage(props) {
 
+/**
+ * References: 
+ * https://www.delftstack.com/fr/howto/javascript/javascript-enum/#:~:text=Les%20Enums%2C%20%C3%A9galement%20appel%C3%A9es%20%C3%A9num%C3%A9rations%2C%20sont%20utilis%C3%A9es%20pour,pouvez%20utiliser%20le%20mot-cl%C3%A9%20const%20et%20des%20accolades.
+ * 
+ */
 
-    // let currentItem = new Item()
-    // currentItem.refresh(1)
     const currentUser = {
         username: 'johndoe'
     }
@@ -23,9 +26,7 @@ export default function AuctionPage(props) {
 
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
     const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
-    // useEffect(() => {
-    //     setCurrentItem(currentItem.refresh());
-    // }, [currentItem]);
+
 
     setTimeout(() => {
         ItemDAO.getItem(1, (result) => {
