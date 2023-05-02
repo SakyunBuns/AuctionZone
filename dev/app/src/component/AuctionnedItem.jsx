@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import AuctionPreviewImage from './AuctionPreviewImage'
-import { paletteContext } from './Context'
+import { paletteContext, itemContext } from './Context'
 
 export default function AuctionnedItem(props){
 
     const {palette} = useContext(paletteContext)
+    const {item} = useContext(itemContext)
 
     //ARRAY OF IMAGES FROM SERVER 
     const [testImages, setTestImages] = useState([
@@ -59,6 +60,7 @@ export default function AuctionnedItem(props){
         temp.splice(1, 1)
         temp.splice(index, 0, tempImageMain)
         setTestImages(temp);
+        console.log(item)
 
     }
 

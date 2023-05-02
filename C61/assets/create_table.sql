@@ -22,10 +22,16 @@ CREATE DATABASE "AuctionZone"
 -- Creation tables
 ----------------------------------
 
+---------------------------------
+-- Creation tables
+----------------------------------
+
 ALTER TABLE IF EXISTS address
 	DROP CONSTRAINT IF EXISTS fk_adress_users;
 ALTER TABLE IF EXISTS tag_list
 	DROP CONSTRAINT IF EXISTS fk_tag_list_items;
+ALTER TABLE IF EXISTS favorite_tag_list
+	DROP CONSTRAINT IF EXISTS fk_favorite_tag_list_users;
 ALTER TABLE IF EXISTS bids
 	DROP CONSTRAINT IF EXISTS fk_bids_items;
 ALTER TABLE IF EXISTS bids
@@ -51,6 +57,7 @@ DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS bought_items;
 DROP TABLE IF EXISTS viewed_items;
 DROP TABLE IF EXISTS tag_list;
+DROP TABLE IF EXISTS favorite_tag_list;
 DROP TABLE IF EXISTS pictures_list;
 DROP TABLE IF EXISTS bids;
 DROP TYPE IF EXISTS status;
@@ -150,7 +157,7 @@ CREATE TABLE viewed_items (
 ALTER TABLE address ADD CONSTRAINT fk_adress_users FOREIGN KEY (id_user) REFERENCES users (id);
 
 ALTER TABLE tag_list ADD CONSTRAINT fk_tag_list_items FOREIGN KEY (id_item) REFERENCES items (id);
-ALTER TABLE tag_list ADD CONSTRAINT fk_tag_list_items FOREIGN KEY (id_user) REFERENCES users (id);
+ALTER TABLE favorite_tag_list ADD CONSTRAINT fk_favorite_tag_list_users FOREIGN KEY (id_user) REFERENCES users (id);
 
 ALTER TABLE bids ADD CONSTRAINT fk_bids_items FOREIGN KEY (id_item) REFERENCES items (id);
 
@@ -169,3 +176,4 @@ ALTER TABLE bought_items ADD CONSTRAINT fk_bought_items_items FOREIGN KEY (id_it
 ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_items FOREIGN KEY (id_item) REFERENCES items (id);
 
 ALTER TABLE viewed_items ADD CONSTRAINT fk_viewed_items_users FOREIGN KEY (id_user) REFERENCES users (id);
+
