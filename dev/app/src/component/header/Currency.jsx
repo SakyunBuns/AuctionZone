@@ -13,6 +13,7 @@ export default function Currency(props){
         gridArea:`${props.gridName}`,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         width: '100%'
 
     }
