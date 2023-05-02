@@ -42,7 +42,8 @@ export default function SellPage(props) {
         // console.log(formData)
     }
 
-    // Use FormData to send images to the API
+    // Solution par ChatGPT
+    // Use FormData to send images to the API 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
