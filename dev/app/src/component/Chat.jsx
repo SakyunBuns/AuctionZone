@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
 import LeaderBid from './LeaderBid'
 import { paletteContext } from './Context'
+import Bid from './Bid'
 import EmojiBox from './EmojiBox'
 import EmojiDead from "../assets/emoji/emojiDead.png";
 import EmojiMoney from "../assets/emoji/emojiMoney.png";
@@ -71,8 +72,8 @@ export default function Chat(props){
             </div>
 
             <EmojiBox listEmoji={listEmoji} handleEmojiClick={handleEmojiClick}/>
+            <Bid/>
 
-            
         </div>  
     )
 }

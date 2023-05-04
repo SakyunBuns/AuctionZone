@@ -406,9 +406,20 @@ a{
     padding: 5px;
 }
 
+.chat--bid--container{
+    padding : 10px;
+    height: 5%;
+    min-height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .emoji--container{
     margin-top: 10px;
-    height: calc(10% - 10px);
+    height: calc(15% - 10px);
     width: 100%;
     display: flex;
     flex-direction: row;
