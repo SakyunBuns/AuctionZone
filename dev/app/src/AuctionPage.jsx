@@ -44,14 +44,13 @@ export default function AuctionPage(props) {
             ItemDAO.getItem(1, (result) => {
                 if (result != null) {
                     setCurrentStatus('AUCTION_ONLINE');
-                    setCurrentItem(Item.refresh(result))
+                    // setCurrentItem(Item.refresh(result))
                     let test = Item.refresh(result)
                     setCurrentItem(result)
                 }
                 else {
                     setCurrentStatus('AUCTION_OFFLINE');
                 }
-                console.log(currentItem + " " + result)
             })
         }, 5000);
         return () => clearInterval(interval);
