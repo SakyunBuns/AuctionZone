@@ -140,13 +140,13 @@ export default function SellPage(props) {
                     <br />
 
                     <label className='form--label'>
-                        Date :
+                        Auction start time :
                         <input
                         disabled
                         value={dateFormating(formData.date)}/>
                     </label>
                     <div className='form--notification'>
-                        Click on avaible date on the right
+                        Click on avaible schedule to the right
                     </div>
                     <br />
 

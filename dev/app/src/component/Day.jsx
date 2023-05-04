@@ -21,9 +21,9 @@ export default function Day(props) {
         // Extract the date string from currentDate without any time formatting
         const dateString = currentDate.toISOString().slice(0, 10);
         
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < 9; i++) {
           timeIntervals.push(`${dateString}T${currentDate.toLocaleTimeString('en-US', { hour12: false })}`);
-          currentDate.setMinutes(currentDate.getMinutes() + 30);
+          currentDate.setMinutes(currentDate.getMinutes() + 60);
         }
         
         return timeIntervals;
