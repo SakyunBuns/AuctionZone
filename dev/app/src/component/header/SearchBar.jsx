@@ -46,7 +46,7 @@ export default function SearchBar(props){
     }
 
     const handleSelectChange = (element) => {
-        setSelectedOption(element.label)
+        (element != null) ? setSelectedOption(element.label) : setSelectedOption("") 
     }
 
     const handleSubmit = (event) =>{
