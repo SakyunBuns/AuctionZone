@@ -25,6 +25,12 @@ export default function App() {
     
     const [currency, setCurrency] = useState(["CAD", "USD", "EUR"])
 
+    const rates = {
+        "CAD": 1,
+        "USD": 0.75,
+        "EUR": 0.68,
+    }
+
     const tags = [  'Antique',
     'Art & Sculture',
     'Automobile',
