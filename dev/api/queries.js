@@ -35,7 +35,7 @@ const userNameExist = (request, response) => {
 };
 
 const userEmailExist = (request, response) => {
-
+    const email = request.params.email;
     client.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
         if (error) {
             throw error
@@ -126,6 +126,18 @@ const getItem = (request, response) => {
     })
 }
 
+const getItemWithinTime = (request, response) => {
+    client.query('SELECT *,( items.auction_on - CURRENT_TIMESTAMP) AS "time_idx"'+
+    ' FROM items WHERE ( items.auction_on - CURRENT_TIMESTAMP) >= INTERVAL \'0 SECONDS\' '+
+    'ORDER BY "time_idx" ASC LIMIT 1;',(error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
+
 const createItem = (request, response) => {
     let { name, description, current_status, bid_count, price, id_seller, auction_on, room_id, images } = request.body
     console.log(name + " " + description + " " + current_status + " " + bid_count + " " + price + " " + id_seller + " " + auction_on + " " + room_id + " " + images);
@@ -181,9 +193,12 @@ module.exports = {
 
     getItems,
     getItem,
+    getItemWithinTime,
     createItem,
     getBid,
     createBid
 }
 
+/*https://www.postgresql.org/docs/current/datatype-datetime.html#DATATYPE-INTERVAL-INPUT
 //https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/
+*/

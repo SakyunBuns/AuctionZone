@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import ItemSection from './component/ItemSection'
 import AuctionnedItem from './component/AuctionnedItem'
 import Chat from './component/Chat'
-import { Item } from './assets/Items'
+import { get_time_left } from './assets/Items'
 import { ItemDAO } from './DAO/ItemDAO'
 import { itemContext } from './component/Context'
 import { paletteContext } from './component/Context'
@@ -41,18 +41,36 @@ export default function AuctionPage(props) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            ItemDAO.getItem(1, (result) => {
-                if (result != null) {
-                    setCurrentStatus('AUCTION_ONLINE');
-                    // setCurrentItem(Item.refresh(result))
-                    let test = Item.refresh(result)
-                    setCurrentItem(result)
-                }
-                else {
-                    setCurrentStatus('AUCTION_OFFLINE');
-                }
+            ItemDAO.getItemByTime((availableItem) => {
+                ItemDAO.getItem(availableItem[0].id, (result) => {
+
+                    if (result.id != null) {
+                        ItemDAO.getHigherBid(result.id, (dataBid) => {
+                            let new_item = {
+                                "id_item": result.id,
+                                "name": result.name,
+                                "description": result.description,
+                                "status": result.current_status,
+                                "price": dataBid.price != null ? dataBid.price : result.price,
+                                "id_seller": result.id_seller,
+                                "auction_on": result.auction_on,
+                                "room_id": result.room_id,
+                                "images": result.images,
+                                "time_remaining": get_time_left(result.auction_on)
+                            };
+
+                            setCurrentItem(new_item)
+                            setCurrentStatus('AUCTION_ONLINE');
+                        })
+                    }
+                    else {
+                        setCurrentStatus('AUCTION_OFFLINE');
+                    }
+                    console.log(currentItem + " " + result)
+                })
             })
-        }, 5000);
+        }
+            , 5000);
         return () => clearInterval(interval);
     }, [currentItem]);
 
@@ -73,3 +91,4 @@ export default function AuctionPage(props) {
         </div>
     )
 }
+

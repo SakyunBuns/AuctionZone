@@ -10,6 +10,7 @@ app.use(express.json());
 app.get('/items', db.getItems);
 app.get('/users', db.getUsers);
 app.get('/item/:id', db.getItem);
+app.get('/item_time/', db.getItemWithinTime);
 
 
 app.get('/users/:id', db.getUser);

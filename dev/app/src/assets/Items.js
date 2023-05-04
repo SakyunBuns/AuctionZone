@@ -46,7 +46,7 @@ export class Item {
     }
 }
 
-function get_time_left(start_time) {
+export function get_time_left(start_time) {
     let current_time = Date.now();
     let close_time = new Date(start_time).getTime();
     console.log(close_time);

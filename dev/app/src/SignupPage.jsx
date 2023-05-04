@@ -145,15 +145,14 @@ export default function SignUpPage(props) {
                 }
                 if (success) {
                     UserDAO.create_user({ username: formData.username, name: formData.firstname, lastname: formData.lastname, email: formData.email, password: formData.password, image: null, dob: formData.dob }, () => {
-                        console.log("user created")
+                        setTimeout(() => {
+                            location.href = '/'
+                        }, 1500)
                     })
-                    console.log('success')
-                    setTimeout(() => {
-                        location.href = '/'
-                    }, 1500)
                 }
             })
-    })}
+        })
+    }
 
     //Réinitialiser le formulaire
     const handleReset = (event) => {
