@@ -25,33 +25,35 @@ export default function AuctionPage(props) {
     const emptyDictionary = {}
 
     const statEnum = {
-        'AUCTION_OFFLINE': 'Waiting',
+        'AUCTION_OFFLINE': <p style={{ color: palette.textColor }}>Waiting</p>,
         'AUCTION_ONLINE': <AuctionnedItem />
     }
 
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
     const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
 
-
-    setTimeout(() => {
-        ItemDAO.getItem(1, (result) => {
-            if (result != null) {
-                setCurrentStatus('AUCTION_ONLINE');
-                setCurrentItem(Item.refresh(result))
-            }
-            else {
-                setCurrentStatus('AUCTION_OFFLINE');
-            }
-            console.log(currentItem + " " + result)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            ItemDAO.getItem(1, (result) => {
+                if (result != null) {
+                    setCurrentStatus('AUCTION_ONLINE');
+                    setCurrentItem(Item.refresh(result))
+                }
+                else {
+                    setCurrentStatus('AUCTION_OFFLINE');
+                }
+                console.log(currentItem + " " + result)
+            })
         }, 5000);
-    })
+        return () => clearInterval(interval);
+    }, [currentItem]);
 
     return (
         <div className='auction--container'>
 
             <div className='auction--section--left'>
                 <itemContext.Provider value={{ item: currentItem }}>
-                    <p style={{color: palette.textColor}}>{statEnum[currentStatus]}</p>
+                    {statEnum[currentStatus]}
                     <div className='auction--left--bottom'>
                         <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
                     </div>
