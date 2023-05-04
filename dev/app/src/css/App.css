@@ -296,17 +296,82 @@ a{
 }
 
 .chat--container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
+}
+
+.chat--leader--container{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.chat--leader{
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
+
 .chat--leader{
-    height: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat--leader--crown{
+    height: 50px;
+    width: 75px;
+    margin-bottom: 5px;
+    align-self: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.chat--leader--profile{
+    height: 100px;
+    width: 100px;
+    align-self: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.chat--leader--right{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chat--leader--left{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.chat--leader--right > div{
+    height: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .chat--message--container{
-    height: calc(100% - 150px);
+    height: calc(80% - 200px);
     overflow-y: scroll;
 }
 
@@ -343,14 +408,14 @@ a{
 
 .emoji--container{
     margin-top: 10px;
-    height: calc(20% - 10px);
+    height: calc(10% - 10px);
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
 .emoji--box{
-    height: 50%;
+    height: 100%;
     width: 20%;
     background-position: center;
     background-repeat: no-repeat;

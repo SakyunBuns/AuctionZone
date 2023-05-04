@@ -5,8 +5,10 @@ import Chat from './component/Chat'
 import { Item } from './assets/Items'
 import { ItemDAO } from './DAO/ItemDAO'
 import { itemContext } from './component/Context'
-import { paletteContext } from './component/Context';
-
+import { paletteContext } from './component/Context'
+//USED FOR TESTING
+import doggo from "./assets/doggo.png";
+//USED FOR TESTING
 
 export default function AuctionPage(props) {
 
@@ -32,6 +34,13 @@ export default function AuctionPage(props) {
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
     const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
 
+    //USED FOR TESTING
+    const tempItem = {
+        username: 'John Cena',
+        profile: `${doggo}`,
+        highestBid: 100
+    }
+
 
     setTimeout(() => {
         ItemDAO.getItem(1, (result) => {
@@ -51,7 +60,7 @@ export default function AuctionPage(props) {
 
             <div className='auction--section--left'>
                 <itemContext.Provider value={{ item: currentItem }}>
-                    <p style={{color: palette.textColor}}>{statEnum[currentStatus]}</p>
+                    {statEnum[currentStatus]}
                     <div className='auction--left--bottom'>
                         <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
                     </div>
@@ -59,7 +68,7 @@ export default function AuctionPage(props) {
             </div>
 
             <div className='auction--section--right'>
-                <Chat />
+                <Chat currentItem={tempItem} />
             </div>
 
         </div>

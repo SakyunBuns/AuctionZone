@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
+import LeaderBid from './LeaderBid'
 import { paletteContext } from './Context'
 import EmojiBox from './EmojiBox'
 import EmojiDead from "../assets/emoji/emojiDead.png";
@@ -63,13 +64,15 @@ export default function Chat(props){
 
     return(
         <div className='chat--container' style={{backgroundColor:`${palette.color2}`}}>
-            <div className='chat--leader' style={{backgroundColor:`${palette.color3}`}}></div>
+            <LeaderBid currentItem={props.currentItem}/>
 
             <div className='chat--message--container' >
                 {messageUpdated}
             </div>
 
             <EmojiBox listEmoji={listEmoji} handleEmojiClick={handleEmojiClick}/>
+
+            
         </div>  
     )
 }
