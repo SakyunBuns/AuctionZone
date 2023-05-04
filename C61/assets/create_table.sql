@@ -157,6 +157,7 @@ CREATE TABLE viewed_items (
 ALTER TABLE address ADD CONSTRAINT fk_adress_users FOREIGN KEY (id_user) REFERENCES users (id);
 
 ALTER TABLE tag_list ADD CONSTRAINT fk_tag_list_items FOREIGN KEY (id_item) REFERENCES items (id);
+
 ALTER TABLE favorite_tag_list ADD CONSTRAINT fk_favorite_tag_list_users FOREIGN KEY (id_user) REFERENCES users (id);
 
 ALTER TABLE bids ADD CONSTRAINT fk_bids_items FOREIGN KEY (id_item) REFERENCES items (id);
