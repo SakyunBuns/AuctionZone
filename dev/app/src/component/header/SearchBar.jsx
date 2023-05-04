@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { tagsContext } from "../Context"
 import Select from 'react-select'
 import { useContext } from 'react'
+import { ItemDAO } from '../../DAO/ItemDAO'
 
 export default function SearchBar(props){
 
     const { tags } = useContext(tagsContext)
 
     const [selectedOption, setSelectedOption] = useState("")
+
+    const [searchedWord, setSearchedWord] = useState("")
 
     const option = tags.map((tag) => {
         return { value: tag, label: tag }
@@ -49,10 +52,18 @@ export default function SearchBar(props){
         (element != null) ? setSelectedOption(element.label) : setSelectedOption("") 
     }
 
+    const handleInputChange = (event) => {
+        setSearchedWord(event.target.value)
+        // console.log(searchedWord)
+    }
+
     const handleSubmit = (event) =>{
         event.preventDefault();
         if(selectedOption == ""){
             //INSERT DAO FOR ALL SEARCH
+            ItemDAO.getItemsByKeyword(searchedWord, (result) => {
+                console.log(result)
+            })
         }
         else{
             //INSERT DAO WITH SEARCH WITH CATEGORIE == selectedOption
@@ -61,7 +72,7 @@ export default function SearchBar(props){
 
     return(
         <form style={styleContainer} onSubmit={handleSubmit}>
-            <input type="text" placeholder='SEARCH HERE!' style={styleInput}/>
+            <input type="text" placeholder='SEARCH HERE!' style={styleInput} onChange={handleInputChange}/>
             <div style={styleSearch}>
                 <Select
                     styles={stylesSelect}

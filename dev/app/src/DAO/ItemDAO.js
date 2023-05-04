@@ -51,6 +51,24 @@ export class ItemDAO {
         }
     }
 
+    //TODO - Rendre les keywords non sensible a la case
+    static getItemsByKeyword = (keyword, callback) => {
+        if (keyword != null && callback != null) {
+            fetch('http://127.0.0.1:3000/items_keyword/' + keyword, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data != null) {
+                        callback(data)
+                    }
+                })
+                .catch(error => {
+                    console.error(error); // log any errors that occur during the request
+                });
+        }
+    }
+
     static getHigherBid = (id_item, callback) => {
         if (id_item != null && callback != null) {
             let id = parseInt(id_item)

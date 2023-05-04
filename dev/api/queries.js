@@ -137,6 +137,16 @@ const getItemWithinTime = (request, response) => {
     })
 }
 
+const getItemsByKeyword = (request, response) => {
+    const keyword = request.params.keyword;
+    client.query('SELECT * FROM items WHERE name LIKE \'%\' || $1 || \'%\'', [keyword], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
 
 const createItem = (request, response) => {
     let { name, description, current_status, bid_count, price, id_seller, auction_on, room_id, images } = request.body
@@ -194,6 +204,7 @@ module.exports = {
     getItems,
     getItem,
     getItemWithinTime,
+    getItemsByKeyword,
     createItem,
     getBid,
     createBid
