@@ -5,7 +5,8 @@ import { paletteContext, itemContext } from './Context'
 export default function AuctionnedItem(props){
 
     const {palette} = useContext(paletteContext)
-    const {item} = useContext(itemContext)
+    // const {item} = useContext(itemContext)
+    
 
     //ARRAY OF IMAGES FROM SERVER 
     const [testImages, setTestImages] = useState([
@@ -68,9 +69,9 @@ export default function AuctionnedItem(props){
     return(
         <div className='auction--left--upper'>
             <div className='auction--text' style={{backgroundColor: palette.color3}}>
-                <p>Name</p>
-                <p>Remaining Time : 00:00</p>
-                <p>Starting bid : {}</p>
+                <p> {props.item.name != null ? props.item.name : "dumdummy"}</p>
+                <p>Remaining Time : {props.item.auction_on}</p>
+                <p>Starting bid : {props.item.price}</p>
             </div>
 
             <div className='auction--image--section' style={{backgroundColor: palette.color2}}>

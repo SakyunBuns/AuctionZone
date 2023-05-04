@@ -19,20 +19,17 @@ export default function AuctionPage(props) {
      * https://www.delftstack.com/fr/howto/javascript/javascript-enum/#:~:text=Les%20Enums%2C%20%C3%A9galement%20appel%C3%A9es%20%C3%A9num%C3%A9rations%2C%20sont%20utilis%C3%A9es%20pour,pouvez%20utiliser%20le%20mot-cl%C3%A9%20const%20et%20des%20accolades.
      * 
      */
-
-    const currentUser = {
-        username: 'johndoe'
-    }
-
     const emptyDictionary = {}
-
-    const statEnum = {
-        'AUCTION_OFFLINE': 'Waiting',
-        'AUCTION_ONLINE': <AuctionnedItem />
-    }
 
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
     const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
+
+
+    const statEnum = {
+        'AUCTION_OFFLINE': 'Waiting',
+        'AUCTION_ONLINE': <AuctionnedItem item={currentItem} />
+    }
+
 
     //USED FOR TESTING
     const tempItem = {
@@ -42,29 +39,32 @@ export default function AuctionPage(props) {
     }
 
 
-    setTimeout(() => {
-        ItemDAO.getItem(1, (result) => {
-            if (result != null) {
-                setCurrentStatus('AUCTION_ONLINE');
-                setCurrentItem(Item.refresh(result))
-            }
-            else {
-                setCurrentStatus('AUCTION_OFFLINE');
-            }
-            console.log(currentItem + " " + result)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            ItemDAO.getItem(1, (result) => {
+                if (result != null) {
+                    setCurrentStatus('AUCTION_ONLINE');
+                    setCurrentItem(Item.refresh(result))
+                    let test = Item.refresh(result)
+                    setCurrentItem(result)
+                }
+                else {
+                    setCurrentStatus('AUCTION_OFFLINE');
+                }
+                console.log(currentItem + " " + result)
+            })
         }, 5000);
-    })
+        return () => clearInterval(interval);
+    }, [currentItem]);
 
     return (
         <div className='auction--container'>
 
             <div className='auction--section--left'>
-                <itemContext.Provider value={{ item: currentItem }}>
-                    {statEnum[currentStatus]}
-                    <div className='auction--left--bottom'>
-                        <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
-                    </div>
-                </itemContext.Provider>
+                {statEnum[currentStatus]}
+                <div className='auction--left--bottom'>
+                    <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
+                </div>
             </div>
 
             <div className='auction--section--right'>
