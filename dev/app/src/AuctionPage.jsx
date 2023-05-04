@@ -24,20 +24,22 @@ export default function AuctionPage(props) {
 
     const emptyDictionary = {}
 
-    const statEnum = {
-        'AUCTION_OFFLINE': <p style={{ color: palette.textColor }}>Waiting</p>,
-        'AUCTION_ONLINE': <AuctionnedItem />
-    }
-
+    
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
     const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
+    
+    const statEnum = {
+        'AUCTION_OFFLINE': <p style={{ color: palette.textColor }}>Waiting</p>,
+        'AUCTION_ONLINE': <AuctionnedItem props={currentItem}/>
+    }
 
     useEffect(() => {
         const interval = setInterval(() => {
             ItemDAO.getItem(1, (result) => {
                 if (result != null) {
                     setCurrentStatus('AUCTION_ONLINE');
-                    setCurrentItem(Item.refresh(result))
+                    let test = Item.refresh(result)
+                    setCurrentItem(result)
                 }
                 else {
                     setCurrentStatus('AUCTION_OFFLINE');

@@ -29,14 +29,14 @@ export class Item {
         if (dataItem.id != null) {
             ItemDAO.getHigherBid(dataItem.id, (dataBid) => {
                 let new_item = {
-                    "id_item": dataItem.id_item,
+                    "id_item": dataItem.id,
                     "name": dataItem.name,
                     "description": dataItem.description,
-                    "status": dataItem.status,
+                    "status": dataItem.current_status,
                     "price": dataBid.amount,
                     "id_seller": dataItem.id_seller,
                     "auction_on": dataItem.auction_on,
-                    "room_id": dataItem.room_id,
+                    "room_id": dataItem.room,
                     "images": dataItem.images,
                     "time_remaining": get_time_left(dataItem.auction_on) 
                 };
