@@ -10,6 +10,8 @@ export default function Message(props) {
     style = {backgroundColor: `${palette.color2}`}
     : style = {backgroundColor: `${palette.color3}`}
 
+    style = {...style, color: `${palette.textColor}`}
+
     return (
         <div className="chat--message" style={style}>
             <div className="chat--message--left">

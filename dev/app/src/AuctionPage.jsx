@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import ItemSection from './component/ItemSection'
 import AuctionnedItem from './component/AuctionnedItem'
 import Chat from './component/Chat'
 import { Item } from './assets/Items'
 import { ItemDAO } from './DAO/ItemDAO'
 import { itemContext } from './component/Context'
+import { paletteContext } from './component/Context';
 
 
 export default function AuctionPage(props) {
+
+    const { palette } = useContext(paletteContext)
 
     /**
      * References: 
@@ -48,7 +51,7 @@ export default function AuctionPage(props) {
 
             <div className='auction--section--left'>
                 <itemContext.Provider value={{ item: currentItem }}>
-                    {statEnum[currentStatus]}
+                    <p style={{color: palette.textColor}}>{statEnum[currentStatus]}</p>
                     <div className='auction--left--bottom'>
                         <ItemSection sectionName="Upcoming" containerHeight={185} imageSize={90} />
                     </div>
