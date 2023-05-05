@@ -4,6 +4,7 @@ import Logo  from './Logo'
 import SearchBar from  './SearchBar'
 import Profile from './Profile'
 import Currency from './Currency'
+import DarkMode from './DarkMode'
 import { paletteContext } from '../Context'
 
 
@@ -20,7 +21,7 @@ export default function Header(props){
         height: '100px',
         backgroundColor: `${palette.color1}`,
         display: 'grid',
-        gridTemplateAreas: props.currency ? `'logo search currency profile' 'logo navbar none profile'` : `'logo search profile' 'logo navbar profile'`,
+        gridTemplateAreas: props.currency ? `'logo search currency profile' 'logo navbar dark profile'` : `'logo search dark profile' 'logo navbar none profile'`,
         gridTemplateRows: `${rowHeight}px 1fr`,
         gridTemplateColumns: `${logoWidth}px 1fr ${profileWidth}px`,
         borderBottom:`solid 2px ${palette.color2}`,
@@ -35,6 +36,7 @@ export default function Header(props){
                 <Logo gridName="logo" path={props.pages[0].path} logoWidth={logoWidth}/>
                 <SearchBar gridName="search" height={rowHeight}/>
                 <Profile gridName="profile" profileWidth={profileWidth} signed={props.signed}/>
+                <DarkMode gridName="dark" handleDarkMode={props.handleDarkMode} darkMode={props.darkMode}/>
                 {props.currency && <Currency gridName="currency" currency={props.currency} setCurrency={props.setCurrency}/>}
             </div>
         </header>

@@ -122,16 +122,23 @@ export default function App() {
             <paletteContext.Provider value={{palette}}>
                 <tagsContext.Provider value={{tags}}>
 
-                    <Header pages={pages} signed={signed} currency={currency} setCurrency={handleCurrencyChange}/>
+                    <Header 
+                        pages={pages} 
+                        signed={signed} 
+                        currency={currency} 
+                        setCurrency={handleCurrencyChange} 
+                        handleDarkMode={handleDarkMode}
+                        darkMode={darkMode}/>
                     <Routes>
                         {navbarRoutes}
                         <Route path='/SignUp' element={<SignUpPage/>}/>
                         <Route path='/SignIn' element={<SignInPage/>}/>
                         <Route path='*' element={<h1>error 404</h1>} key="0"/>
                     </Routes>
+
                 </tagsContext.Provider>
             </paletteContext.Provider>
-            <button onClick={handleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
+            
         </div>
     );
 }

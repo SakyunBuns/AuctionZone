@@ -26,7 +26,7 @@ export default function AuctionPage(props) {
 
 
     const statEnum = {
-        'AUCTION_OFFLINE': 'Waiting',
+        'AUCTION_OFFLINE': <div style={{color: `${palette.textColor}`}}>Waiting</div>,
         'AUCTION_ONLINE': <AuctionnedItem item={currentItem} />
     }
 

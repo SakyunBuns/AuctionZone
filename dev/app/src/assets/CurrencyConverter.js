@@ -7,16 +7,20 @@ export class Converter{
     convertToInterface(amount, currency){
         if (currency == this.baseCurrency){
             return amount
-        }else{
+        }else if (currency in this.rates){
             return amount * this.rates[currency]
+        }else{
+            console.log("Currency not found")
         }
     }
 
     convertToServeur(amount, currency){
         if (currency == this.baseCurrency){
             return amount
-        }else{
+        }else if (currency in this.rates){
             return amount / this.rates[currency]
+        }else{
+            console.log("Currency not found")
         }
     }
 }
