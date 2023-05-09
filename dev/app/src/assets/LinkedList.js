@@ -40,7 +40,6 @@ class LinkedList{
 
     }
 
-
     // Insert at index
     insertAt(data, index){
         if(index === 0){
@@ -96,6 +95,42 @@ class LinkedList{
         }
     }
 
+    // Remove at index
+    removeAt(index){
+        if(index === 0){
+            if (this.size >= 1){
+                this.headNode = this.headNode.next;
+                this.size--;
+                return;
+            }
+            else{
+                console.log("Error: List is empty");
+                this.size = 0; //Au cas où la liste est négative
+                return;
+            }
+        }
+        else if(index > 0 && index < this.size){
+            let current = this.headNode;
+            let counter = 0;
+
+            while(current){
+                counter++;
+
+
+                if(counter === index){
+                    current.next = current.next.next;
+                    this.size--;
+                    return;
+                }else{
+                    current = current.next;
+                }
+            }
+        } else{
+            console.log("Error: Index out of range");
+            return;
+        }
+    }
+    
     // Clear list
     clearList(){
         this.headNode = null;
@@ -111,8 +146,6 @@ class LinkedList{
             current = current.next;
         }
     }
-
-
 }
 
 const ll = new LinkedList();
@@ -120,7 +153,7 @@ const ll = new LinkedList();
 ll.insertToFirst(100);
 ll.insertToFirst(200);
 ll.insertToFirst(300);
-ll.insertToLast(400);
-ll.insertAt(500, 2);
+ll.insertToFirst(400);
+ll.removeAt(0);
 
 ll.printListData();
