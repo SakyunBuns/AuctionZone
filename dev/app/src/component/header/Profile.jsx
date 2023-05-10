@@ -1,12 +1,13 @@
 import React, {useContext} from 'react'
-import VisitorProfile from '../../assets/doggo.png'
+import VisitorProfile from '../../assets/visitor.jpg'
 import { Link } from 'react-router-dom';
-import { paletteContext } from '../Context'
+import { paletteContext, userContext } from '../Context'
 
 
 export default function Profile(props){
 
     const {palette} = useContext(paletteContext)
+    const {user, setUser} = useContext(userContext)
 
     const imageHeight = props.profileWidth - 20
 
@@ -20,6 +21,7 @@ export default function Profile(props){
 
     const styleImg={
         margin:'auto',
+        padding: '5px',
         height: `${imageHeight}px`,
         width: `${imageHeight}px`
     }
@@ -35,14 +37,32 @@ export default function Profile(props){
         color: `${palette.textColor}`
     }
 
+    const handleSignOut = () => {   
+        setUser(null)
+    }
+
+    const styleSignInOutBox = {
+        display: 'flex',
+        flexDirection: 'row',
+    }
+
     return (
         <div style={styleContainer}>
-            <img src={VisitorProfile} style={styleImg}></img>
-            {/* {props.signed ? 
-            <div style={styleText}><Link style={styleLink} to='/SignInPage'>Sign in</Link></div> : 
-            <div style={styleText}><Link style={styleLink} to='/SignUpPage'>Sign up</Link></div> } */}
-            <div style={styleText}><Link style={styleLink} to='/SignIn'>Sign in</Link></div> 
-            <div style={styleText}><Link style={styleLink} to='/SignUp'>Sign up</Link></div> 
+            {
+                user ? 
+                <Link style={styleLink} to='/Profile'><img src={user.profile} style={styleImg}></img></Link> :
+                <img src={VisitorProfile} style={styleImg}></img>
+            }
+
+            {
+                user ? 
+                <div onClick={handleSignOut} style={styleText}><Link style={styleLink} to='/'>Sign out</Link></div> :
+                <div style={styleSignInOutBox}>
+                    <div style={styleText}><Link style={styleLink} to='/SignIn'>Sign in</Link></div> 
+                    <div style={styleText}>|</div>
+                    <div style={styleText}><Link style={styleLink} to='/SignUp'>Sign up</Link></div>
+                </div>
+            }  
 
         </div>
     )

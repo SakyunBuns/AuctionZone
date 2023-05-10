@@ -4,7 +4,6 @@ import AuctionnedItem from './component/AuctionnedItem'
 import Chat from './component/Chat'
 import { get_time_left } from './assets/Items'
 import { ItemDAO } from './DAO/ItemDAO'
-import { itemContext } from './component/Context'
 import { paletteContext } from './component/Context'
 //USED FOR TESTING
 import doggo from "./assets/doggo.png";

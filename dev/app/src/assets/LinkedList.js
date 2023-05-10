@@ -7,7 +7,7 @@ export class Node{
     }
 }
 
-export class LinkedList{
+export default class LinkedList{
     constructor(){
         this.headNode = null;
         this.size = 0;

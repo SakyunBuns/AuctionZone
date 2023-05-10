@@ -10,8 +10,9 @@ import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
 import TestPage from './TestPage'
 import SellPage from './SellPage'
-import { paletteContext, tagsContext } from './component/Context'
+import { userContext, paletteContext, tagsContext } from './component/Context'
 import ChangePasswordPage from './ChangePasswordPage'
+import doggo3 from "./assets/doggo3.jpg";
 
 
 //TO INTEGRATE USE CONTEXT FOR THE PALETTE
@@ -19,7 +20,17 @@ import ChangePasswordPage from './ChangePasswordPage'
 
 export default function App() {
 
-    const [signed, setSigned] = useState(false)
+    //placeholder for signed user
+    const fakeUser = {
+        id: "007",
+        username: "ChienMechant",
+        profile : `${doggo3}`,
+        firstName: "Chien",
+        lastName: "Mechant",
+        email: "chien@mechant.com"
+    }
+
+    const [user, setUser] = useState(fakeUser)
 
     const [darkMode, setDarkMode] = useState(false)
     
@@ -115,27 +126,28 @@ export default function App() {
         )
     })
 
-    document.body.style.backgroundColor = `${palette.color1}`
+
 
     return (
         <div className='fullpage'>
             <paletteContext.Provider value={{palette}}>
                 <tagsContext.Provider value={{tags}}>
+                    <userContext.Provider value={{user, setUser}}>
 
-                    <Header 
-                        pages={pages} 
-                        signed={signed} 
-                        currency={currency} 
-                        setCurrency={handleCurrencyChange} 
-                        handleDarkMode={handleDarkMode}
-                        darkMode={darkMode}/>
-                    <Routes>
-                        {navbarRoutes}
-                        <Route path='/SignUp' element={<SignUpPage/>}/>
-                        <Route path='/SignIn' element={<SignInPage/>}/>
-                        <Route path='*' element={<h1>error 404</h1>} key="0"/>
-                    </Routes>
-
+                        <Header 
+                            pages={pages} 
+                            currency={currency} 
+                            setCurrency={handleCurrencyChange} 
+                            handleDarkMode={handleDarkMode}
+                            darkMode={darkMode}/>
+                        <Routes>
+                            {navbarRoutes}
+                            <Route path='/SignUp' element={<SignUpPage/>}/>
+                            <Route path='/SignIn' element={<SignInPage/>}/>
+                            <Route path='*' element={<h1>error 404</h1>} key="0"/>
+                        </Routes>
+                    
+                    </userContext.Provider>
                 </tagsContext.Provider>
             </paletteContext.Provider>
             

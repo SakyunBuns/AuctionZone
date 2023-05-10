@@ -5,20 +5,20 @@ import SearchBar from  './SearchBar'
 import Profile from './Profile'
 import Currency from './Currency'
 import DarkMode from './DarkMode'
-import { paletteContext } from '../Context'
+import { paletteContext, userContext } from '../Context'
 
 
 export default function Header(props){
 
     const {palette} = useContext(paletteContext)
 
-    const rowHeight = 50
+    const rowHeight = 100
     const logoWidth = 250
-    const profileWidth = 100
+    const profileWidth = 150
 
     const styleHeaderContainer = {
         width : '100%',
-        height: '100px',
+        height: `calc(${rowHeight}px  + ${rowHeight}px ))`,
         backgroundColor: `${palette.color1}`,
         display: 'grid',
         gridTemplateAreas: props.currency ? `'logo search currency profile' 'logo navbar dark profile'` : `'logo search dark profile' 'logo navbar none profile'`,
@@ -35,7 +35,7 @@ export default function Header(props){
                 <Navbar pages={props.pages} gridName="navbar"/>
                 <Logo gridName="logo" path={props.pages[0].path} logoWidth={logoWidth}/>
                 <SearchBar gridName="search" height={rowHeight}/>
-                <Profile gridName="profile" profileWidth={profileWidth} signed={props.signed}/>
+                <Profile gridName="profile" profileWidth={profileWidth}/>
                 <DarkMode gridName="dark" handleDarkMode={props.handleDarkMode} darkMode={props.darkMode}/>
                 {props.currency && <Currency gridName="currency" currency={props.currency} setCurrency={props.setCurrency}/>}
             </div>

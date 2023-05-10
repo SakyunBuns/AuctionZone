@@ -11,7 +11,7 @@ import EmojiSmiley from "../assets/emoji/emojiSmiley.png";
 import doggo from "../assets/doggo.png";
 import doggo2 from "../assets/doggo2.jpg";
 import doggo3 from "../assets/doggo3.jpg";
-import {LinkedList, Node} from '../assets/LinkedList'
+import LinkedList from '../assets/LinkedList'
 
 
 export default function Chat(props){
@@ -33,7 +33,7 @@ export default function Chat(props){
     }]
 
     const myUser = {
-        username : 'Chien Mechant',
+        username : 'ChienMechant',
         profile : `${doggo3}`
     }
 

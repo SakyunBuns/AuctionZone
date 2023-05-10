@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import AuctionPreviewImage from './AuctionPreviewImage'
-import { paletteContext, itemContext } from './Context'
+import { paletteContext } from './Context'
 
 export default function AuctionnedItem(props){
 
