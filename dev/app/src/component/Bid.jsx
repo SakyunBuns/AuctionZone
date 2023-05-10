@@ -17,7 +17,7 @@ export default function Bid(props) {
     }
 
     return (
-        <form className='chat--bid--container' style={{backgroundColor: palette.color3}}>
+        <form onSubmit={handleSubmit} className='chat--bid--container' style={{backgroundColor: palette.color3}}>
             <div style={{marginRight:`10px`}}>
                 <input onChange={handleChange} type='number' placeholder='Enter your bid'/>
             </div>
