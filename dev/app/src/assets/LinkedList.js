@@ -1,13 +1,13 @@
 //Linked List Data Structure | JavaScript
 //https://www.youtube.com/watch?v=ZBdE8DElQQU&ab_channel=TraversyMedia
-class Node{
+export class Node{
     constructor(data, next = null){
         this.data = data;
         this.next = next;
     }
 }
 
-class LinkedList{
+export class LinkedList{
     constructor(){
         this.headNode = null;
         this.size = 0;
@@ -90,7 +90,7 @@ class LinkedList{
             }
         }
         else if (index < 0 || index >= this.size){
-            console.log("Error: Index out of range");
+            console.log("Error: Index out of range" + index);
             return;
         }
     }
@@ -126,7 +126,7 @@ class LinkedList{
                 }
             }
         } else{
-            console.log("Error: Index out of range");
+            console.log("Error: Index out of range " + index);
             return;
         }
     }
@@ -146,14 +146,48 @@ class LinkedList{
             current = current.next;
         }
     }
+
+    getSize(){
+        return this.size;
+    }
+
+    getDataFirstIndex(data, dataName = null){
+        let current = this.headNode;
+        let index = 0;
+
+        if (dataName !== null){ 
+            while(current){
+                if (current.data[dataName] === data[dataName]){
+                    return index;
+                }
+                index++;
+                current = current.next;
+            }
+        }else{
+            while(current){
+                if (current.data === data){
+                    return index;
+                }
+                index++;
+                current = current.next;
+            }
+        }
+
+        return null;
+    }
+
 }
 
-const ll = new LinkedList();
+// const ll = new LinkedList();
 
-ll.insertToFirst(100);
-ll.insertToFirst(200);
-ll.insertToFirst(300);
-ll.insertToFirst(400);
-ll.removeAt(0);
+// ll.insertToFirst(100);
+// ll.insertToFirst(200);
+// ll.insertToFirst(300);
+// ll.insertToFirst(400);
+// ll.insertToFirst(500);
+// ll.insertToFirst(600);
+// ll.insertToFirst(700);
+// console.log(ll.getDataFirstIndex(200));
+// ll.removeAt(ll.getDataFirstIndex(200))
 
-ll.printListData();
+// ll.printListData();

@@ -69,7 +69,7 @@ export default function AuctionnedItem(props){
     return(
         <div className='auction--left--upper'>
             <div className='auction--text' style={{backgroundColor: palette.color3}}>
-                <p> {props.item.name != null ? props.item.name : "dumdummy"}</p>
+                <p> {props.item.name != null ? props.item.name : "dummy"}</p>
                 <p>Remaining Time : {props.item.time_remaining}</p>
                 <p>Starting bid : {props.item.price}</p>
             </div>
