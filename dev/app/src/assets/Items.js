@@ -1,5 +1,11 @@
-import { ItemDAO } from "../DAO/ItemDAO";
+// Nom du fichier: Item.js
+// Contexte de ce fichier: Classe qui permet de simplifier la manipulation des items que l'on reçoit de la BD
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
 
+
+import { ItemDAO } from "../DAO/ItemDAO";
 
 /**
  * @class Item

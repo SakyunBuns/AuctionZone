@@ -1,3 +1,11 @@
+// Nom du fichier: UserDAO.js
+// Contexte de ce fichier: Ce fichier fait le lien entre le front-end et le back-end pour toutes les
+//                         requêtes concernant les usagers
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
+
+
 export class UserDAO {
   static does_user_exist_username = (username, callback) => {
     if (username != null && callback != null) {

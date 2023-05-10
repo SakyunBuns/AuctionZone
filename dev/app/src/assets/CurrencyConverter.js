@@ -1,3 +1,10 @@
+// Nom du fichier: ItemDAO.js
+// Contexte de ce fichier: Permet de convertir les données monétaires reçues par la BD en modèle choisie par le client 
+// Auteur: Quoc Huan Tran
+// Autres auteurs : Nathaelle Fournier
+// Date : Hiver 2023
+
+
 export class Converter{
     constructor(ratesDictionary, baseCurrency){
         this.rates = ratesDictionary

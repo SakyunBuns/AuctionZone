@@ -1,3 +1,10 @@
+// Nom du fichier: ItemDAO.js
+// Contexte de ce fichier: Ce fichier fait le lien entre le front-end et le back-end pour toutes les
+//                         requêtes concernant les items
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
+
 export class ItemDAO {
     static createItem = ({ name, description, status, price, id_seller, auction_on, room_id, images }, callback) => {
         console.log(images);
@@ -51,10 +58,27 @@ export class ItemDAO {
         }
     }
 
-    //TODO - Rendre les keywords non sensible a la case
+
     static getItemsByKeyword = (keyword, callback) => {
         if (keyword != null && callback != null) {
             fetch('http://127.0.0.1:3000/items_keyword/' + keyword, {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data != null) {
+                        callback(data)
+                    }
+                })
+                .catch(error => {
+                    console.error(error); // log any errors that occur during the request
+                });
+        }
+    }
+
+    static getItemsByKeyTag = (keytag, callback) => {
+        if (keytag != null && callback != null) {
+            fetch('http://127.0.0.1:3000/items_keytag/' + keytag, {
                 method: 'GET',
             })
                 .then(response => response.json())

@@ -147,7 +147,7 @@ const getItemWithinTime = (request, response) => {
 
 const getItemsByKeyword = (request, response) => {
     const keyword = request.params.keyword;
-    client.query('SELECT * FROM items WHERE name LIKE \'%\' || $1 || \'%\'', [keyword], (error, results) => {
+    client.query('SELECT * FROM items WHERE LOWER(name) LIKE \'%\' || LOWER($1) || \'%\' ', [keyword], (error, results) => {
         if (error) {
             throw error
         }

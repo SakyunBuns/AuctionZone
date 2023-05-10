@@ -121,6 +121,7 @@ Collate insensitive :
 ```
 https://www.cybertec-postgresql.com/en/icu-collations-against-glibc-2-28-data-corruption/
 https://stackoverflow.com/questions/71663281/postgresql-case-insensitive-and-accent-insensitive-search
+https://stackoverflow.com/questions/7005302/how-to-make-case-insensitive-query-in-postgresql
 ````
 
 SSH Tunnel (from when the api was hosted on a server)
