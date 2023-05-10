@@ -1,3 +1,11 @@
+// Nom du fichier: index.js
+// Contexte de ce fichier: Ce fichier est le point d’entrée de votre application/API. 
+//                         Il contient toutes les routes pour les différentes requêtes 
+//                         HTTP avec les requètes SQL associées.
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
+
 const http = require('http');
 const db = require('./queries');
 const express = require('express');

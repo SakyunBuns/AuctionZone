@@ -1,3 +1,11 @@
+// Nom du fichier: queries.js
+// Contexte de ce fichier: Ce fichier regroupent les différentes requêtes 
+//                         SQL associées qui sont appelées dans le fichier index.js.
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
+
+
 const { Client } = require('pg');
 
 const client = new Client({
