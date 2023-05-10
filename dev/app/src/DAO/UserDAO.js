@@ -61,4 +61,23 @@ export class UserDAO {
         console.error(error); // log any errors that occur during the request
       });
   }
+
+  static addUserTag = ({ id_user, id_tag }, callback) => {
+    fetch('http://127.0.0.1:3000/user_tag', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "id_user": id_user, "id_tag": id_tag })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data != null) {
+          callback(data)
+        }
+      })
+      .catch(error => {
+        console.error(error); // log any errors that occur during the request
+      });
+  }
 }

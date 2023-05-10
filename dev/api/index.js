@@ -20,6 +20,7 @@ app.get('/users', db.getUsers);
 app.get('/item/:id', db.getItem);
 app.get('/item_time/', db.getItemWithinTime);
 app.get('/items_keyword/:keyword', db.getItemsByKeyword);
+app.get('/items_tag/:tag', db.getItemsByTag);
 
 
 app.get('/users/:id', db.getUser);
@@ -29,7 +30,8 @@ app.get('/bid/:id', db.getBid);
 
 app.post('/user', db.createUser);
 app.post('/item', db.createItem);
-app .post('/bid', db.createBid);
+app.post('/bid', db.createBid);
+app.post('/userTag', db.addUserTag);
 
 app.put('/users/:id', db.updateUser);
 

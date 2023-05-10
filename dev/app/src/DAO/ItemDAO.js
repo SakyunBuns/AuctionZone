@@ -76,9 +76,9 @@ export class ItemDAO {
         }
     }
 
-    static getItemsByKeyTag = (keytag, callback) => {
-        if (keytag != null && callback != null) {
-            fetch('http://127.0.0.1:3000/items_keytag/' + keytag, {
+    static getItemsByKeyTag = (tag, callback) => {
+        if (tag != null && callback != null) {
+            fetch('http://127.0.0.1:3000/items_tag/' + tag, {
                 method: 'GET',
             })
                 .then(response => response.json())

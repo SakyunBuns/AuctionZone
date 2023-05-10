@@ -147,12 +147,22 @@ const getItemWithinTime = (request, response) => {
 
 const getItemsByKeyword = (request, response) => {
     const keyword = request.params.keyword;
-    client.query('SELECT * FROM items WHERE LOWER(name) LIKE \'%\' || LOWER($1) || \'%\' ', [keyword], (error, results) => {
+    client.query('SELECT * FROM items WHERE LOWER(name) LIKE \'%\' || LOWER($1) || \'%\' OR LOWER(description) LIKE \'%\' || LOWER($1) || \'%\'', [keyword], (error, results) => {
         if (error) {
             throw error
         }
         response.status(200).json(results.rows);
     })
+}
+
+const getItemsByTag = (request, response) => {
+    const category = request.params.tag;
+    client.query('SELECT * FROM items INNER JOIN tag_list ON tag_list.id_item = items.id WHERE tag_list.id_tag LIKE \'%\' || $1 || \'%\'', [category], (error, results) => 
+    { if (error) {
+        throw error
+    }
+    response.status(200).json(results.rows);
+})
 }
 
 
@@ -177,7 +187,16 @@ const createItem = (request, response) => {
             })
         }
     }
+}
 
+const addUserTag = (request, response) => {
+    const { id_user, id_tag } = request.body
+    client.query('INSERT INTO favorite_tag_list VALUES ($1, $2) RETURNING *', [id_user, id_tag], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(201).send(`User tag added with ID: ${results.rows[0].id}`)
+    })
 }
 
 const getBid = (request, response) => {
@@ -208,12 +227,15 @@ module.exports = {
     createUser,
     userNameExist,
     userEmailExist,
+    addUserTag,
 
     getItems,
     getItem,
     getItemWithinTime,
     getItemsByKeyword,
+    getItemsByTag,
     createItem,
+    
     getBid,
     createBid
 }
