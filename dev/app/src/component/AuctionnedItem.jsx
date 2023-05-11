@@ -61,8 +61,6 @@ export default function AuctionnedItem(props){
         temp.splice(1, 1)
         temp.splice(index, 0, tempImageMain)
         setTestImages(temp);
-        console.log(item)
-
     }
 
 
