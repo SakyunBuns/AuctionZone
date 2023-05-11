@@ -1,6 +1,7 @@
-import React, { useState, useContext} from "react";
+import React, { useContext} from "react";
 import { paletteContext } from "./Context";
 import Crown from "../assets/crown.gif";
+import Price from './price';
 
 export default function LeaderBid(props) {
 
@@ -20,7 +21,7 @@ export default function LeaderBid(props) {
                 </div>
                 <div className='chat--leader--right'>
                     <div style={{color:`${palette.textColor}`}}>{currentItem.username}</div>
-                    <div style={{color:`${palette.textColor}`}}>{currentItem.highestBid}</div>
+                    <div style={{color:`${palette.textColor}`}}>{<Price price={currentItem.highestBid}/>}</div>
                 </div>
             </div>
             

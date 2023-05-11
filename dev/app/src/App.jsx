@@ -133,7 +133,7 @@ export default function App() {
             <paletteContext.Provider value={{palette}}>
                 <tagsContext.Provider value={{tags}}>
                     <userContext.Provider value={{user, setUser}}>
-                        <currencyContext.Provider value={{currency}}>
+                        <currencyContext.Provider value={{currency, rates}}>
 
                             <Header 
                                 pages={pages} 
@@ -147,7 +147,7 @@ export default function App() {
                                 <Route path='/SignIn' element={<SignInPage/>}/>
                                 <Route path='*' element={<h1>error 404</h1>} key="0"/>
                             </Routes>
-                            
+
                         </currencyContext.Provider>
                     </userContext.Provider>
                 </tagsContext.Provider>

@@ -1,13 +1,16 @@
 import React, { useState, useContext } from 'react'
 import ImageUpload from './component/ImageUpload'
-import { paletteContext } from './component/Context'
+import { paletteContext, currencyContext } from './component/Context'
 import { ItemDAO } from './DAO/ItemDAO';
 import Weekend from './component/Weekend'
 import RadioTag from './component/RadioTag';
+import Converter from './assets/CurrencyConverter';
 
 export default function SellPage(props) {
 
     const { palette } = useContext(paletteContext)
+    const { currency, rates } = useContext(currencyContext);
+    const converter = new Converter(rates, 'CAD');
 
     const reset = {
         item: "",
@@ -70,7 +73,7 @@ export default function SellPage(props) {
             description: formData.itemDescription,
             current_status: 'waiting',
             bid_count: 0,
-            price: parseFloat(formData.price),
+            price: converter.convertToServeur(parseFloat(formData.price), currency[0]),
             id_seller: 1,
             auction_on: formData.date,
             room_id: 1,
@@ -129,7 +132,7 @@ export default function SellPage(props) {
                         Price :
                         <input
                             name="price"
-                            type="text"
+                            type="number"
                             value={formData.price}
                             onChange={handleChange}
                         />

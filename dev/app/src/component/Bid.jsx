@@ -5,24 +5,24 @@ import Converter from "../assets/CurrencyConverter"
 
 export default function Bid(props) {
 
-    const converter = new Converter();
-
+    
     const {palette} = useContext(paletteContext)
-    const {currency} = useContext(currencyContext)
+    const {currency, rates} = useContext(currencyContext)
     const [bid, setBid] = useState('')
+
+    const converter = new Converter(rates, 'CAD');
 
     const handleSubmit = (event) => {
         event.preventDefault()
         //INSERT DAO HERE, DO NOT FORGET bid is a STRING AND NEED TO BE CHECKED
-        const amount = parseInt(bid)
+        const amount = parseFloat(bid)
         const amountToServer = converter.convertToServeur(amount, currency[0])
         console.log(amountToServer)
-
     }   
 
     const handleChange = (event) => {
         setBid(event.target.value)
-        // console.log(typeof(bid))
+        console.log(converter.convertToInterface(parseFloat(event.target.value), currency[0]))
     }
 
     return (
