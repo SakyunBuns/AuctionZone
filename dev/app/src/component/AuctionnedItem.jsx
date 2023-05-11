@@ -1,6 +1,14 @@
+// Nom du fichier: AuctionnedItem.js
+// Contexte de ce fichier:  Ce fichier est la composante qui affiche les informations d'un item en vente aux enchères. 
+//                          Il est utilisé dans la composante AuctionPage.jsx
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useContext } from 'react'
 import AuctionPreviewImage from './AuctionPreviewImage'
 import { paletteContext } from './Context'
+import Price from './price'
 
 export default function AuctionnedItem(props){
 
@@ -69,7 +77,7 @@ export default function AuctionnedItem(props){
             <div className='auction--text' style={{backgroundColor: palette.color3}}>
                 <p> {props.item.name != null ? props.item.name : "dummy"}</p>
                 <p>Remaining Time : {props.item.time_remaining}</p>
-                <p>Starting bid : {props.item.price}</p>
+                <p>Starting bid : <Price price={props.item.price}/></p>
             </div>
 
             <div className='auction--image--section' style={{backgroundColor: palette.color2}}>
