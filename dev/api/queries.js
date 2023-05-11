@@ -112,6 +112,15 @@ const updateUser = (request, response) => {
     }
 }
 
+const addUserTag = (request, response) => {
+    const { id_user, id_tag } = request.body
+    client.query('INSERT INTO favorite_tag_list VALUES ($1, $2) RETURNING *', [id_user, id_tag], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 
 // Requete pour la table items
 
@@ -126,7 +135,7 @@ const getItems = (request, response) => {
 
 const getItem = (request, response) => {
     const itemId = parseInt(request.params.id);
-    client.query('SELECT * FROM items WHERE id = $1 LIMIT 1', [itemId],(error, results) => {
+    client.query('SELECT * FROM items WHERE id = $1 LIMIT 1', [itemId], (error, results) => {
         if (error) {
             throw error
         }
@@ -135,14 +144,14 @@ const getItem = (request, response) => {
 }
 
 const getItemWithinTime = (request, response) => {
-    client.query('SELECT *,( items.auction_on - CURRENT_TIMESTAMP) AS "time_idx"'+
-    ' FROM items WHERE ( items.auction_on - CURRENT_TIMESTAMP) >= INTERVAL \'0 SECONDS\' '+
-    'ORDER BY "time_idx" ASC LIMIT 1;',(error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(200).json(results.rows);
-    })
+    client.query('SELECT *,( items.auction_on - CURRENT_TIMESTAMP) AS "time_idx"' +
+        ' FROM items WHERE ( items.auction_on - CURRENT_TIMESTAMP) >= INTERVAL \'0 SECONDS\' ' +
+        'ORDER BY "time_idx" ASC LIMIT 1;', (error, results) => {
+            if (error) {
+                throw error
+            }
+            response.status(200).json(results.rows);
+        })
 }
 
 const getItemsByKeyword = (request, response) => {
@@ -157,12 +166,12 @@ const getItemsByKeyword = (request, response) => {
 
 const getItemsByTag = (request, response) => {
     const category = request.params.tag;
-    client.query('SELECT * FROM items INNER JOIN tag_list ON tag_list.id_item = items.id WHERE tag_list.id_tag = $1::tag', [category], (error, results) => 
-    { if (error) {
-        throw error
-    }
-    response.status(200).json(results.rows);
-})
+    client.query('SELECT * FROM items INNER JOIN tag_list ON tag_list.id_item = items.id WHERE tag_list.id_tag = $1::tag', [category], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
 }
 
 
@@ -173,11 +182,11 @@ const createItem = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+        response.status(200).json(results.rows);
     })
-    
+
     if (images != null) {
-        for(image in images){
+        for (image in images) {
 
             client.query('INSERT INTO pictures_list VALUES ($1, $2) RETURNING *', [id_seller, image], (error, results) => {
                 if (error) {
@@ -199,20 +208,22 @@ const addItemTag = (request, response) => {
     })
 }
 
-const addUserTag = (request, response) => {
-    const { id_user, id_tag } = request.body
-    client.query('INSERT INTO favorite_tag_list VALUES ($1, $2) RETURNING *', [id_user, id_tag], (error, results) => {
+const addItemImage = (request, response) => {
+    const { id_item, image } = request.body
+    client.query('INSERT INTO list_pictures VALUES ($1, $2) RETURNING *', [id_item, image], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`User tag added with ID: ${results.rows[0].id}`)
+        response.status(200).json(results.rows);
     })
 }
+
+
 
 const getBid = (request, response) => {
 
     const itemId = parseInt(request.params.id);
-    client.query('SELECT * FROM bids WHERE id_item = $1 ORDER BY id_item DESC', [itemId],(error, results) => {
+    client.query('SELECT * FROM bids WHERE id_item = $1 ORDER BY id_item DESC', [itemId], (error, results) => {
         if (error) {
             throw error
         }
@@ -246,7 +257,8 @@ module.exports = {
     getItemsByTag,
     createItem,
     addItemTag,
-    
+    addItemImage,
+
     getBid,
     createBid
 }

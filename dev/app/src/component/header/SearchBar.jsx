@@ -3,6 +3,7 @@ import { tagsContext } from "../Context"
 import Select from 'react-select'
 import { useContext } from 'react'
 import { ItemDAO } from '../../DAO/ItemDAO'
+import { UserDAO } from '../../DAO/UserDAO'
 
 export default function SearchBar(props){
 
@@ -69,8 +70,9 @@ export default function SearchBar(props){
         else{
             ItemDAO.getItemsByKeyTag(selectedOption, (result) => {
                 console.log(result)
+                UserDAO.addUserTag({id_user:1, id_tag:selectedOption}, (result))
             })
-            //INSERT DAO WITH SEARCH WITH CATEGORIE == selectedOption
+            
         }
     }
 

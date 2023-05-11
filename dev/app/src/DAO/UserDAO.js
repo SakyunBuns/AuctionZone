@@ -63,7 +63,7 @@ export class UserDAO {
   }
 
   static addUserTag = ({ id_user, id_tag }, callback) => {
-    fetch('http://127.0.0.1:3000/user_tag', {
+    fetch('http://127.0.0.1:3000/userTag', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export class UserDAO {
     })
       .then(response => response.json())
       .then(data => {
-        if (data != null) {
+        if (data != null && callback != null && callback.lenght > 0) {
           callback(data)
         }
       })

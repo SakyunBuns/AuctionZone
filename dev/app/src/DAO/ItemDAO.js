@@ -6,14 +6,13 @@
 // Date : Hiver 2023
 
 export class ItemDAO {
-    static createItem = ({ name, description, status, price, id_seller, auction_on, room_id, images }, callback) => {
-        console.log(images);
+    static createItem = ({ name, description, status, price, id_seller, auction_on, room_id }, callback) => {
         fetch('http://127.0.0.1:3000/item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "name": name, "description": description, "status": status, "bid_count": 0, "price": price, "id_seller": id_seller, "auction_on": auction_on, "room_id": room_id, "images": images[0] })
+            body: JSON.stringify({ "name": name, "description": description, "status": status, "bid_count": 0, "price": price, "id_seller": id_seller, "auction_on": auction_on, "room_id": room_id })
         })
             .then(response => response.json())
             .then(data => {
@@ -26,23 +25,42 @@ export class ItemDAO {
             });
     }
 
-    static addTagItem = ({id_item, id_tag}, callback) => {
+    static addTagItem = ({ id_item, id_tag }, callback) => {
         fetch('http://127.0.0.1:3000/itemTag', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "id_item": id_item, "id_tag": id_tag})
+            body: JSON.stringify({ "id_item": id_item, "id_tag": id_tag })
         })
             .then(response => response.json())
             .then(data => {
-                if (data != null) {
+                if (data != null && callback != null) {
                     callback(data)
                 }
             })
             .catch(error => {
                 console.error(error); // log any errors that occur during the request
             });
+    }
+
+    static addImageItem = ({ id_item, image }, callback) => {
+        if (id_item != null && image != null && callback != null) {
+            fetch('http://127.0.0.1:3000/itemImage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "id_item": id_item, "image": image })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data != null && callback != null) {
+                        callback(data)
+                    }
+                }
+                )
+        }
     }
 
     static getItem = (id_item, callback) => {
@@ -73,7 +91,7 @@ export class ItemDAO {
                 })
                 .catch(error => {
                     console.error(error); // log any errors that occur during the request
-                }); 
+                });
         }
     }
 

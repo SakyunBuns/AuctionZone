@@ -77,8 +77,14 @@ export default function SellPage(props) {
             id_seller: 1,
             auction_on: formData.date,
             room_id: 1,
-            images: binaryDataArray
-            //tags: tags
+        }, (response) => {
+            tags.forEach(tag => {
+                ItemDAO.addTagItem({ id_item: response[0].id, id_tag: tag })
+            });
+            if (binaryDataArray.length > 0) {
+                ItemDAO.addImageItem({ id_item: response[0].id, images: binaryDataArray })
+            }
+
         });
 
         console.log(binaryDataArray)
@@ -90,27 +96,27 @@ export default function SellPage(props) {
         padding: `20px`,
     }
 
-    function dateFormating(date){
+    function dateFormating(date) {
         if (date != "") {
             const convertDate = new Date(date)
 
             const options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
             }
             return convertDate.toLocaleString('en-US', options)
         }
-        else{
+        else {
             return ""
         }
     }
 
     return (
-        <form onSubmit={handleSubmit} className='page' style={{ alignItem: 'center', display: 'flex', justifyContent:'center'}}>
+        <form onSubmit={handleSubmit} className='page' style={{ alignItem: 'center', display: 'flex', justifyContent: 'center' }}>
             <div className='flex--row' style={formContainerStyle}>
                 <div className='form--container' >
                     <label className='form--label'>
@@ -145,8 +151,8 @@ export default function SellPage(props) {
                     <label className='form--label'>
                         Auction start time :
                         <input
-                        disabled
-                        value={dateFormating(formData.date)}/>
+                            disabled
+                            value={dateFormating(formData.date)} />
                     </label>
                     <div className='form--notification'>
                         Click on avaible schedule to the right
@@ -169,7 +175,7 @@ export default function SellPage(props) {
                     </div>
                     <br />
 
-                    <RadioTag setTags={setTags}/>
+                    <RadioTag setTags={setTags} />
                     <br />
 
                     <ImageUpload updateParentArray={setUplaodedImage} />
@@ -183,7 +189,7 @@ export default function SellPage(props) {
                     <br />
                 </div>
 
-                <Weekend date={'2021-04-29T08:00:00'} handleSelectDate={handleSelectDate}/>
+                <Weekend date={'2021-04-29T08:00:00'} handleSelectDate={handleSelectDate} />
             </div>
         </form>
 
