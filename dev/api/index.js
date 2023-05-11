@@ -32,6 +32,7 @@ app.post('/user', db.createUser);
 app.post('/item', db.createItem);
 app.post('/bid', db.createBid);
 app.post('/userTag', db.addUserTag);
+app.post('/itemTag', db.addItemTag);
 
 app.put('/users/:id', db.updateUser);
 

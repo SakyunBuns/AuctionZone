@@ -157,7 +157,7 @@ const getItemsByKeyword = (request, response) => {
 
 const getItemsByTag = (request, response) => {
     const category = request.params.tag;
-    client.query('SELECT * FROM items INNER JOIN tag_list ON tag_list.id_item = items.id WHERE tag_list.id_tag LIKE \'%\' || $1 || \'%\'', [category], (error, results) => 
+    client.query('SELECT * FROM items INNER JOIN tag_list ON tag_list.id_item = items.id WHERE tag_list.id_tag = $1::tag', [category], (error, results) => 
     { if (error) {
         throw error
     }
@@ -187,6 +187,16 @@ const createItem = (request, response) => {
             })
         }
     }
+}
+
+const addItemTag = (request, response) => {
+    const { id_item, id_tag } = request.body
+    client.query('INSERT INTO tag_list VALUES ($1, $2) RETURNING *', [id_item, id_tag], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
 }
 
 const addUserTag = (request, response) => {
@@ -235,6 +245,7 @@ module.exports = {
     getItemsByKeyword,
     getItemsByTag,
     createItem,
+    addItemTag,
     
     getBid,
     createBid

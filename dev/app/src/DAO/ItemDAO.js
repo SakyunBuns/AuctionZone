@@ -26,6 +26,25 @@ export class ItemDAO {
             });
     }
 
+    static addTagItem = ({id_item, id_tag}, callback) => {
+        fetch('http://127.0.0.1:3000/itemTag', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "id_item": id_item, "id_tag": id_tag})
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data != null) {
+                    callback(data)
+                }
+            })
+            .catch(error => {
+                console.error(error); // log any errors that occur during the request
+            });
+    }
+
     static getItem = (id_item, callback) => {
         if (id_item != null && callback != null) {
             fetch('http://127.0.0.1:3000/item/' + id_item, {
@@ -60,7 +79,7 @@ export class ItemDAO {
 
 
     static getItemsByKeyword = (keyword, callback) => {
-        if (keyword != null && callback != null) {
+        if (keyword != null && keyword != "" && callback != null) {
             fetch('http://127.0.0.1:3000/items_keyword/' + keyword, {
                 method: 'GET',
             })

@@ -63,9 +63,13 @@ export default function SearchBar(props){
             //INSERT DAO FOR ALL SEARCH
             ItemDAO.getItemsByKeyword(searchedWord, (result) => {
                 console.log(result)
+
             })
         }
         else{
+            ItemDAO.getItemsByKeyTag(selectedOption, (result) => {
+                console.log(result)
+            })
             //INSERT DAO WITH SEARCH WITH CATEGORIE == selectedOption
         }
     }
