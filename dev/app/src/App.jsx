@@ -10,7 +10,7 @@ import SignUpPage from './SignUpPage'
 import SignInPage from './SignInPage'
 import TestPage from './TestPage'
 import SellPage from './SellPage'
-import { userContext, paletteContext, tagsContext } from './component/Context'
+import { userContext, paletteContext, tagsContext, currencyContext } from './component/Context'
 import ChangePasswordPage from './ChangePasswordPage'
 import doggo3 from "./assets/doggo3.jpg";
 
@@ -133,20 +133,22 @@ export default function App() {
             <paletteContext.Provider value={{palette}}>
                 <tagsContext.Provider value={{tags}}>
                     <userContext.Provider value={{user, setUser}}>
+                        <currencyContext.Provider value={{currency}}>
 
-                        <Header 
-                            pages={pages} 
-                            currency={currency} 
-                            setCurrency={handleCurrencyChange} 
-                            handleDarkMode={handleDarkMode}
-                            darkMode={darkMode}/>
-                        <Routes>
-                            {navbarRoutes}
-                            <Route path='/SignUp' element={<SignUpPage/>}/>
-                            <Route path='/SignIn' element={<SignInPage/>}/>
-                            <Route path='*' element={<h1>error 404</h1>} key="0"/>
-                        </Routes>
-                    
+                            <Header 
+                                pages={pages} 
+                                currency={currency} 
+                                setCurrency={handleCurrencyChange} 
+                                handleDarkMode={handleDarkMode}
+                                darkMode={darkMode}/>
+                            <Routes>
+                                {navbarRoutes}
+                                <Route path='/SignUp' element={<SignUpPage/>}/>
+                                <Route path='/SignIn' element={<SignInPage/>}/>
+                                <Route path='*' element={<h1>error 404</h1>} key="0"/>
+                            </Routes>
+                            
+                        </currencyContext.Provider>
                     </userContext.Provider>
                 </tagsContext.Provider>
             </paletteContext.Provider>

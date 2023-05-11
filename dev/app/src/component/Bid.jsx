@@ -1,14 +1,23 @@
 import React, {useState, useContext} from "react"
-import { paletteContext } from "./Context"
+import { paletteContext, currencyContext } from "./Context"
+import Converter from "../assets/CurrencyConverter"
+
 
 export default function Bid(props) {
 
+    const converter = new Converter();
+
     const {palette} = useContext(paletteContext)
+    const {currency} = useContext(currencyContext)
     const [bid, setBid] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
         //INSERT DAO HERE, DO NOT FORGET bid is a STRING AND NEED TO BE CHECKED
+        const amount = parseInt(bid)
+        const amountToServer = converter.convertToServeur(amount, currency[0])
+        console.log(amountToServer)
+
     }   
 
     const handleChange = (event) => {

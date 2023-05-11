@@ -5,7 +5,7 @@
 // Date : Hiver 2023
 
 
-export class Converter{
+export default class Converter{
     constructor(ratesDictionary, baseCurrency){
         this.rates = ratesDictionary
         this.baseCurrency = baseCurrency
