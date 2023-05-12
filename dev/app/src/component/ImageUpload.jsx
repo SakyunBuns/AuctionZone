@@ -1,3 +1,10 @@
+// Nom du fichier: ImageUpload.jsx
+// Contexte de ce fichier:  Ce fichier repésente la composante qui permet de télécharger des images.
+//                          On peut choisir le nombre d'images maximum qu'on peut télécharger avec maxImage.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 
@@ -12,9 +19,9 @@ export default function ImageUpload(props) {
     setImage(prevImage => [...prevImage, event.target.files[0]]) 
   }
   
-  //ChatGPT solution to keep only the last 5 images
+  //ChatGPT solution to keep only a certain number of images
   useEffect(() => {
-    const images = image.slice(-5).map((image, index) => (
+    const images = image.slice(-props.maxImage).map((image, index) => (
       <img key={index} className='img-uploader--image' src={URL.createObjectURL(image)} alt='image' />
   ))
 
@@ -56,7 +63,7 @@ export default function ImageUpload(props) {
       ref={fileInput} multiple />
 
       <button type="button" className='img-uploader--button' onClick={handleInput}>
-        Choose up to 5 image(s)
+        Choose up to {props.maxImage} image{props.maxImage > 1 ? 's' : '' }
       </button>
 
       {/* <button className='img-uploader--button' onClick={handleSubmit}>

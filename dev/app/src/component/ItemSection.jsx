@@ -1,3 +1,9 @@
+// Nom du fichier: ItemSection.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente une section d'item.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext} from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';

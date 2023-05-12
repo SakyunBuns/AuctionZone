@@ -1,3 +1,11 @@
+// Nom du fichier: App.jsx
+// Contexte de ce fichier:  Ce fichier est la composante principale de l'application. 
+//                          Elle contient les routes vers les autres composantes.
+//                          Elle contient aussi la valeur des contextes de l'application.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React from 'react'
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -112,7 +120,7 @@ export default function App() {
 
     ]
 
-    function handleDarkMode(){
+    const  handleDarkMode = () =>{
         setDarkMode(!darkMode)
         darkMode ? setPalette(palette1) : setPalette(palette2)
     }
@@ -127,34 +135,41 @@ export default function App() {
         )
     })
 
+    //Solution par chatGPT pour sortir le contexte imbriqué du return de App.jsx
+    function ProviderWrapper({ children }) {
+        return (
+          <paletteContext.Provider value={{ palette }}>
+            <tagsContext.Provider value={{ tags }}>
+              <userContext.Provider value={{ user, setUser }}>
+                <currencyContext.Provider value={{ currency, rates }}>
+                  {children}
+                </currencyContext.Provider>
+              </userContext.Provider>
+            </tagsContext.Provider>
+          </paletteContext.Provider>
+        );
+    }
+
     document.body.style.backgroundColor = `${palette.color1}`
 
     return (
         <div className='fullpage'>
-            <paletteContext.Provider value={{palette}}>
-                <tagsContext.Provider value={{tags}}>
-                    <userContext.Provider value={{user, setUser}}>
-                        <currencyContext.Provider value={{currency, rates}}>
-
-                            <Header 
-                                pages={pages} 
-                                currency={currency} 
-                                setCurrency={handleCurrencyChange} 
-                                handleDarkMode={handleDarkMode}
-                                darkMode={darkMode}/>
-                            <Routes>
-                                {navbarRoutes}
-                                <Route path='/SignUp' element={<SignUpPage/>}/>
-                                <Route path='/SignIn' element={<SignInPage/>}/>
-                                <Route path='/Search' element={<SearchPage searchResult= {[]}/>}/>
-                                <Route path='*' element={<h1>error 404</h1>} key="0"/>
-                            </Routes>
-
-                        </currencyContext.Provider>
-                    </userContext.Provider>
-                </tagsContext.Provider>
-            </paletteContext.Provider>
-            
+            <ProviderWrapper>
+                <Header 
+                    pages={pages} 
+                    currency={currency} 
+                    setCurrency={handleCurrencyChange} 
+                    handleDarkMode={handleDarkMode}
+                    darkMode={darkMode}/>
+                <Routes>
+                    {navbarRoutes}
+                    <Route path='/SignUp' element={<SignUpPage/>}/>
+                    <Route path='/SignIn' element={<SignInPage/>}/>
+                    <Route path='/Search' element={<SearchPage searchResult= {[]}/>}/>
+                    <Route path='*' element={<h1>error 404</h1>} key="0"/>
+                </Routes>
+            </ProviderWrapper>
         </div>
     );
 }
+

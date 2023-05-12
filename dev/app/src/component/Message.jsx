@@ -1,3 +1,10 @@
+// Nom du fichier: Message.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente un message dans le Chat.
+//                          Le background de couleur dépends de l'index du message.    
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext} from "react";
 import { paletteContext } from "./Context";
 

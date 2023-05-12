@@ -1,3 +1,10 @@
+// Nom du fichier: ItemTag.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente la tag d'un item (image, prix, date, nom).
+//                          La taille de l'étiquette peut être modifié avec imageSize.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext} from "react";
 import { paletteContext} from "./Context";
 import Price from './price';

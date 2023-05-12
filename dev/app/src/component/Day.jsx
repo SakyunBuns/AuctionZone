@@ -1,3 +1,9 @@
+// Nom du fichier: Day.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente une journée en heure, de 8h à 17h.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext } from "react";
 import { paletteContext } from "./Context";
 
@@ -45,8 +51,6 @@ export default function Day(props) {
         let formatedHour = new Date(hour).toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' })
 
         
-        
-        //Inser on click function here
         return (
             <div 
             className="center" 

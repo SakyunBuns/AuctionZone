@@ -1,3 +1,10 @@
+// Nom du fichier: LeaderBid.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente le leader d'une enchère. 
+//                          Elle a un gif de crown au dessus de son profil d'utilisateur.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext} from "react";
 import { paletteContext } from "./Context";
 import Crown from "../assets/crown.gif";

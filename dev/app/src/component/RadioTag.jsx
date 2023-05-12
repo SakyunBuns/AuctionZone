@@ -1,3 +1,10 @@
+// Nom du fichier: RadioTag.jsx
+// Contexte de ce fichier:  Ce fichier est la composante  le selecteur de tags pour les items.
+//                          Il permet de choisir plusieurs tags pour un item.     
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext, useState } from "react"
 import { tagsContext } from "./Context"
 import Select from 'react-select'

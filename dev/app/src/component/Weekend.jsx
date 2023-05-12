@@ -1,3 +1,10 @@
+// Nom du fichier: Weekend.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente une fin de semaine, soit deux Day.
+//                          C'est la période où on peut faire aux enchères.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React from "react"
 import { paletteContext } from "./Context"
 import Day from "./Day"

@@ -1,7 +1,12 @@
+// Nom du fichier: Bid.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à afficher le formulaire pour placer une enchère.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, {useState, useContext} from "react"
 import { paletteContext, currencyContext } from "./Context"
 import Converter from "../assets/CurrencyConverter"
-
 
 export default function Bid(props) {
 

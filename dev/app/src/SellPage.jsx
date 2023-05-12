@@ -178,7 +178,7 @@ export default function SellPage(props) {
                     <RadioTag setTags={setTags} />
                     <br />
 
-                    <ImageUpload updateParentArray={setUplaodedImage} />
+                    <ImageUpload updateParentArray={setUplaodedImage} maxImage={5}/>
 
 
                     <br />

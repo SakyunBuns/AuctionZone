@@ -1,7 +1,11 @@
+// Nom du fichier: EmojiBox.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente la boîte qui contient les émoticones et le bid.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext, useState }from "react";
 import { paletteContext } from "./Context";
-
-
 
 export default function EmojiBox(props) {
 

@@ -1,3 +1,10 @@
+// Nom du fichier: Chat.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à afficher le chat d'émoji entre les utilisateur
+//                          ainsi qu'afficher l'offre la plus haute.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
 import LeaderBid from './LeaderBid'
@@ -36,9 +43,6 @@ export default function Chat(props){
         username : 'ChienMechant',
         profile : `${doggo3}`
     }
-
-
- 
 
     // const messageUpdated = messages.map((message, index) => {
     //     return(
