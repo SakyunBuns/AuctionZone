@@ -1,3 +1,10 @@
+// Nom du fichier: SearchBar.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à afficher la barre de recherche du siteweb.
+//                          On peut faire une recherche par catégorie à partir des tags fournis.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState } from 'react'
 import { tagsContext } from "../Context"
 import Select from 'react-select'
@@ -78,7 +85,7 @@ export default function SearchBar(props){
 
     return(
         <form style={styleContainer} onSubmit={handleSubmit}>
-            <input type="text" placeholder='SEARCH HERE!' style={styleInput} onChange={handleInputChange}/>
+            <input type="text" placeholder='Seach...' style={styleInput} onChange={handleInputChange}/>
             <div style={styleSearch}>
                 <Select
                     styles={stylesSelect}

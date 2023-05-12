@@ -1,3 +1,9 @@
+// Nom du fichier: Currency.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à changer la devise sélectionné par l'utilisateur.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React from "react"
 
 export default function Currency(props){

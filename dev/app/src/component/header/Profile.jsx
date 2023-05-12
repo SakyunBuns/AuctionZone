@@ -1,3 +1,10 @@
+// Nom du fichier: Profile.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à afficher le profile de l'utilisateur.
+//                          On peut y définir la taille de l'image du profile et le chemin vers la page de profile, de sign in et de sign up.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, {useContext} from 'react'
 import VisitorProfile from '../../assets/visitor.jpg'
 import { Link } from 'react-router-dom';
@@ -29,38 +36,44 @@ export default function Profile(props){
     const styleText = {
         fontSize : '10px',
         width: '100%',
-        textAlign:'center',
-        color: `${palette.textColor}`
+        color: `${palette.textColor}`,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     } 
 
-    const styleLink= {
-        color: `${palette.textColor}`
+    const styleTextColor= {
+        color: `${palette.textColor}`,
     }
 
     const handleSignOut = () => {   
         setUser(null)
     }
 
-    const styleSignInOutBox = {
+    const styleCenterContainer = {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
     }
 
     return (
         <div style={styleContainer}>
             {
                 user ? 
-                <Link style={styleLink} to='/Profile'><img src={user.profile} style={styleImg}></img></Link> :
-                <img src={VisitorProfile} style={styleImg}></img>
+                <Link style={styleCenterContainer} to={props.profilePath ? props.profilePath : '/Profile'} ><img src={user.profile} style={styleImg}></img></Link> :
+                <div style={styleCenterContainer}><img src={VisitorProfile} style={styleImg}></img></div>
             }
 
             {
                 user ? 
-                <div onClick={handleSignOut} style={styleText}><Link style={styleLink} to='/'>Sign out</Link></div> :
-                <div style={styleSignInOutBox}>
-                    <div style={styleText}><Link style={styleLink} to='/SignIn'>Sign in</Link></div> 
-                    <div style={styleText}>|</div>
-                    <div style={styleText}><Link style={styleLink} to='/SignUp'>Sign up</Link></div>
+                <div style={styleCenterContainer} onClick={handleSignOut}>
+                    <Link style={styleTextColor} to='/'>Sign out</Link>
+                </div> :
+                <div style={styleCenterContainer}>
+                    <div><Link style={styleTextColor} to={props.signInPath ? props.signInPath : '/SignIn'}>Sign in</Link></div> 
+                    <div style={styleTextColor}>|</div>
+                    <div><Link style={styleTextColor} to={props.signUpPath ? props.signUpPath : '/SignUp'}>Sign up</Link></div>
                 </div>
             }  
 

@@ -1,9 +1,15 @@
+// Nom du fichier: DarkMode.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à changer la palette de couleur de l'application.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React from 'react'
 
 export default function DarkMode(props) {
 
     const style = {
-        gridAread: `${props.gridName}`,
+        gridArea: `${props.gridName}`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

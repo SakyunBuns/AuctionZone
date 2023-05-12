@@ -1,4 +1,4 @@
-// Nom du fichier: AuctionnedItem.js
+// Nom du fichier: AuctionnedItem.jsx
 // Contexte de ce fichier:  Ce fichier est la composante qui affiche les informations d'un item en vente aux enchères. 
 //                          Il est utilisé dans la composante AuctionPage.jsx
 // Auteur : Quoc Huan Tran
@@ -13,8 +13,6 @@ import Price from './price'
 export default function AuctionnedItem(props){
 
     const {palette} = useContext(paletteContext)
-    // const {item} = useContext(itemContext)
-    
 
     //ARRAY OF IMAGES FROM SERVER 
     const [testImages, setTestImages] = useState([

@@ -1,3 +1,11 @@
+// Nom du fichier: Navbar.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui sert à afficher la barre de navigation du siteweb.
+//                          Cette composant est composé de plusieurs composantes de type NavbarLink
+//                          pour l'indépendance de chacun au hover et du lien vers la page qui l'amène.
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react'
@@ -64,9 +72,9 @@ function NavbarLink(props){
 
   return (
     <Link 
-      to={props.path} style={styleLink} 
-      onMouseEnter={handleMouseEnter} 
-      onMouseLeave={handleMouseLeave}
+    to={props.path} style={styleLink} 
+    onMouseEnter={handleMouseEnter} 
+    onMouseLeave={handleMouseLeave}
     >
       {props.name}
     </Link>
