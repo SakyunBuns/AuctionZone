@@ -94,6 +94,8 @@ export default function SellPage(props) {
         color: `${palette.textColor}`,
         border: `2px solid ${palette.color2}`,
         padding: `20px`,
+        height: `fit-content`,
+        alignSelf: `center`,
     }
 
     function dateFormating(date) {
