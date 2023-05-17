@@ -25,6 +25,7 @@ export default function Chat(props){
 
     const {palette} = useContext(paletteContext)
 
+    //To change with a fetch from API
     const listEmoji = [EmojiDead, EmojiMoney, EmojiScared, EmojiSmiley]
 
     const [messages, setMessages] = useState(new LinkedList())
@@ -82,11 +83,12 @@ export default function Chat(props){
         setDisplayedMessages(messageUpdated)
     }
 
-    //used for testing
+    //used for testing, change with a API fetch
     useEffect(() => {
         const interval = setInterval(() => {
             let indexUsed  = Math.floor(Math.random() * fakeUsers.length)
             let indexMessage = Math.floor(Math.random() * listEmoji.length)
+            //Insert API to send message to server
             newMessage(fakeUsers[indexUsed].username, fakeUsers[indexUsed].profile, listEmoji[indexMessage])
         }, 2000)
         return () => clearInterval(interval)
