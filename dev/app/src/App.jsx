@@ -39,7 +39,7 @@ export default function App() {
         email: "chien@mechant.com"
     }
 
-    const [user, setUser] = useState(fakeUser)
+    const [user, setUser] = useState(null)
 
     const [darkMode, setDarkMode] = useState(false)
     

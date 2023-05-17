@@ -21,7 +21,7 @@ export default function AuctionPage(props) {
     const emptyDictionary = {}
 
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
-    const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
+    const [currentStatus, setCurrentStatus] = useState('AUCTION_ONLINE');
 
 
     const statEnum = {
@@ -32,7 +32,7 @@ export default function AuctionPage(props) {
 
     //USED FOR TESTING
     const tempItem = {
-        username: 'John Cena',
+        username: 'Happy Doggo',
         profile: `${doggo}`,
         highestBid: 100
     }
