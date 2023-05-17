@@ -80,4 +80,21 @@ export class UserDAO {
         console.error(error); // log any errors that occur during the request
       });
   }
+
+  static getUserTags = (id_user, callback) => {
+    fetch('http://127.0.0.1:3000/userTag/' + id_user, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data != null && callback != null && callback.lenght > 0) {
+          callback(data)
+        }
+      }
+      )
+      .catch(error => {
+        console.error(error); // log any errors that occur during the request
+      }
+      );
+  }
 }

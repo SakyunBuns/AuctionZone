@@ -27,6 +27,7 @@ app.get('/users/:id', db.getUser);
 app.get('/user_name/:username', db.userNameExist);
 app.get('/user_email/:email', db.userEmailExist);
 app.get('/bid/:id', db.getBid);
+app.get('/userTag/:id', db.getFavoriteTagsByUser);
 
 app.post('/user', db.createUser);
 app.post('/item', db.createItem);

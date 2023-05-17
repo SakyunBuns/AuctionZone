@@ -17,6 +17,8 @@ const client = new Client({
 });
 client.connect();
 
+
+/////////////////////////////////////////////////////////////////////////////////////
 // Requetes pour la table users
 
 const getUser = (request, response) => {
@@ -122,6 +124,17 @@ const addUserTag = (request, response) => {
     })
 }
 
+const getFavoriteTagsByUser = (request, response) => {
+    const userId = parseInt(request.params.id);
+    client.query('SELECT id_tag, COUNT(id_tag) FROM favorite_tag_list WHERE id_user = $1 GROUP BY id_tag', [userId], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
 // Requete pour la table items
 
 const getItems = (request, response) => {
@@ -219,6 +232,8 @@ const addItemImage = (request, response) => {
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+// Requete relie a la table bids
 
 const getBid = (request, response) => {
 
@@ -241,6 +256,9 @@ const createBid = (request, response) => {
     })
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+// Exportation des fonctions
+
 module.exports = {
     getUser,
     getUsers,
@@ -258,6 +276,7 @@ module.exports = {
     createItem,
     addItemTag,
     addItemImage,
+    getFavoriteTagsByUser,
 
     getBid,
     createBid
