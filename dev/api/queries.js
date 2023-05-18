@@ -233,13 +233,14 @@ const addItemImage = (request, response) => {
 }
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////
 // Requete relie a la table bids
 
 const getBid = (request, response) => {
 
     const itemId = parseInt(request.params.id);
-    client.query('SELECT * FROM bids WHERE id_item = $1 ORDER BY id_item DESC', [itemId], (error, results) => {
+    client.query('SELECT * FROM bids WHERE id_item = $1 ORDER BY amount DESC', [itemId], (error, results) => {
         if (error) {
             throw error
         }
@@ -248,14 +249,27 @@ const getBid = (request, response) => {
 }
 
 const createBid = (request, response) => {
-    let { id_item, id_buyer, price } = request.body
-    client.query('INSERT INTO bids VALUES (DEFAULT, $1, $2, $3, CURRENT_TIMESTAMP) RETURNING *', [id_item, id_buyer, price], (error, results) => {
+    let { id_item, id_user, amount } = request.body
+    client.query('INSERT INTO bids VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING *', [id_item, id_user, amount], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`Bid added with ID: ${results.rows[0].id}`)
+        response.status(200).json(results.rows);
     })
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+// Requetes reliees au tags
+
+const getFavoriteTags = (request, response) => {
+    client.query('SELECT id_tag as "TAG", COUNT(id_tag) as "NbTime" FROM favorite_tag_list GROUP BY id_tag;', (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Exportation des fonctions
@@ -280,7 +294,9 @@ module.exports = {
     getFavoriteTagsByUser,
 
     getBid,
-    createBid
+    createBid,
+
+    getFavoriteTags
 }
 
 /*https://www.postgresql.org/docs/current/datatype-datetime.html#DATATYPE-INTERVAL-INPUT

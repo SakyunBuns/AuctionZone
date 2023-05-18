@@ -18,8 +18,9 @@ export default function Price(props) {
   const converter = new Converter(rates, 'CAD');
 
   useEffect(() => {
-    setPrice(converter.convertToInterface(parseFloat(props.price), currentCurrency));
-  }, [currentCurrency]);
+    let amountTest = converter.convertToInterface(parseFloat(props.price), currentCurrency)
+    setPrice(amountTest);
+  }, [currentCurrency, price]);
 
   useEffect(() => {
     setCurrentCurrency(currency[0]);

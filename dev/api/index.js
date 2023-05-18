@@ -17,12 +17,12 @@ app.use(express.json());
 
 app.get('/items', db.getItems);
 app.get('/users', db.getUsers);
-app.get('/item/:id', db.getItem);
 app.get('/item_time/', db.getItemWithinTime);
-app.get('/items_keyword/:keyword', db.getItemsByKeyword);
+app.get('/favoriteTags', db.getFavoriteTags);
+
+app.get('/item/:id', db.getItem);
 app.get('/items_tag/:tag', db.getItemsByTag);
-
-
+app.get('/items_keyword/:keyword', db.getItemsByKeyword);
 app.get('/users/:id', db.getUser);
 app.get('/user_name/:username', db.userNameExist);
 app.get('/user_email/:email', db.userEmailExist);

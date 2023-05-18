@@ -5,9 +5,7 @@ import Chat from './component/Chat'
 import { get_time_left } from './assets/Items'
 import { ItemDAO } from './DAO/ItemDAO'
 import { paletteContext } from './component/Context'
-//USED FOR TESTING
-import doggo from "./assets/doggo.png";
-//USED FOR TESTING
+
 
 export default function AuctionPage(props) {
 
@@ -30,12 +28,6 @@ export default function AuctionPage(props) {
     }
 
 
-    //USED FOR TESTING
-    const tempItem = {
-        username: 'Happy Doggo',
-        profile: `${doggo}`,
-        highestBid: 100
-    }
 
 
     useEffect(() => {
@@ -50,7 +42,7 @@ export default function AuctionPage(props) {
                                 "name": result.name,
                                 "description": result.description,
                                 "status": result.current_status,
-                                "price": dataBid.price != null ? dataBid.price : result.price,
+                                "price": dataBid[0].amount != null ? dataBid[0].amount : result.price,
                                 "id_seller": result.id_seller,
                                 "auction_on": result.auction_on,
                                 "room_id": result.room_id,
@@ -84,7 +76,7 @@ export default function AuctionPage(props) {
             </div>
 
             <div className='auction--section--right'>
-                <Chat currentItem={tempItem} />
+                <Chat currentItem={currentItem}/>
             </div>
 
         </div>

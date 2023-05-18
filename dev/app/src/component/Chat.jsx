@@ -107,7 +107,7 @@ export default function Chat(props){
             </div>
 
             <EmojiBox listEmoji={listEmoji} handleEmojiClick={handleEmojiClick}/>
-            <Bid/>
+            <Bid currentItem={props.currentItem}/>
 
         </div>  
     )

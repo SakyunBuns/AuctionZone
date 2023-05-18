@@ -167,4 +167,21 @@ export class ItemDAO {
             });
     }
 
+    static getFavoriteTags = (callback) => {
+        fetch('http://127.0.0.7:3000/favoriteTags', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data != null && callback != null) {
+                    callback(data)
+                }
+            }
+            )
+            .catch(error => {
+                console.error(error); // log any errors that occur during the request
+            }
+            );
+        }
+
 }
