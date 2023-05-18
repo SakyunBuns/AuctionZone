@@ -31,7 +31,7 @@ export default function HomePage(props) {
     useEffect(() => {
         
         if(user === null) {
-            ItemDAO.getFavoriteTags(1, (tagViewCount) => {
+            ItemDAO.getFavoriteTags((tagViewCount) => {
                 console.log(tagViewCount)
                 const sortedArray = qs.reverseSort(tagViewCount, "nbCount");
                 const sortedArray5 = sortedArray.slice(0, 5);

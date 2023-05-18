@@ -20,7 +20,7 @@ export default function Price(props) {
   useEffect(() => {
     let amountTest = converter.convertToInterface(parseFloat(props.price), currentCurrency)
     setPrice(amountTest);
-  }, [currentCurrency, price]);
+  }, [currentCurrency, props.price]);
 
   useEffect(() => {
     setCurrentCurrency(currency[0]);
