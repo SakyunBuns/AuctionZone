@@ -21,7 +21,7 @@ export default function AuctionPage(props) {
     const emptyDictionary = {}
 
     const [currentItem, setCurrentItem] = useState(emptyDictionary);
-    const [currentStatus, setCurrentStatus] = useState('AUCTION_ONLINE');
+    const [currentStatus, setCurrentStatus] = useState('AUCTION_OFFLINE');
 
 
     const statEnum = {
