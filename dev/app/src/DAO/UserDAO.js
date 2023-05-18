@@ -87,8 +87,12 @@ export class UserDAO {
     })
       .then(response => response.json())
       .then(data => {
-        if (data != null && callback != null && callback.lenght > 0) {
-          callback(data)
+        if (data != null && callback != null) {
+          let result = []
+          for (let i = 0; i < data.length; i++) {
+           result.push({'id_tag': data[i].id_tag, 'nbCount': parseInt(data[i].count)})
+          }
+          callback(result)
         }
       }
       )
