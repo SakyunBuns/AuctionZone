@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ItemSection from './component/ItemSection';
 import { UserDAO } from './DAO/UserDAO';
+import QuickSort from './assets/QuickSort';
 
 export default function HomePage(props) {
 
@@ -11,23 +12,27 @@ export default function HomePage(props) {
     
     const [userLoggedIn, setUserLoggedIn] = useState('USER_OFFLINE');
 
+    const qs = new QuickSort();
+
+    const [itemsSections, setItemsSections] = useState(null);
+
     useEffect(() => {
-        UserDAO.getUserTags(1, (user) => {
-            console.log(user);
-            setUserLoggedIn('USER_ONLINE');
+        UserDAO.getUserTags(1, (tagViewCount) => {
+            // console.log(tagViewCount)
+            const sortedArray = qs.reverseSort(tagViewCount, "nbCount");
+            // console.log(sortedArray)
+            const tempArray = sortedArray.map((item) => {
+                return <ItemSection sectionName={item.id_tag} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} key={item.id_tag}/>
+            });
+            
+            setItemsSections(tempArray);
         });
     }, [userLoggedIn]);
 
     return (
         <div className='page'>
             {statEnum[userLoggedIn]}
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
-            <ItemSection sectionName={'Good doggo'} sectionLink={'https://www.google.com'} bottomSpacing={20} containerHeight={300} imageSize={200} />
+            {itemsSections}
         </div>
-
     )
 };

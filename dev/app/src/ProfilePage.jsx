@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import ItemSection from './component/ItemSection'
 import { paletteContext, userContext} from './component/Context'
+import { Link } from 'react-router-dom';
 
 export default function ProfilePage(props){
 
@@ -36,7 +37,7 @@ export default function ProfilePage(props){
                         </div>
                     </div>
                     <div className='profile--content--button'>
-                        <button>Change info</button>
+                        <Link to='/ChangePassword'><button>Change password</button></Link>
                     </div>
                 </div>
             </div>

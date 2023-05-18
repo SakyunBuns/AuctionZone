@@ -99,24 +99,24 @@ export default function App() {
             element: <AuctionPage/>,
             path: '/Auction'
         },
-        {
-            id: "4",
-            name: 'Test',
-            element: <TestPage/>,
-            path: '/Test'
-        },
+        // {
+        //     id: "4",
+        //     name: 'Test',
+        //     element: <TestPage/>,
+        //     path: '/Test'
+        // },
         {
             id: "5",
             name: 'Sell',
             element: <SellPage/>,
             path: '/Sell'
         },
-        {
-            id: "6",
-            name: 'ChangePassword',
-            element: <ChangePasswordPage/>,
-            path: '/ChangePassword'
-        }
+        // {
+        //     id: "6",
+        //     name: 'ChangePassword',
+        //     element: <ChangePasswordPage/>,
+        //     path: '/ChangePassword'
+        // }
 
     ]
 
@@ -166,6 +166,7 @@ export default function App() {
                     <Route path='/SignUp' element={<SignUpPage/>}/>
                     <Route path='/SignIn' element={<SignInPage/>}/>
                     <Route path='/Search' element={<SearchPage searchResult= {[]}/>}/>
+                    <Route path='/ChangePassword' element={<ChangePasswordPage/>}/>
                     <Route path='*' element={<h1>error 404</h1>} key="0"/>
                 </Routes>
             </ProviderWrapper>

@@ -69,12 +69,24 @@ export default function AuctionnedItem(props){
         setTestImages(temp);
     }
 
+    //Format time from ChatGPT
+    const formatTime = (time) => {
+        const hours = Math.floor(time / 3600);
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = Math.floor(time % 60);
+
+        return `${hours.toString().padStart(2, '0')}:${minutes
+            .toString()
+            .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+
 
     return(
         <div className='auction--left--upper'>
             <div className='auction--text' style={{backgroundColor: palette.color3}}>
                 <p> {props.item.name != null ? props.item.name : "dummy"}</p>
-                <p>Remaining Time : {props.item.time_remaining}</p>
+                <p>Remaining Time : {formatTime(props.item.time_remaining)}</p>
                 <p>Starting bid : <Price price={props.item.price}/></p>
             </div>
 
