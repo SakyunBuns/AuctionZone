@@ -1,3 +1,10 @@
+// Nom du fichier: ChangePasswordPage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente la page qui nous permet de changer le mot de passe
+//                          
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useEffect, useContext} from "react";
 import { paletteContext } from "./component/Context";
 

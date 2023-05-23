@@ -1,3 +1,11 @@
+// Nom du fichier: AuctionPage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui la page de l'encan
+//                          
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
+
 import React, { useEffect, useState, useContext } from 'react'
 import ItemSection from './component/ItemSection'
 import AuctionnedItem from './component/AuctionnedItem'

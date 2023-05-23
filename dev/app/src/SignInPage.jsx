@@ -1,3 +1,9 @@
+// Nom du fichier: SignInPage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui permet de se connecter à son compte
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useContext } from 'react'
 import { paletteContext } from './component/Context'
 

@@ -1,3 +1,10 @@
+// Nom du fichier: ProfilePage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui représente la page profile d'un utilisateur. Elle affiche les informations de celui-ci
+//                          Il y aurait aussi la liste de ses items vendus, acheté et des derniers items visités
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useContext } from 'react'
 import ItemSection from './component/ItemSection'
 import { paletteContext, userContext} from './component/Context'

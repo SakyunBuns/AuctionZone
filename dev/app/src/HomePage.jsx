@@ -1,3 +1,10 @@
+// Nom du fichier: HomePage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui la page d'accueuil, selon si l'utilisateur est loggé
+//                          ce qui sera afficher sera différent
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useEffect, useState, useContext } from 'react'
 import ItemSection from './component/ItemSection';
 import { UserDAO } from './DAO/UserDAO';

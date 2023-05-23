@@ -1,3 +1,11 @@
+// Nom du fichier: SignUnPage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui permet de se créer un compte utilisateur
+//                          Il y a des checker pour la pluspart des champs quand on envoi la requête
+//                          Par un problème d'asynchrome, et back-end non réglé, il faut un email et un nom d'utilisateur dans les champs pour que la page fonctionne
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useEffect, useState, useContext } from 'react'
 import { paletteContext } from './component/Context'
 import { UserDAO } from './DAO/UserDAO'

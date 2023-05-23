@@ -1,3 +1,10 @@
+// Nom du fichier: SellPage.jsx
+// Contexte de ce fichier:  Ce fichier est la composante qui la page de mise en vente d'un item
+//                          elle devrait afficher les plages d'horaires de disponible et permettre un usager d'entrer les informations de sont item à vendre
+// Auteur : Quoc Huan Tran
+// Autre auteurs: Nathaelle Fournier
+// Date : Hiver 2023
+
 import React, { useState, useContext } from 'react'
 import ImageUpload from './component/ImageUpload'
 import { paletteContext, currencyContext } from './component/Context'
