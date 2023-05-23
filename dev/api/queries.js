@@ -262,7 +262,7 @@ const createBid = (request, response) => {
 // Requetes reliees au tags
 
 const getFavoriteTags = (request, response) => {
-    client.query('SELECT id_tag as "TAG", COUNT(id_tag) as "NbTime" FROM favorite_tag_list GROUP BY id_tag;', (error, results) => {
+    client.query('SELECT id_tag as "id_tag", COUNT(id_tag) as "NbTime" FROM favorite_tag_list GROUP BY id_tag;', (error, results) => {
         if (error) {
             throw error
         }
