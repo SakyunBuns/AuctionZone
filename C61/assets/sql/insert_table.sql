@@ -5,14 +5,14 @@ INSERT INTO users VALUES (DEFAULT, 'superTest', 'Bob', 'King', 'test@email.com',
 
 INSERT INTO items VALUES (DEFAULT, '1980-ish Barbie', 'The first one ever WOW!', DEFAULT, DEFAULT, 8999.99, 1, '2023-04-26',1);
 INSERT INTO items VALUES (DEFAULT, 'LOZ:BOTW2', 'The wait is almost over!', DEFAULT, DEFAULT, 89.99, 1, '2023-05-15',1);
-INSERT INTO items VALUES (DEFAULT, 'DEC Certificate', 'I want to break free', DEFAULT, DEFAULT, 280.99, 1, '2023-05-27',1);
+INSERT INTO items VALUES (DEFAULT, 'DEC Certificate', 'I want to break free', DEFAULT, DEFAULT, 280.99, 1, '2023-05-27-14:00',1);
 
 INSERT INTO items VALUES (DEFAULT, 'FF:Pixel Remastered', 'Better buy it off hands since the furnisher couldn''t provide!', DEFAULT, DEFAULT, 89.99, 1, '2023-07-15',1);
 INSERT INTO items VALUES (DEFAULT, 'PepsiCola Magnet', 'Make your mom happy since i dunno', DEFAULT, DEFAULT, 36.87, 1, '2023-05-26:16:34',1);
 INSERT INTO items VALUES (DEFAULT, 'Pearl', ' snatched from a siren very furious', DEFAULT, DEFAULT, 4200, 1, '2023-08-13:02:24:03',1);
-INSERT INTO items VALUES (DEFAULT, 'Ace Attorney Vinyl', 'Go back to school', DEFAULT, DEFAULT, 280.99, 1, '2023-05-28',1);
+INSERT INTO items VALUES (DEFAULT, 'Ace Attorney Vinyl', 'Go back to school', DEFAULT, DEFAULT, 280.99, 1, '2023-05-28:08:00',1);
 INSERT INTO items VALUES (DEFAULT, 'Santoku knife', 'Chop Chop!!', DEFAULT, DEFAULT, 350, 1, '2023-05-23',1);
-INSERT INTO items VALUES (DEFAULT, 'Broken mirror', 'At least you won''t be the one cursed' , DEFAULT, DEFAULT, 450.99, 1, '2023-05-27:00:02:04',1);
+INSERT INTO items VALUES (DEFAULT, 'Broken mirror', 'At least you won''t be the one cursed' , DEFAULT, DEFAULT, 450.99, 1, '2023-05-27:12:00:04',1);
 INSERT INTO items VALUES (DEFAULT, 'Sidney Crosbey''s cards', 'Someone enjoyed timbits', DEFAULT, DEFAULT, 89.99, 1, '2023-05-15:23:59',1);
 INSERT INTO items VALUES (DEFAULT, 'DM Ropes', 'Release your inner dragonborn', DEFAULT, DEFAULT, 80.99, 1, '2023-06-27',1);
 
