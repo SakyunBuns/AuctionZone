@@ -37,7 +37,7 @@ export default function LeaderBid(props) {
                 </div>
                 <div className='chat--leader--right'>
                     <div style={{ color: `${palette.textColor}` }}>Apex Dogg</div>
-                    <div style={{ color: `${palette.textColor}` }}>{<Price price={parseInt(currentItem.price)} />}</div>
+                    <div style={{ color: `${palette.textColor}` }}>{<Price price={parseFloat(currentItem.price)} />}</div>
                 </div>
             </div>
 

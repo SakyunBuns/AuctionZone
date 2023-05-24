@@ -28,6 +28,7 @@ app.get('/user_name/:username', db.userNameExist);
 app.get('/user_email/:email', db.userEmailExist);
 app.get('/bid/:id', db.getBid);
 app.get('/userTag/:id', db.getFavoriteTagsByUser);
+app.get('/user_login/:username/:password', db.getUserByUsernameAndPassword);
 
 app.post('/user', db.createUser);
 app.post('/item', db.createItem);
@@ -38,4 +39,5 @@ app.post('/itemTag', db.addItemTag);
 app.put('/users/:id', db.updateUser);
 
 // Server listening on port 3000
+
 http.createServer(app).listen(3000);

@@ -5,23 +5,27 @@
 // Date : Hiver 2023
 
 import React, { useState, useContext } from 'react'
-import { paletteContext } from './component/Context'
+import { paletteContext, userContext } from './component/Context'
+import { UserDAO } from './DAO/UserDAO';
+import noissette from "./assets/doggo3.jpg";
+import { Link } from 'react-router-dom';
 
 
-export default function SignInPage(props){
+export default function SignInPage(props) {
 
-    const {palette} = useContext(paletteContext)
+    const { palette } = useContext(paletteContext)
+    const {user, setUser} = useContext(userContext)
 
     const [formData, setFormData] = useState(
         {
-            username: "", 
+            username: "",
             password: "",
         }
-    )  
-    
+    )
+
     console.log(formData)
     const handleChange = (event) => {
-        const {username, password} = event.target
+        const { username, password } = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
@@ -31,10 +35,30 @@ export default function SignInPage(props){
     }
 
     const handleSubmit = (event) => {
-      event.preventDefault()
-    //INSERT DAO
-    
-     console.log(formData)
+        event.preventDefault()
+        //INSERT DAO
+        UserDAO.is_login_valid(formData.username, formData.password, (res) => {
+            if (res) {
+                console.log("Login success")
+                let loggedUser = {
+                    id: res[0].id,
+                    username: res[0].username,
+                    firstName: res[0].name,
+                    lastName: res[0].lastname,
+                    email: res[0].email,
+                    password: res[0].password,
+                    profile : noissette
+                }
+                setUser(loggedUser)
+                // setTimeout(() => {
+                //     <Link to={'/'}></>
+                // }, 1500)
+            } else {
+                console.log("Login failed")
+            }
+        })
+
+        console.log(formData)
     };
 
     const formContainerStyle = {
@@ -43,33 +67,33 @@ export default function SignInPage(props){
     }
 
     return (
-      <form onSubmit={handleSubmit} className='page' style={{alignItem:'center', display:'flex'}}>
-          <div className='form--container' style={formContainerStyle}>
+        <form onSubmit={handleSubmit} className='page' style={{ alignItem: 'center', display: 'flex' }}>
+            <div className='form--container' style={formContainerStyle}>
 
-            <label className='form--label'>
-            <p>Username : </p>
-            <input
-                type="text"
-                name="username"
-                onChange={handleChange}
-                value={formData.username}
-            />
-            </label>
-           <br></br>
+                <label className='form--label'>
+                    <p>Username : </p>
+                    <input
+                        type="text"
+                        name="username"
+                        onChange={handleChange}
+                        value={formData.username}
+                    />
+                </label>
+                <br></br>
 
-            <label className='form--label'>
-            Password :
-            <input
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-            />
-            </label>
-            <br />
+                <label className='form--label'>
+                    Password :
+                    <input
+                        name="password"
+                        type="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                </label>
+                <br />
 
-            <button type="submit" style={{padding: `5px 10px`}}>Sign in</button>
-          </div>
-      </form>
+                <button type="submit" style={{ padding: `5px 10px` }}>Sign in</button>
+            </div>
+        </form>
     );
 }

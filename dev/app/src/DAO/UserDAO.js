@@ -43,6 +43,24 @@ export class UserDAO {
     }
   }
 
+  static is_login_valid = (username, password, callback) => {
+    if (username != null && password != null && callback != null) {
+      console.log("username: " + username);
+      fetch('http://127.0.0.1:3000/user_login/' + username + '/' + password, {
+        method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data != null) {
+            callback(data)
+          }
+        })
+        .catch(error => {
+          console.error(error); // log any errors that occur during the request
+        });
+    }
+  }
+
   static create_user = ({ username, name, lastname, email, password, image, dob }, callback) => {
     fetch('http://127.0.0.1:3000/user', {
       method: 'POST',

@@ -6,6 +6,7 @@
 // Date : Hiver 2023
 
 
+const { response } = require('express');
 const { Client } = require('pg');
 
 const client = new Client({
@@ -57,6 +58,17 @@ const userEmailExist = (request, response) => {
 const getUsers = (request, response) => {
     client.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
         if (error) {
+            throw error
+        }
+        response.status(200).json(results.rows);
+    })
+}
+
+const getUserByUsernameAndPassword = (request, response) => {
+    const username = request.params.username
+    const password = request.params.password
+    client.query('SELECT * FROM users WHERE username = $1 and password = $2', [username, password],(error, results) =>{
+        if (error){
             throw error
         }
         response.status(200).json(results.rows);
@@ -282,6 +294,7 @@ module.exports = {
     userNameExist,
     userEmailExist,
     addUserTag,
+    getUserByUsernameAndPassword,
 
     getItems,
     getItem,

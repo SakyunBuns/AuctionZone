@@ -8,7 +8,7 @@
 import React, { useState, useEffect, useContext}from 'react'
 import Message from './Message'
 import LeaderBid from './LeaderBid'
-import { paletteContext } from './Context'
+import { paletteContext, userContext } from './Context'
 import Bid from './Bid'
 import EmojiBox from './EmojiBox'
 import EmojiDead from "../assets/emoji/emojiDead.png";
@@ -24,6 +24,7 @@ import LinkedList from '../assets/LinkedList'
 export default function Chat(props){
 
     const {palette} = useContext(paletteContext)
+    const {user} = useContext(userContext)
 
     //To change with a fetch from API
     const listEmoji = [EmojiDead, EmojiMoney, EmojiScared, EmojiSmiley]
@@ -41,8 +42,8 @@ export default function Chat(props){
     }]
 
     const myUser = {
-        username : 'ChienMechant',
-        profile : `${doggo3}`
+        username : user != null ? user.username : 'Anonydoggo',
+        profile : user != null ? user.profile : `${doggo3}`
     }
 
     // const messageUpdated = messages.map((message, index) => {
