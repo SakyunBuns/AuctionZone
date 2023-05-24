@@ -200,7 +200,7 @@ export default function SignUpPage(props) {
                 <br />
 
                 <label className='form--label'>
-                    Firstame :
+                    Firstname :
                     <input
                         name="firstname"
                         type="text"

@@ -55,7 +55,8 @@ export default function AuctionPage(props) {
                                 "auction_on": result.auction_on,
                                 "room_id": result.room_id,
                                 "images": result.images,
-                                "time_remaining": get_time_left(result.auction_on)
+                                "time_remaining": get_time_left(result.auction_on),
+                                "id_highest_bidder": dataBid.length > 0 ? dataBid[0].id_user : null
                             };
 
                             setCurrentItem(new_item)

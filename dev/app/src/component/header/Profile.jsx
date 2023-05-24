@@ -9,6 +9,7 @@ import React, {useContext} from 'react'
 import VisitorProfile from '../../assets/visitor.jpg'
 import { Link } from 'react-router-dom';
 import { paletteContext, userContext } from '../Context'
+import visitorPic from "../../assets/visitor.jpg"
 
 
 export default function Profile(props){
@@ -17,6 +18,16 @@ export default function Profile(props){
     const {user, setUser} = useContext(userContext)
 
     const imageHeight = props.profileWidth - 20
+
+    const visitor = {
+        id: 0,
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        profile : visitorPic
+    }
 
     const styleContainer = {
         gridArea:`${props.gridName}`,
@@ -47,7 +58,7 @@ export default function Profile(props){
     }
 
     const handleSignOut = () => {   
-        setUser(null)
+        setUser(visitor)
     }
 
     const styleCenterContainer = {
@@ -66,7 +77,7 @@ export default function Profile(props){
             }
 
             {
-                user ? 
+                user.id ? 
                 <div style={styleCenterContainer} onClick={handleSignOut}>
                     <Link style={styleTextColor} to='/'>Sign out</Link>
                 </div> :

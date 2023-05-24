@@ -22,6 +22,7 @@ import SearchPage from './SearchPage'
 import { userContext, paletteContext, tagsContext, currencyContext } from './component/Context'
 import ChangePasswordPage from './ChangePasswordPage'
 import doggo3 from "./assets/doggo3.jpg";
+import visitorPic from "./assets/visitor.jpg"
 
 
 //TO INTEGRATE USE CONTEXT FOR THE PALETTE
@@ -39,7 +40,18 @@ export default function App() {
         email: "chien@mechant.com"
     }
 
-    const [user, setUser] = useState(null)
+
+    const  visitor = {
+        id: 0,
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        profile : visitorPic
+    }
+
+    const [user, setUser] = useState(visitor)
 
     const [darkMode, setDarkMode] = useState(false)
     
