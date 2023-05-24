@@ -8,20 +8,22 @@ import React, { useState, useContext } from 'react'
 import { paletteContext, userContext } from './component/Context'
 import { UserDAO } from './DAO/UserDAO';
 import noissette from "./assets/doggo3.jpg";
-import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
+
 
 
 export default function SignInPage(props) {
 
     const { palette } = useContext(paletteContext)
     const {user, setUser} = useContext(userContext)
-
     const [formData, setFormData] = useState(
         {
             username: "",
             password: "",
         }
     )
+
+    // const history = useHistory()
 
     console.log(formData)
     const handleChange = (event) => {
@@ -51,8 +53,8 @@ export default function SignInPage(props) {
                 }
                 setUser(loggedUser)
                 // setTimeout(() => {
-                //     <Link to={'/'}></>
-                // }, 1500)
+                //     history.push('/')
+                //   }, 1500)
             } else {
                 console.log("Login failed")
             }

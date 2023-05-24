@@ -198,7 +198,7 @@ export default function SellPage(props) {
                     <br />
                 </div>
 
-                <Weekend date={'2021-04-29T08:00:00'} handleSelectDate={handleSelectDate} />
+                <Weekend date={'2023-05-27T08:00:00'} handleSelectDate={handleSelectDate} />
             </div>
         </form>
 

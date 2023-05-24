@@ -19,6 +19,15 @@ import doggo from "../assets/doggo.png";
 import doggo2 from "../assets/doggo2.jpg";
 import doggo3 from "../assets/doggo3.jpg";
 import LinkedList from '../assets/LinkedList'
+import Bob from '../assets/fakeprofile/bob.webp'
+import Godot from '../assets/fakeprofile/godot.webp'
+import Angel from '../assets/fakeprofile/angel.jpg'
+import JeanPol from '../assets/fakeprofile/jeanpol.jpg'
+import SuppaMan from '../assets/fakeprofile/suppaman.jpg'
+import GodDog from '../assets/fakeprofile/goddog.jpg'
+import SnugDog from '../assets/fakeprofile/snugdog.png'
+import ArtLait from '../assets/fakeprofile/artlait.webp'
+
 
 
 export default function Chat(props){
@@ -39,7 +48,40 @@ export default function Chat(props){
     {
         username : 'Snackosaurus',
         profile : `${doggo2}`
-    }]
+    },
+    {
+        username : 'Bob Stewart',
+        profile : `${Bob}`
+    },
+    {
+        username : 'Excentrique Café',
+        profile : `${Godot}`
+    },
+    {
+        username : 'xxDeadxxAngelxx',
+        profile : `${Angel}`
+    },
+    {
+        username : 'JeanPol',
+        profile : `${JeanPol}`
+    },
+    {
+        username : 'SuppaMan',
+        profile : `${SuppaMan}`
+    },
+    {
+        username : 'Goddoggo',
+        profile : `${GodDog}`
+    },
+    {
+        username : 'SnugDog',
+        profile : `${SnugDog}`
+    },
+    {
+        username : 'ArtLait',
+        profile : `${ArtLait}`
+    },
+    ]
 
     const myUser = {
         username : user != null ? user.username : 'Anonydoggo',
@@ -108,7 +150,7 @@ export default function Chat(props){
             </div>
 
             <EmojiBox listEmoji={listEmoji} handleEmojiClick={handleEmojiClick}/>
-            <Bid currentItem={props.currentItem}/>
+            {user && <Bid currentItem={props.currentItem}/>}
 
         </div>  
     )
