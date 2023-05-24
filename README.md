@@ -110,7 +110,26 @@ Here is the required list of software you need to install
 Utilisation Cette section indique comment démarrer votre projet et quels sont les usages fondamentaux (ici, sans être nécessaires, des captures d’écran sont généralement appréciées). Cette section est généralement pertinente pour expliquer la philosophie d’usage de la librairie. On s’adresse généralement aux programmeurs utilisateurs de votre projet.-->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Users can view recommandations without being loggeg in
+<img src="./_README_Ressources/visitor_recommandation.PNG">
+- Users can view personalized recommandations if they're connected
+<img src="./_README_Ressources/user_recommandation.PNG">
+- Users can login using their username and password
+<img src="./_README_Ressources/login.PNG">
+- Users can create an account once all the fields are checked
+ <img src="./_README_Ressources/sign_up.PNG">
+- Users who are connected can see their informations on the profile page
+<img src="./_README_Ressources/view_profile.PNG">
+- Users can submit an item to be put in auction with the specific informations/requirements
+<img src="./_README_Ressources/sudmit_item.PNG">
+- Users can view the next item on the auction page
+<img src="./_README_Ressources/view_auction.PNG">
+- Users can submit messages on the auction page
+<img src="./_README_Ressources/send_emoji.PNG">
+- Users can submit a higher bid to be the current leader
+<img src="./_README_Ressources/send_bid.PNG">
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

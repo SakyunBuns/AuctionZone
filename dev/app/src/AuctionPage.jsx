@@ -70,7 +70,7 @@ export default function AuctionPage(props) {
                 })
             })
         }
-            , 5000);
+            , 1000);
         return () => clearInterval(interval);
     }, [currentItem]);
 

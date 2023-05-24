@@ -5,7 +5,7 @@ INSERT INTO users VALUES (DEFAULT, 'superTest', 'Bob', 'King', 'test@email.com',
 
 INSERT INTO items VALUES (DEFAULT, '1980-ish Barbie', 'The first one ever WOW!', DEFAULT, DEFAULT, 8999.99, 1, '2023-04-26',1);
 INSERT INTO items VALUES (DEFAULT, 'LOZ:BOTW2', 'The wait is almost over!', DEFAULT, DEFAULT, 89.99, 1, '2023-05-15',1);
-INSERT INTO items VALUES (DEFAULT, 'DEC Certificate', 'I want to break free', DEFAULT, DEFAULT, 280.99, 1, '2023-05-27-14:00',1);
+INSERT INTO items VALUES (DEFAULT, 'DEC Certificate', 'I want to break free', DEFAULT, DEFAULT, 280.99, 1, '2023-05-27:14:00',1);
 
 INSERT INTO items VALUES (DEFAULT, 'FF:Pixel Remastered', 'Better buy it off hands since the furnisher couldn''t provide!', DEFAULT, DEFAULT, 89.99, 1, '2023-07-15',1);
 INSERT INTO items VALUES (DEFAULT, 'PepsiCola Magnet', 'Make your mom happy since i dunno', DEFAULT, DEFAULT, 36.87, 1, '2023-05-26:16:34',1);
@@ -58,23 +58,6 @@ SELECT * FROM items;
 SELECT * FROM users;
 
 
--- Requete
-SELECT *,
-( items.auction_on - CURRENT_TIMESTAMP) AS "time_idx" 
-FROM items 
-WHERE ( items.auction_on - CURRENT_TIMESTAMP) >= INTERVAL '0 SECONDs'
-ORDER BY "time_idx" ASC;
-
-SELECT id_tag, COUNT(id_tag) FROM favorite_tag_list WHERE id_user = 1 GROUP BY id_tag;
-SELECT * FROM items 
-INNER JOIN tag_list 
-ON tag_list.id_item = items.id
-WHERE tag_list.id_tag = 'Collection';
-
-SELECT id_tag as "TAG",
-COUNT(id_tag) as "NbTime"
-FROM favorite_tag_list
-GROUP BY id_tag;
 
 
 
