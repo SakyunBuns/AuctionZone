@@ -1,3 +1,9 @@
+// Nom du fichier: SearchPage.jsx
+// Contexte de ce fichier:  Ce fichier n'est pas complété, il représentait la page qui affiche le résultat de la recherche.
+// Auteur : Nathaelle Fournier
+// Autre auteurs: Quoc Huan Tran
+// Date : Hiver 2023
+
 import React, { useState, useContext } from "react";
 import { paletteContext } from "./component/Context";
 

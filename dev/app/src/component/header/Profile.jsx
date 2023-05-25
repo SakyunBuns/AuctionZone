@@ -71,7 +71,7 @@ export default function Profile(props){
     return (
         <div style={styleContainer}>
             {
-                user ? 
+                user.id ? 
                 <Link style={styleCenterContainer} to={props.profilePath ? props.profilePath : '/Profile'} ><img src={user.profile} style={styleImg}></img></Link> :
                 <div style={styleCenterContainer}><img src={VisitorProfile} style={styleImg}></img></div>
             }

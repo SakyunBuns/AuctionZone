@@ -6,7 +6,7 @@
 // Date : Hiver 2023
 
 import React, { useState } from 'react'
-import { tagsContext } from "../Context"
+import { tagsContext, userContext } from "../Context"
 import Select from 'react-select'
 import { useContext } from 'react'
 import { ItemDAO } from '../../DAO/ItemDAO'
@@ -15,6 +15,7 @@ import { UserDAO } from '../../DAO/UserDAO'
 export default function SearchBar(props){
 
     const { tags } = useContext(tagsContext)
+    const { user } = useContext(userContext)
 
     const [selectedOption, setSelectedOption] = useState("")
 
@@ -77,7 +78,9 @@ export default function SearchBar(props){
         else{
             ItemDAO.getItemsByKeyTag(selectedOption, (result) => {
                 console.log(result)
-                UserDAO.addUserTag({id_user:1, id_tag:selectedOption}, (result))
+                user.id != null ?
+                UserDAO.addUserTag({id_user:user.id, id_tag:selectedOption}, (result)):
+                console.log("not logged in")
             })
             
         }

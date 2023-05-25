@@ -84,8 +84,8 @@ export default function Chat(props){
     ]
 
     const myUser = {
-        username : user != null ? user.username : 'Anonydoggo',
-        profile : user != null ? user.profile : `${doggo3}`
+        username : user.id != 0 ? user.username : 'Anonydoggo',
+        profile : user.id != 0 ? user.profile : `${doggo3}`
     }
 
     // const messageUpdated = messages.map((message, index) => {

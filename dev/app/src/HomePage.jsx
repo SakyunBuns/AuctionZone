@@ -26,18 +26,18 @@ export default function HomePage(props) {
 
     const [itemsSections, setItemsSections] = useState(null);
 
-    // useEffect(() => {
-    //     if(user === null) {
-    //         setUserLoggedIn('USER_OFFLINE');
-    //     }else{
-    //         setUserLoggedIn('USER_ONLINE');
-    //     }
-    // }, [user])
+    useEffect(() => {
+        if(user.id == 0) {
+            setUserLoggedIn('USER_OFFLINE');
+        }else{
+            setUserLoggedIn('USER_ONLINE');
+        }
+    }, [user])
 
 
     useEffect(() => {
         
-        if(user === null) {
+        if(user.id === 0) {
             ItemDAO.getFavoriteTags((tagViewCount) => {
                 console.log(tagViewCount)
                 const sortedArray = qs.reverseSort(tagViewCount, "nbCount");

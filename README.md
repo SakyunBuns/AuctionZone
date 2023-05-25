@@ -141,7 +141,26 @@ Collate insensitive :
 https://www.cybertec-postgresql.com/en/icu-collations-against-glibc-2-28-data-corruption/
 https://stackoverflow.com/questions/71663281/postgresql-case-insensitive-and-accent-insensitive-search
 https://stackoverflow.com/questions/7005302/how-to-make-case-insensitive-query-in-postgresql
-````
+```
+Drop down menu:
+``` 
+https://www.simplilearn.com/tutorials/reactjs-tutorial/how-to-create-functional-react-dropdown-menu#:~:text=DevelopmentExplore%20Program-,What%20Are%20Dropdowns%3F,the%20dropdown%20list%20is%20fixed.
+```
+React Carousel
+```
+https://blog.logrocket.com/building-carousel-component-react-hooks/
+https://blog.logrocket.com/react-hooks-cheat-sheet-solutions-common-problems/
+https://www.youtube.com/watch?v=sR5Z8AJ-zRU
+https://www.npmjs.com/package/react-multi-carousel
+```
+React Context
+```
+https://www.youtube.com/watch?v=MCTB_w0Guso
+```
+Enumerate pour State
+```
+https://www.delftstack.com/fr/howto/javascript/javascript-enum/#:~:text=Les%20Enums%2C%20%C3%A9galement%20appel%C3%A9es%20%C3%A9num%C3%A9rations%2C%20sont%20utilis%C3%A9es%20pour,pouvez%20utiliser%20le%20mot-cl%C3%A9%20const%20et%20des%20accolades.
+```
 
 SSH Tunnel (from when the api was hosted on a server)
 ```

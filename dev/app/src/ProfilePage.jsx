@@ -28,19 +28,19 @@ export default function ProfilePage(props){
                     <div className='profile--content--info--container'>
                         <div className='profile--content--info'>
                             <p >Username</p>
-                            {user ? <p>{user.username}</p> : <p>Visitor</p>}
+                            {user.id ? <p>{user.username}</p> : <p>Visitor</p>}
                         </div>
                         <div className='profile--content--info'>
                             <p >First name</p>
-                            {user ? <p>{user.firstName}</p> : <p>Visitor</p>}
+                            {user.id ? <p>{user.firstName}</p> : <p>Visitor</p>}
                         </div>
                         <div className='profile--content--info'>
                             <p>Last name</p>
-                            {user ? <p>{user.lastName}</p> : <p>Visitor</p>}
+                            {user.id ? <p>{user.lastName}</p> : <p>Visitor</p>}
                         </div>
                         <div className='profile--content--info'>
                             <p>Email</p>
-                            {user ? <p>{user.email}</p> : <p>Visitor</p>}
+                            {user.id ? <p>{user.email}</p> : <p>Visitor</p>}
                         </div>
                     </div>
                     <div className='profile--content--button'>
