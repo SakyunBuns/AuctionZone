@@ -16,6 +16,14 @@ INSERT INTO items VALUES (DEFAULT, 'Broken mirror', 'At least you won''t be the 
 INSERT INTO items VALUES (DEFAULT, 'Sidney Crosbey''s cards', 'Someone enjoyed timbits', DEFAULT, DEFAULT, 89.99, 1, '2023-05-15:23:59',1);
 INSERT INTO items VALUES (DEFAULT, 'DM Ropes', 'Release your inner dragonborn', DEFAULT, DEFAULT, 80.99, 1, '2023-06-27',1);
 
+INSERT INTO items VALUES (DEFAULT, 'mAGIC pENCIL', 'Maybe it will answer to your deepest wishes?', DEFAULT, DEFAULT, 42.74, 1, '2023-06-29:12:00');
+INSERT INTO items VALUES (DEFAULT, 'Death Eraser', 'This may be a reference to Death Note, who knows', DEFAULT, DEFAULT, 3.99, 1, '2023-07-29:12:00');
+INSERT INTO items VALUES (DEFAULT, 'Bootleg Saber pen', 'Do it for her', DEFAULT, DEFAULT, 65.00, 1, '2023-06-30:14:00');
+INSERT INTO items VALUES (DEFAULT, 'Photograph with Gumby', 'I miss you mom!', DEFAULT, DEFAULT, 10.99, 1, '2023-06-29:16:00');
+INSERT INTO items VALUES (DEFAULT, 'Pooh Bear Plush from 1997', 'We all know what i want from the internet', DEFAULT, DEFAULT, 250.99, 1, '2023-06-26:11:00');
+INSERT INTO items VALUES (DEFAULT, 'Smurf Handed Link Amiibo', 'Maybe youll find him online', DEFAULT, DEFAULT, 20.00, 1, '2023-06-26:13:00');
+
+
 INSERT INTO tag_list VALUES (3, 'Livre & Manuscrit');
 INSERT INTO tag_list VALUES (3, 'Bijoux & Accessoire');
 INSERT INTO tag_list VALUES (1, 'Collection');
@@ -53,6 +61,13 @@ INSERT INTO favorite_tag_list VALUES (1, 'Musique');
 INSERT INTO favorite_tag_list VALUES (1, 'Sport');
 INSERT INTO favorite_tag_list VALUES (1, 'Vaisselle & Coutellerie');
 INSERT INTO favorite_tag_list VALUES (1, 'Vêtement');
+
+INSERT INTO tag_list VALUES (12, 'Collection');
+INSERT INTO tag_list VALUES (13, 'Collection');
+INSERT INTO tag_list VALUES (14, 'Collection');
+INSERT INTO tag_list VALUES (15, 'Collection');
+INSERT INTO tag_list VALUES (16, 'Collection');
+INSERT INTO tag_list VALUES (17, 'Collection');
 
 SELECT * FROM items;
 SELECT * FROM users;
