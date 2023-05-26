@@ -5,7 +5,7 @@
 // Date : Hiver 2023
 
 import React, { useState, useContext } from "react"
-import { paletteContext, currencyContext } from "./Context"
+import { paletteContext, currencyContext, userContext} from "./Context"
 import Converter from "../assets/CurrencyConverter"
 import { ItemDAO } from "../DAO/ItemDAO"
 
@@ -15,6 +15,7 @@ export default function Bid(props) {
     const { palette } = useContext(paletteContext)
     const { currency, rates } = useContext(currencyContext)
     const [bid, setBid] = useState('')
+    const { user} = useContext(userContext)
 
     const converter = new Converter(rates, 'CAD');
 
@@ -24,7 +25,7 @@ export default function Bid(props) {
         ItemDAO.getHigherBid(props.currentItem.id_item, (highestBid) => {
             if ((highestBid.length > 0)) {
                 if (highestBid[0].amount < bid) {
-                    ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: 1, bid: bid }, () =>
+                    ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: user.id, bid: bid }, () =>
                         console.log('bid added')
                     )
                 }
