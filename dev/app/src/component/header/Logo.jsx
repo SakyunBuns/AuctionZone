@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom';
-import LogoImage from '../../assets/logo.png'
+import LogoImage from '../../assets/az.png'
 
 
 export default function Logo(props){
