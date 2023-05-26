@@ -49,7 +49,7 @@ export default function HomePage(props) {
                 setItemsSections(tempArray);
             })
         }else{
-            UserDAO.getUserTags(1, (tagViewCount) => {
+            UserDAO.getUserTags(user.id, (tagViewCount) => {
                 const sortedArray = qs.reverseSort(tagViewCount, "nbCount");
                 const sortedArray5 = sortedArray.slice(0, 5);
                 const tempArray = sortedArray5.map((item) => {
