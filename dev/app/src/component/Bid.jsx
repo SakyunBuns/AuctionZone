@@ -23,23 +23,24 @@ export default function Bid(props) {
         event.preventDefault()
         //INSERT DAO HERE, DO NOT FORGET bid is a STRING AND NEED TO BE CHECKED
         ItemDAO.getHigherBid(props.currentItem.id_item, (highestBid) => {
+            const amount = parseFloat(bid)
+            const amountToServer = converter.convertToServeur(amount, currency[0])
+            console.log(amountToServer)
             if ((highestBid.length > 0)) {
-                if (highestBid[0].amount < bid) {
-                    ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: user.id, bid: bid }, () =>
+                if (highestBid[0].amount < amountToServer) {
+                    ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: user.id, bid: amountToServer }, () =>
                         console.log('bid added')
                     )
                 }
             } else if (bid > props.currentItem.price) {
-                ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: 1, bid: bid }, () =>
+                ItemDAO.addBid({ idItem: props.currentItem.id_item, idUser: 1, bid: amountToServer }, () =>
                     console.log('bid added')
                 )
             }
         })
 
 
-        const amount = parseFloat(bid)
-        const amountToServer = converter.convertToServeur(amount, currency[0])
-        console.log(amountToServer)
+        
     }
 
     const handleChange = (event) => {
