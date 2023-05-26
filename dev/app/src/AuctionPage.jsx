@@ -50,6 +50,7 @@ export default function AuctionPage(props) {
                                 "name": result.name,
                                 "description": result.description,
                                 "status": result.current_status,
+                                "starting_price": result.price,
                                 "price": dataBid.length > 0 ? dataBid[0].amount : result.price,
                                 "id_seller": result.id_seller,
                                 "auction_on": result.auction_on,
